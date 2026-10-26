@@ -1,0 +1,2 @@
+# Browser testing only. The static app itself has no Python package dependencies.
+playwright==1.62.0

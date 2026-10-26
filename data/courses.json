@@ -1,0 +1,1690 @@
+{
+  "schemaVersion": 1,
+  "courses": [
+    {
+      "id": "linear-equations",
+      "academy": "high-school",
+      "title": "Linear equations, one step at a time",
+      "summary": "Model a situation, isolate an unknown, and check your solution.",
+      "audience": "Students beginning Algebra I",
+      "prerequisites": [
+        "Whole-number arithmetic",
+        "Negative numbers"
+      ],
+      "objectives": [
+        "Explain why an equation stays balanced",
+        "Solve and check two-step linear equations",
+        "Translate a short problem into an equation"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "balance",
+          "title": "Keep both sides balanced",
+          "minutes": 12,
+          "paragraphs": [
+            "An equation states that two expressions have the same value. In x + 7 = 19, the unknown x is a number that makes the statement true. Solving means finding that number, rather than guessing an operation from the appearance of the symbols.",
+            "Subtracting the same quantity from both sides preserves equality. Multiplying or dividing both sides by the same nonzero number also preserves it. Think of a balanced scale: changing only one side usually destroys the balance. Division by zero is never a valid solving step.",
+            "After solving, substitute the value into the original equation. This checks the original claim and catches sign errors. A correct-looking final number is less useful than a chain of justified steps."
+          ],
+          "example": {
+            "problem": "Solve x + 7 = 19.",
+            "steps": [
+              "Subtract 7 from both sides: x + 7 − 7 = 19 − 7.",
+              "Simplify: x = 12.",
+              "Check: 12 + 7 = 19."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "Solve x − 8 = 5.",
+              "options": [
+                "−3",
+                "13",
+                "3",
+                "−13"
+              ],
+              "answer": 1,
+              "explanation": "Add 8 to both sides: x = 13. Check 13 − 8 = 5.",
+              "misconception": "Subtracting another 8 moves the left side away from x.",
+              "difficulty": "introductory",
+              "id": "linear-equations-balance-1"
+            },
+            {
+              "prompt": "Which step preserves 3x = 18?",
+              "options": [
+                "Divide only 18 by 3",
+                "Subtract x from only the left side",
+                "Divide both sides by 3",
+                "Multiply only the left side by 3"
+              ],
+              "answer": 2,
+              "explanation": "Dividing both sides by the same nonzero number gives x = 6.",
+              "misconception": "Applying an operation to one side alone changes the equality.",
+              "difficulty": "application",
+              "id": "linear-equations-balance-2"
+            },
+            {
+              "prompt": "Which value satisfies 4 + x = −2?",
+              "options": [
+                "6",
+                "−6",
+                "2",
+                "−2"
+              ],
+              "answer": 1,
+              "explanation": "Subtract 4 from both sides to obtain x = −6.",
+              "misconception": "The unknown can be negative; 4 + (−6) = −2.",
+              "difficulty": "application",
+              "id": "linear-equations-balance-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What makes a solving step valid?",
+              "back": "Apply an equality-preserving operation to both sides; never divide by zero."
+            }
+          ]
+        },
+        {
+          "id": "two-step",
+          "title": "Undo operations in reverse order",
+          "minutes": 12,
+          "paragraphs": [
+            "In 4x − 5 = 19, multiplication by 4 happens before subtracting 5 when evaluating the expression. To isolate x, undo the subtraction first and then undo multiplication. Add 5 to both sides, then divide both sides by 4.",
+            "A coefficient is the number multiplying a variable. In −3x, the coefficient is −3. Keep its sign attached when dividing. You can check a solution even when it is a fraction: 2x = 5 has the exact solution x = 5/2, or 2.5.",
+            "When parentheses appear, distribute multiplication to every term inside them. For example, 2(x + 3) means 2x + 6. It does not mean 2x + 3. Keep intermediate lines readable so a sign error is easier to find."
+          ],
+          "example": {
+            "problem": "Solve 4x − 5 = 19.",
+            "steps": [
+              "Add 5 to each side: 4x = 24.",
+              "Divide each side by 4: x = 6.",
+              "Substitute: 4(6) − 5 = 19."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "Solve 5x + 4 = 29.",
+              "options": [
+                "5",
+                "25",
+                "6.6",
+                "−5"
+              ],
+              "answer": 0,
+              "explanation": "Subtract 4 to get 5x = 25, then divide by 5.",
+              "misconception": "The 25 is the value of 5x, not x.",
+              "difficulty": "introductory",
+              "id": "linear-equations-two-step-1"
+            },
+            {
+              "prompt": "Solve −3x + 6 = 18.",
+              "options": [
+                "4",
+                "−4",
+                "8",
+                "−8"
+              ],
+              "answer": 1,
+              "explanation": "Subtract 6: −3x = 12. Divide by −3: x = −4.",
+              "misconception": "A positive number divided by a negative number is negative.",
+              "difficulty": "application",
+              "id": "linear-equations-two-step-2"
+            },
+            {
+              "prompt": "Solve 2(x + 3) = 14.",
+              "options": [
+                "10",
+                "7",
+                "4",
+                "5.5"
+              ],
+              "answer": 2,
+              "explanation": "Divide both sides by 2: x + 3 = 7. Then subtract 3: x = 4.",
+              "misconception": "The parentheses group x + 3 before multiplication.",
+              "difficulty": "application",
+              "id": "linear-equations-two-step-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "How do you undo ax + b = c, when a is nonzero?",
+              "back": "Subtract b from both sides, then divide both sides by a."
+            }
+          ]
+        },
+        {
+          "id": "model",
+          "title": "Turn a situation into an equation",
+          "minutes": 12,
+          "paragraphs": [
+            "Choose a variable and write what it measures, including its unit. A fixed fee and a per-item charge combine as total = fixed fee + rate × quantity. An equation should describe the situation before you try to solve it.",
+            "Words such as “more than” require care with order. Five more than twice a number is 2x + 5. Five less than twice a number is 2x − 5. Use a small test number to check your translation if the wording feels ambiguous.",
+            "A computed answer also needs a context check. A negative count of tickets is not sensible. If the model produces a non-integer count when only whole tickets are allowed, examine whether the stated budget is an exact total or an upper limit."
+          ],
+          "example": {
+            "problem": "A workshop charges $8 plus $3 per project. An exact bill is $29. How many projects?",
+            "steps": [
+              "Let n be the number of projects.",
+              "Write 8 + 3n = 29.",
+              "Subtract 8, then divide by 3: n = 7.",
+              "Check: $8 + 7 × $3 = $29."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A taxi costs $4 plus $2 per mile. An exact $18 fare represents how many miles?",
+              "options": [
+                "7",
+                "9",
+                "11",
+                "14"
+              ],
+              "answer": 0,
+              "explanation": "4 + 2m = 18 gives 2m = 14 and m = 7 miles.",
+              "misconception": "Dividing 18 by 2 ignores the fixed $4 charge.",
+              "difficulty": "introductory",
+              "id": "linear-equations-model-1"
+            },
+            {
+              "prompt": "Which expression means five less than twice n?",
+              "options": [
+                "5 − 2n",
+                "2(n − 5)",
+                "2n − 5",
+                "5n − 2"
+              ],
+              "answer": 2,
+              "explanation": "Twice n is 2n; subtract 5 from that expression.",
+              "misconception": "Order matters in subtraction.",
+              "difficulty": "application",
+              "id": "linear-equations-model-2"
+            },
+            {
+              "prompt": "An exact $17 budget pays $5 entry plus $4 per ride. How many rides?",
+              "options": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ],
+              "answer": 1,
+              "explanation": "5 + 4r = 17, so r = 12/4 = 3.",
+              "misconception": "Check all charges, including the entry cost.",
+              "difficulty": "application",
+              "id": "linear-equations-model-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What should a model variable include?",
+              "back": "A clear meaning and a unit, followed by a check that the result fits the situation."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "Solve 7x − 9 = 26.",
+          "options": [
+            "5",
+            "17/7",
+            "−5",
+            "7"
+          ],
+          "answer": 0,
+          "explanation": "Add 9 to obtain 7x = 35, then divide by 7.",
+          "misconception": "Undo the constant before dividing.",
+          "difficulty": "application",
+          "id": "linear-equations-assessment-1"
+        },
+        {
+          "prompt": "Solve 3(x − 2) = 12.",
+          "options": [
+            "2",
+            "4",
+            "6",
+            "10"
+          ],
+          "answer": 2,
+          "explanation": "Divide by 3: x − 2 = 4. Add 2: x = 6.",
+          "misconception": "Distribute to every term if expanding first.",
+          "difficulty": "application",
+          "id": "linear-equations-assessment-2"
+        },
+        {
+          "prompt": "A rental is $12 plus $6 per hour. An exact $42 bill covers how many hours?",
+          "options": [
+            "7",
+            "5",
+            "9",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "12 + 6h = 42 gives h = 30/6 = 5.",
+          "misconception": "The fixed fee is paid once, not hourly.",
+          "difficulty": "application",
+          "id": "linear-equations-assessment-3"
+        }
+      ],
+      "references": [
+        "https://openstax.org/details/books/elementary-algebra-2e"
+      ]
+    },
+    {
+      "id": "reading-evidence",
+      "academy": "high-school",
+      "title": "Read for meaning and evidence",
+      "summary": "Separate a central idea, a stated detail, and a supported inference.",
+      "audience": "Readers building secondary-school comprehension",
+      "prerequisites": [
+        "Read a short paragraph independently"
+      ],
+      "objectives": [
+        "Identify a central idea",
+        "Distinguish evidence from assumptions",
+        "Use qualifiers when drawing conclusions"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "central-idea",
+          "title": "Find the central idea",
+          "minutes": 12,
+          "paragraphs": [
+            "The central idea is the message that ties the important details together. A topic names a subject, such as school gardens. A central idea makes a claim about that topic, such as gardens can support science learning when students gather observations.",
+            "Ask what most sentences help explain. A detail may be true but too narrow to summarize the passage. A statement that introduces a new cause or promises a universal result goes beyond a summary.",
+            "Try a one-sentence summary before looking at answer choices. Then select the option that matches the scope and strength of the passage. Do not assume the first sentence always contains the answer."
+          ],
+          "example": {
+            "problem": "A library added evening hours after residents reported daytime work conflicts. Evening attendance increased, while morning attendance stayed steady. What is the central idea?",
+            "steps": [
+              "Identify the change: new evening opening hours.",
+              "Connect the reason and result: access for residents with daytime conflicts.",
+              "Summarize cautiously: evening hours increased opportunities to visit."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A school adds quiet study rooms. Students report fewer interruptions there. What is the best central idea?",
+              "options": [
+                "Every student dislikes group work",
+                "Quiet rooms can support focused study",
+                "The school should remove all classrooms",
+                "Interruptions never happen"
+              ],
+              "answer": 1,
+              "explanation": "The details connect quiet rooms with fewer interruptions.",
+              "misconception": "Avoid universal words such as every or never when the passage does not support them.",
+              "difficulty": "introductory",
+              "id": "reading-evidence-central-idea-1"
+            },
+            {
+              "prompt": "Which is a topic rather than a central idea?",
+              "options": [
+                "Urban trees",
+                "Urban trees can provide shade on hot streets",
+                "Trees need care after planting",
+                "Tree cover differs across neighborhoods"
+              ],
+              "answer": 0,
+              "explanation": "Urban trees names a subject without making a claim.",
+              "misconception": "A central idea says something about a topic.",
+              "difficulty": "application",
+              "id": "reading-evidence-central-idea-2"
+            },
+            {
+              "prompt": "A paragraph explains three ways volunteers help a food pantry. Which summary fits?",
+              "options": [
+                "One volunteer drove a blue car",
+                "Food pantries should replace staff",
+                "Volunteers support the pantry through several roles",
+                "All residents volunteer"
+              ],
+              "answer": 2,
+              "explanation": "A summary should cover the three roles together.",
+              "misconception": "One incidental detail is too narrow to represent the paragraph.",
+              "difficulty": "application",
+              "id": "reading-evidence-central-idea-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Topic versus central idea?",
+              "back": "A topic names the subject; a central idea expresses the passage’s message about it."
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "Locate what the text actually says",
+          "minutes": 12,
+          "paragraphs": [
+            "A stated detail can be pointed to directly in the text, even if an answer paraphrases it. An inference combines evidence with reasoning. Both can be useful, but a question asking what is explicitly stated requires a stated detail.",
+            "Track comparison groups, dates and quantities. A passage saying “attendance rose in April” does not establish that annual attendance rose. Underline the exact phrase that supports your answer.",
+            "Separate the author’s claim from evidence offered for it. A quoted opinion is evidence that a person expressed that view, not automatic proof that the view is true. Ask whether the passage provides measurements, examples, testimony or a conclusion."
+          ],
+          "example": {
+            "problem": "“The club planted 12 trees in April. Volunteers watered them each week.” Which detail is stated?",
+            "steps": [
+              "Locate the number 12 and time April.",
+              "Weekly watering is stated; survival rate is not.",
+              "Do not conclude that all trees survived without more evidence."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "“The bus ran every 20 minutes on Saturday.” What is directly stated?",
+              "options": [
+                "It was always on time",
+                "It ran every day",
+                "Saturday service intervals were 20 minutes",
+                "Everyone used it"
+              ],
+              "answer": 2,
+              "explanation": "The sentence explicitly describes Saturday intervals.",
+              "misconception": "A schedule statement does not prove reliability or daily service.",
+              "difficulty": "introductory",
+              "id": "reading-evidence-evidence-1"
+            },
+            {
+              "prompt": "“Four of ten sampled wells exceeded the limit.” Which claim matches?",
+              "options": [
+                "40% of the sampled wells exceeded the limit",
+                "40% of all wells everywhere are unsafe",
+                "No well can be used",
+                "Six wells exceeded the limit"
+              ],
+              "answer": 0,
+              "explanation": "4 divided by 10 is 0.4, or 40%, for this sample.",
+              "misconception": "Do not extend a sample result to every population without justification.",
+              "difficulty": "application",
+              "id": "reading-evidence-evidence-2"
+            },
+            {
+              "prompt": "“Mira said the park felt safer.” What does this establish?",
+              "options": [
+                "Crime decreased",
+                "Mira expressed a perception of safety",
+                "Everyone agreed",
+                "Lighting caused a crime reduction"
+              ],
+              "answer": 1,
+              "explanation": "The quote establishes Mira’s reported perception.",
+              "misconception": "A perception is not a measurement of crime or a causal test.",
+              "difficulty": "application",
+              "id": "reading-evidence-evidence-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "How can you verify a stated-detail answer?",
+              "back": "Point to the exact sentence or a faithful paraphrase with the same scope."
+            }
+          ]
+        },
+        {
+          "id": "inference",
+          "title": "Make a supported inference",
+          "minutes": 12,
+          "paragraphs": [
+            "An inference goes beyond repeating a sentence, but it must remain grounded in the passage. If a trail is closed because a bridge washed out, it is reasonable to infer that crossing may be unsafe. It is not reasonable to infer when repairs will finish unless the text gives that information.",
+            "Pay attention to qualifiers. “May,” “some,” and “in this sample” limit a claim. Replacing them with “will,” “all,” or “everywhere” changes its meaning. Stronger claims need stronger evidence.",
+            "When two events occur together, the passage may show an association. A cause could be a third factor, or the direction might be reversed. Prefer the narrowest conclusion that explains the evidence without adding unsupported assumptions."
+          ],
+          "example": {
+            "problem": "Tutoring attendance and exam scores both rose after a schedule change. Does this prove tutoring caused the increase?",
+            "steps": [
+              "Note that both outcomes changed together.",
+              "Consider other changes such as time available or test difficulty.",
+              "Conclude association; a causal claim needs a stronger design."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A trail is closed after a bridge washout. Which inference is supported?",
+              "options": [
+                "Repairs finish tomorrow",
+                "Crossing may be unsafe",
+                "All trails are closed",
+                "No one ever used the trail"
+              ],
+              "answer": 1,
+              "explanation": "A damaged crossing supports a cautious safety inference.",
+              "misconception": "The passage gives neither a repair date nor information about every trail.",
+              "difficulty": "introductory",
+              "id": "reading-evidence-inference-1"
+            },
+            {
+              "prompt": "“Some participants improved.” Which statement preserves the meaning?",
+              "options": [
+                "Every participant improved",
+                "No participant improved",
+                "At least some improved; the exact proportion is unknown",
+                "Most participants failed"
+              ],
+              "answer": 2,
+              "explanation": "Some establishes improvement for part of the group, not a percentage.",
+              "misconception": "Avoid inventing a count or proportion.",
+              "difficulty": "application",
+              "id": "reading-evidence-inference-2"
+            },
+            {
+              "prompt": "Students who sleep longer also score higher in a survey. What can it show by itself?",
+              "options": [
+                "An association in the surveyed data",
+                "Sleep is the only cause of scores",
+                "Every student needs the same sleep",
+                "Test scores cause sleep"
+              ],
+              "answer": 0,
+              "explanation": "The survey shows the variables vary together.",
+              "misconception": "Without stronger design, other factors can explain the association.",
+              "difficulty": "application",
+              "id": "reading-evidence-inference-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What makes an inference defensible?",
+              "back": "It is supported by specific evidence and keeps the text’s limits and qualifiers."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "A paragraph describes volunteers repairing bikes for commuters. Which is an unsupported addition?",
+          "options": [
+            "Volunteers repaired bikes",
+            "The bikes serve commuters",
+            "Every commuter received a new bike",
+            "Repairs were part of the effort"
+          ],
+          "answer": 2,
+          "explanation": "Repairing bikes does not mean giving everyone a new one.",
+          "misconception": "Do not replace repair with new purchase or infer universal coverage.",
+          "difficulty": "application",
+          "id": "reading-evidence-assessment-1"
+        },
+        {
+          "prompt": "“Attendance rose from 20 to 30 after evening hours began.” What is stated?",
+          "options": [
+            "Attendance increased by 10",
+            "Evening hours are the only cause",
+            "All libraries should open all night",
+            "Costs fell"
+          ],
+          "answer": 0,
+          "explanation": "30 − 20 = 10 additional attendees in the described comparison.",
+          "misconception": "Timing alone does not prove the only cause.",
+          "difficulty": "application",
+          "id": "reading-evidence-assessment-2"
+        },
+        {
+          "prompt": "Why prefer “may help” over “always fixes” when evidence is limited?",
+          "options": [
+            "It sounds more impressive",
+            "It reflects uncertainty and scope",
+            "It guarantees the result",
+            "It removes the need for evidence"
+          ],
+          "answer": 1,
+          "explanation": "The cautious wording matches limited evidence.",
+          "misconception": "A stronger phrase is not a substitute for stronger evidence.",
+          "difficulty": "application",
+          "id": "reading-evidence-assessment-3"
+        }
+      ],
+      "references": []
+    },
+    {
+      "id": "statistics-foundations",
+      "academy": "college",
+      "title": "Statistics for everyday decisions",
+      "summary": "Read a small dataset, describe its center, and interpret risk honestly.",
+      "audience": "College-bound learners and adults refreshing quantitative literacy",
+      "prerequisites": [
+        "Arithmetic with decimals and percentages"
+      ],
+      "objectives": [
+        "Compute and interpret mean and median",
+        "Distinguish absolute and relative changes",
+        "Identify sampling and causal limits"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "center",
+          "title": "Choose a useful measure of center",
+          "minutes": 12,
+          "paragraphs": [
+            "The mean is the sum of numerical values divided by their count. The median is the middle value after sorting; for an even count, average the two middle values. Both describe center, but they answer slightly different questions.",
+            "An extreme value can pull the mean far from most observations. For incomes 20, 22, 24, 26 and 208 (in thousands), the mean is 60 while the median is 24. Neither number is an error; they describe a strongly uneven distribution differently.",
+            "Always name the units and examine the spread. Two groups can have the same mean with very different variability. A summary does not replace the underlying data, especially with a small sample."
+          ],
+          "example": {
+            "problem": "Find mean and median of 2, 3, 8, 12, 30.",
+            "steps": [
+              "Mean: (2 + 3 + 8 + 12 + 30)/5 = 55/5 = 11.",
+              "The ordered middle value is 8, so median = 8.",
+              "The high value 30 pulls the mean above the median."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "What is the median of 9, 2, 4, 20?",
+              "options": [
+                "4",
+                "6.5",
+                "8.75",
+                "9"
+              ],
+              "answer": 1,
+              "explanation": "Sort: 2, 4, 9, 20. Average the middle pair: (4 + 9)/2 = 6.5.",
+              "misconception": "Sort first, and average both middle values for even counts.",
+              "difficulty": "introductory",
+              "id": "statistics-foundations-center-1"
+            },
+            {
+              "prompt": "What is the mean of 3, 6, 9?",
+              "options": [
+                "6",
+                "9",
+                "18",
+                "3"
+              ],
+              "answer": 0,
+              "explanation": "The sum 18 divided by 3 observations is 6.",
+              "misconception": "The sum is not the mean.",
+              "difficulty": "application",
+              "id": "statistics-foundations-center-2"
+            },
+            {
+              "prompt": "Adding a very large outlier usually affects which more?",
+              "options": [
+                "Median than mean",
+                "Neither",
+                "Mean than median",
+                "Both must change equally"
+              ],
+              "answer": 2,
+              "explanation": "The mean uses the magnitude of every value; the median uses ordered positions.",
+              "misconception": "The exact effects depend on the data, but mean is generally more sensitive.",
+              "difficulty": "application",
+              "id": "statistics-foundations-center-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "How is a median calculated?",
+              "back": "Sort the data; choose the middle value, or average the middle pair for an even count."
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "title": "Read percentage changes carefully",
+          "minutes": 12,
+          "paragraphs": [
+            "Percentage points are differences between percentages. If a rate rises from 20% to 25%, it rises by 5 percentage points. Relative change divides that difference by the starting rate: 5/20 = 25%. Both statements are true, but they describe different quantities.",
+            "For a probability falling from 2% to 1%, the absolute reduction is 1 percentage point and the relative reduction is 50%. Reporting only “50% lower” can conceal that the starting risk was small. Ask for starting and ending rates.",
+            "Counts need denominators. Ten events among 100 people represents a different rate from ten among 10,000. Use consistent time periods and groups when comparing rates; a percentage without its base can mislead."
+          ],
+          "example": {
+            "problem": "A fee rises from $60 to $66. What is the relative increase?",
+            "steps": [
+              "Difference: $66 − $60 = $6.",
+              "Divide by starting amount: $6/$60 = 0.10.",
+              "Convert to percent: 10%."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A rate rises from 40% to 50%. How many percentage points is that?",
+              "options": [
+                "10",
+                "25",
+                "90",
+                "125"
+              ],
+              "answer": 0,
+              "explanation": "Subtract the rates: 50 − 40 = 10 percentage points.",
+              "misconception": "25% is the relative increase, not the percentage-point difference.",
+              "difficulty": "introductory",
+              "id": "statistics-foundations-change-1"
+            },
+            {
+              "prompt": "A price rises from $80 to $100. Relative increase?",
+              "options": [
+                "20%",
+                "25%",
+                "80%",
+                "125%"
+              ],
+              "answer": 1,
+              "explanation": "The $20 increase divided by $80 is 0.25 = 25%.",
+              "misconception": "Divide by the original amount, not the ending amount.",
+              "difficulty": "application",
+              "id": "statistics-foundations-change-2"
+            },
+            {
+              "prompt": "A risk falls from 4% to 2%. Absolute reduction?",
+              "options": [
+                "50 percentage points",
+                "2 percentage points",
+                "100%",
+                "6 percentage points"
+              ],
+              "answer": 1,
+              "explanation": "4% − 2% = 2 percentage points.",
+              "misconception": "The relative reduction is 50%, a different measure.",
+              "difficulty": "application",
+              "id": "statistics-foundations-change-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Percentage points versus relative percent change?",
+              "back": "Points subtract rates; relative change divides the difference by the starting rate."
+            }
+          ]
+        },
+        {
+          "id": "samples",
+          "title": "Ask who was measured",
+          "minutes": 12,
+          "paragraphs": [
+            "A sample is the group observed; a population is the broader group you hope to describe. A convenient sample can differ systematically from the population. A campus lunch survey misses people who are not on campus at lunch.",
+            "Random sampling can reduce selection bias, but nonresponse and measurement wording still matter. A large sample does not automatically repair a biased selection process. Look for who was eligible, how people were selected and how many responded.",
+            "Random assignment in an experiment addresses a different problem: it helps compare treatments by balancing other influences in expectation. Random sampling supports generalization; random assignment supports causal interpretation under appropriate conditions. A survey association alone does not establish causation."
+          ],
+          "example": {
+            "problem": "An online poll asks a fan club whether its band is the best. Can it represent all music listeners?",
+            "steps": [
+              "Identify the target: all listeners.",
+              "Identify the actual sample: self-selected fan-club respondents.",
+              "The selection favors fans; a large response count does not remove this bias."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "Which sample best targets all students at a college?",
+              "options": [
+                "Only debate-club members",
+                "A random sample from the enrolled-student list",
+                "Only volunteers on one social account",
+                "Only students who earned A grades"
+              ],
+              "answer": 1,
+              "explanation": "A random sample from the relevant enrollment list gives broader coverage.",
+              "misconception": "Special-interest or self-selected groups can systematically differ.",
+              "difficulty": "introductory",
+              "id": "statistics-foundations-samples-1"
+            },
+            {
+              "prompt": "Does increasing a biased poll from 100 to 10,000 responses necessarily remove selection bias?",
+              "options": [
+                "Yes, always",
+                "Only if every answer is identical",
+                "No",
+                "Yes, if it is online"
+              ],
+              "answer": 2,
+              "explanation": "More responses reduce some random variation but do not repair how people were selected.",
+              "misconception": "Size and representativeness are different properties.",
+              "difficulty": "application",
+              "id": "statistics-foundations-samples-2"
+            },
+            {
+              "prompt": "Which design feature primarily supports a causal treatment comparison?",
+              "options": [
+                "Random assignment to treatments",
+                "An attractive graph",
+                "A large volunteer poll",
+                "A headline using the word proves"
+              ],
+              "answer": 0,
+              "explanation": "Random assignment helps distribute confounding influences across treatment groups.",
+              "misconception": "Random sampling and random assignment solve different problems.",
+              "difficulty": "application",
+              "id": "statistics-foundations-samples-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Random sample versus random assignment?",
+              "back": "Sampling selects who is measured; assignment selects which treatment a participant receives."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "The ordered values are 1, 2, 2, 3, 42. What is the median?",
+          "options": [
+            "10",
+            "2",
+            "3",
+            "42"
+          ],
+          "answer": 1,
+          "explanation": "The third value of five is 2.",
+          "misconception": "The mean is 10, which is pulled upward by 42.",
+          "difficulty": "application",
+          "id": "statistics-foundations-assessment-1"
+        },
+        {
+          "prompt": "A rate changes from 10% to 15%. Relative increase?",
+          "options": [
+            "5%",
+            "15%",
+            "50%",
+            "150%"
+          ],
+          "answer": 2,
+          "explanation": "(15 − 10)/10 = 0.5 = 50%.",
+          "misconception": "The increase is 5 percentage points, not 5% relative.",
+          "difficulty": "application",
+          "id": "statistics-foundations-assessment-2"
+        },
+        {
+          "prompt": "A voluntary review site is used to estimate all customers’ satisfaction. Main concern?",
+          "options": [
+            "Reviews can never contain useful information",
+            "Respondents may differ systematically from all customers",
+            "The sample is automatically random",
+            "More decimals eliminate bias"
+          ],
+          "answer": 1,
+          "explanation": "People with strong experiences may be more likely to submit reviews.",
+          "misconception": "Measurements need an appropriate sampling process, not just a count.",
+          "difficulty": "application",
+          "id": "statistics-foundations-assessment-3"
+        }
+      ],
+      "references": [
+        "https://openstax.org/details/books/introductory-statistics-2e"
+      ]
+    },
+    {
+      "id": "research-literacy",
+      "academy": "college",
+      "title": "Research literacy and stronger arguments",
+      "summary": "Evaluate a claim, follow its evidence, and write with appropriate limits.",
+      "audience": "Students starting college-level reading and writing",
+      "prerequisites": [
+        "Read a short nonfiction passage"
+      ],
+      "objectives": [
+        "Trace a claim to its underlying evidence",
+        "Distinguish study types and limitations",
+        "Write a supported claim with attribution"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "trace",
+          "title": "Trace a claim to its source",
+          "minutes": 12,
+          "paragraphs": [
+            "Start by writing the exact claim you want to evaluate. “This program improved scores” is incomplete without knowing which program, whose scores, compared with what, and over what period. A clear claim makes it possible to find relevant evidence.",
+            "Follow citations beyond headlines or summaries. A primary research report explains methods and results directly. A review synthesizes multiple studies and may reveal disagreements. Neither format is automatically reliable: inspect methods, date, conflicts and whether the evidence addresses your question.",
+            "An organization’s own documentation is the appropriate starting point for its current credential requirements. A blog may be useful context, but cannot establish current legal authority or approval. When access is unavailable, record that limitation rather than inventing a verification date."
+          ],
+          "example": {
+            "problem": "A headline says a study app “doubles success.” What would you seek?",
+            "steps": [
+              "Locate the underlying study or report.",
+              "Identify the starting success rate, sample and comparison.",
+              "Check whether the outcome is relevant and how success was defined."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A headline says “doubles success.” Which missing detail matters most?",
+              "options": [
+                "The logo color",
+                "Starting rate and definition of success",
+                "Number of social shares",
+                "Whether the headline rhymes"
+              ],
+              "answer": 1,
+              "explanation": "A change from 1% to 2% and from 40% to 80% both double, with different implications.",
+              "misconception": "A relative claim needs a base and a defined outcome.",
+              "difficulty": "introductory",
+              "id": "research-literacy-trace-1"
+            },
+            {
+              "prompt": "Best initial source for an organization’s current certification rules?",
+              "options": [
+                "Its official requirements documentation",
+                "An undated forum post",
+                "A promotional comparison",
+                "An anonymous comment"
+              ],
+              "answer": 0,
+              "explanation": "The issuing organization is the primary authority on its own requirements.",
+              "misconception": "Still check dates and regional applicability.",
+              "difficulty": "application",
+              "id": "research-literacy-trace-2"
+            },
+            {
+              "prompt": "What should you do when an official source cannot be accessed?",
+              "options": [
+                "Invent a recent verification date",
+                "Assume old notes are current",
+                "Record the access limitation and withhold current-rule claims",
+                "Copy an unattributed summary"
+              ],
+              "answer": 2,
+              "explanation": "A missing source is an unresolved verification task.",
+              "misconception": "Do not turn an attempted check into a verified claim.",
+              "difficulty": "application",
+              "id": "research-literacy-trace-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What should accompany a changing requirement?",
+              "back": "An authoritative source, the actual verification date, and its applicable jurisdiction or scope."
+            }
+          ]
+        },
+        {
+          "id": "methods",
+          "title": "Read the method before the conclusion",
+          "minutes": 12,
+          "paragraphs": [
+            "Evidence quality depends on the question. An experiment can test a controlled treatment comparison. An observational study describes what occurred without assigning treatment. A qualitative interview may illuminate experiences without estimating how common they are in a population.",
+            "Look for a comparison group and plausible alternative explanations. If a class adopts a new tool and scores improve, changes in the test, teacher, student group or study time may also matter. The before-and-after pattern alone does not isolate the tool’s effect.",
+            "Ask how outcomes were measured and what is missing. Self-reported time differs from logged time; an immediate quiz differs from long-term retention. A limitation should shape the conclusion, rather than appearing as a sentence that the conclusion then ignores."
+          ],
+          "example": {
+            "problem": "Students chose whether to attend optional tutoring. Attendees scored higher. What limits a causal claim?",
+            "steps": [
+              "Attendance was self-selected.",
+              "Motivation, available time or prior preparation may differ.",
+              "Acknowledge the association without attributing all improvement to tutoring."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "An observational study finds an association. Which is cautious?",
+              "options": [
+                "The association deserves further investigation",
+                "It proves one variable causes the other",
+                "No other factor matters",
+                "Everyone will have the same result"
+              ],
+              "answer": 0,
+              "explanation": "An association can motivate further research while leaving causality unresolved.",
+              "misconception": "Do not upgrade a study design by stronger wording.",
+              "difficulty": "introductory",
+              "id": "research-literacy-methods-1"
+            },
+            {
+              "prompt": "A quiz is given immediately after a lesson. What does it directly measure?",
+              "options": [
+                "Lifetime mastery",
+                "Performance at that time on those questions",
+                "Professional competence",
+                "All future exam scores"
+              ],
+              "answer": 1,
+              "explanation": "The result is bounded by the instrument and measurement time.",
+              "misconception": "Retention and transfer require additional measures.",
+              "difficulty": "application",
+              "id": "research-literacy-methods-2"
+            },
+            {
+              "prompt": "Why inspect a comparison group?",
+              "options": [
+                "It guarantees publication",
+                "It replaces measurement",
+                "It helps assess alternative explanations",
+                "It removes every source of uncertainty"
+              ],
+              "answer": 2,
+              "explanation": "A comparison helps distinguish an intervention from other influences.",
+              "misconception": "Even a comparison can be biased; examine how groups were formed.",
+              "difficulty": "application",
+              "id": "research-literacy-methods-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Why do methods matter?",
+              "back": "They determine which conclusions the evidence can support."
+            }
+          ]
+        },
+        {
+          "id": "write",
+          "title": "Build an evidence-based paragraph",
+          "minutes": 12,
+          "paragraphs": [
+            "A useful analytical paragraph connects a focused claim, relevant evidence and your reasoning. Explain how the evidence supports the claim. A quotation without interpretation leaves the reader to supply the link.",
+            "Paraphrase by understanding the source, setting it aside and expressing the meaning in your own words. Then compare for accuracy and cite the source. Changing a few words while keeping the structure does not make borrowed work original.",
+            "Use the attribution format your course requires. Keep notes that distinguish direct quotations, paraphrases and your own ideas. Acknowledge limits: a modest conclusion that follows from evidence is stronger than a dramatic unsupported promise."
+          ],
+          "example": {
+            "problem": "Rewrite “The tool guarantees better grades” when one small voluntary survey found higher reported confidence.",
+            "steps": [
+              "Name the measured outcome: reported confidence, not grades.",
+              "Name the study limit: small, voluntary survey.",
+              "Write: respondents reported higher confidence; the survey does not establish grade improvement."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "Which paraphrase practice is appropriate?",
+              "options": [
+                "Swap a few words and omit credit",
+                "Understand, restate accurately, and cite",
+                "Copy a paragraph without quotation marks",
+                "Invent a source"
+              ],
+              "answer": 1,
+              "explanation": "Paraphrased ideas still require attribution.",
+              "misconception": "Original wording does not erase the debt to the source.",
+              "difficulty": "introductory",
+              "id": "research-literacy-write-1"
+            },
+            {
+              "prompt": "Which best connects evidence and claim?",
+              "options": [
+                "A long quote without explanation",
+                "A citation that does not address the question",
+                "An explanation of how the evidence supports the stated claim",
+                "An unrelated statistic"
+              ],
+              "answer": 2,
+              "explanation": "Reasoning makes the link visible for a reader to assess.",
+              "misconception": "Quantity of evidence cannot substitute for relevance.",
+              "difficulty": "application",
+              "id": "research-literacy-write-2"
+            },
+            {
+              "prompt": "A survey measured confidence, not grades. Which conclusion fits?",
+              "options": [
+                "Respondents reported confidence; grade effects remain unknown",
+                "The app guarantees A grades",
+                "The survey measured professional skill",
+                "Every learner benefits"
+              ],
+              "answer": 0,
+              "explanation": "Keep the conclusion aligned with the measured outcome.",
+              "misconception": "Do not replace a self-reported measure with a different result.",
+              "difficulty": "application",
+              "id": "research-literacy-write-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What belongs in an evidence-based paragraph?",
+              "back": "A focused claim, relevant attributed evidence, reasoning, and appropriate limits."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "Which source note is honest if retrieval failed?",
+          "options": [
+            "Verified today",
+            "Source inaccessible; current requirement unverified",
+            "Approved provider",
+            "Legally cleared"
+          ],
+          "answer": 1,
+          "explanation": "Record the actual outcome of the attempt.",
+          "misconception": "A verification date requires successful substantive review.",
+          "difficulty": "application",
+          "id": "research-literacy-assessment-1"
+        },
+        {
+          "prompt": "Participants choose their own treatment group. What risk arises?",
+          "options": [
+            "Self-selection can confound the comparison",
+            "All conclusions are proven",
+            "The experiment is automatically randomized",
+            "Sampling bias becomes impossible"
+          ],
+          "answer": 0,
+          "explanation": "Group differences may reflect pre-existing motivation or circumstances.",
+          "misconception": "Do not confuse choice with random assignment.",
+          "difficulty": "application",
+          "id": "research-literacy-assessment-2"
+        },
+        {
+          "prompt": "Does a paraphrase need a citation?",
+          "options": [
+            "Never",
+            "Only if it includes a number",
+            "Yes, when the underlying idea comes from a source",
+            "Only if the author is famous"
+          ],
+          "answer": 2,
+          "explanation": "Attribute borrowed ideas as well as exact wording.",
+          "misconception": "Follow the relevant course or publication style.",
+          "difficulty": "application",
+          "id": "research-literacy-assessment-3"
+        }
+      ],
+      "references": []
+    },
+    {
+      "id": "trade-measurement",
+      "academy": "trades",
+      "title": "Trade math and measurement",
+      "summary": "Convert units, read scale, and plan quantities on paper.",
+      "audience": "Beginning trade students; classroom-only preparation",
+      "prerequisites": [
+        "Whole-number arithmetic",
+        "Fractions and decimals"
+      ],
+      "objectives": [
+        "Convert feet and inches",
+        "Distinguish length, area and volume",
+        "Interpret a simple drawing scale"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "units",
+          "title": "Carry the units through the calculation",
+          "minutes": 12,
+          "paragraphs": [
+            "A measurement combines a number and a unit. Three feet and three inches are not interchangeable: one foot equals 12 inches. Write a conversion factor as a ratio equal to one, such as 12 inches / 1 foot, so the unwanted unit cancels.",
+            "For a mixed measurement of 3 feet 4 inches, first convert the feet: 3 × 12 = 36 inches. Then add the remaining 4 inches for 40 inches. Converting the entire value as 3.4 feet would incorrectly treat inches as tenths of a foot.",
+            "Retain enough precision for the task and follow the drawing’s tolerances. Rounding every intermediate step can accumulate error. These exercises are classroom calculations, not authorization to cut, install or operate equipment."
+          ],
+          "example": {
+            "problem": "Convert 5 feet 7 inches to inches.",
+            "steps": [
+              "5 feet × 12 inches/foot = 60 inches.",
+              "Add 7 inches: 67 inches.",
+              "Check: the answer is between 60 inches (5 feet) and 72 inches (6 feet)."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "How many inches are in 3 feet 4 inches?",
+              "options": [
+                "34",
+                "36",
+                "40",
+                "44"
+              ],
+              "answer": 2,
+              "explanation": "3 × 12 + 4 = 40 inches.",
+              "misconception": "3 feet 4 inches is not 3.4 feet.",
+              "difficulty": "introductory",
+              "id": "trade-measurement-units-1"
+            },
+            {
+              "prompt": "30 inches is what length?",
+              "options": [
+                "2 feet 6 inches",
+                "3 feet",
+                "2 feet 3 inches",
+                "30 feet"
+              ],
+              "answer": 0,
+              "explanation": "30 = 2 × 12 + 6.",
+              "misconception": "Divide by 12 and interpret the remainder as inches.",
+              "difficulty": "application",
+              "id": "trade-measurement-units-2"
+            },
+            {
+              "prompt": "Which conversion factor changes feet to inches?",
+              "options": [
+                "1 foot / 12 inches",
+                "12 inches / 1 foot",
+                "12 feet / 1 inch",
+                "1 inch / 100 feet"
+              ],
+              "answer": 1,
+              "explanation": "Multiplying feet by inches/foot cancels the foot unit.",
+              "misconception": "A conversion factor must be a true equality ratio.",
+              "difficulty": "application",
+              "id": "trade-measurement-units-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Feet to inches?",
+              "back": "Multiply feet by 12, then add any remaining inches."
+            }
+          ]
+        },
+        {
+          "id": "quantities",
+          "title": "Length, area and volume",
+          "minutes": 12,
+          "paragraphs": [
+            "Length measures a line in units such as feet. Area measures a surface in square units; a rectangle’s area is length × width. Volume measures space in cubic units; a rectangular prism’s volume is length × width × height.",
+            "A room 12 feet by 10 feet has area 120 square feet and perimeter 44 feet. Flooring coverage uses area; trim around the edge uses perimeter. Before computing, ask what is being purchased or described.",
+            "Unit conversions must be raised to the appropriate power. One square foot is a square 12 inches on each side, so it contains 144 square inches. Material orders also depend on layout, manufacturer instructions, waste, tolerances and code; a classroom area calculation is only one input."
+          ],
+          "example": {
+            "problem": "Find floor area and perimeter for an 8 ft by 6 ft rectangle.",
+            "steps": [
+              "Area = 8 × 6 = 48 ft².",
+              "Perimeter = 2(8 + 6) = 28 ft.",
+              "Use area for surface coverage and perimeter for the outside boundary."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A 9 ft by 4 ft rectangle has what area?",
+              "options": [
+                "13 ft²",
+                "26 ft²",
+                "36 ft²",
+                "36 ft"
+              ],
+              "answer": 2,
+              "explanation": "Multiply length by width: 9 × 4 = 36 square feet.",
+              "misconception": "Area needs square units, not linear units.",
+              "difficulty": "introductory",
+              "id": "trade-measurement-quantities-1"
+            },
+            {
+              "prompt": "How many square inches are in 1 square foot?",
+              "options": [
+                "12",
+                "24",
+                "100",
+                "144"
+              ],
+              "answer": 3,
+              "explanation": "12 inches × 12 inches = 144 square inches.",
+              "misconception": "The length conversion applies in both dimensions.",
+              "difficulty": "application",
+              "id": "trade-measurement-quantities-2"
+            },
+            {
+              "prompt": "Which quantity best describes trim around a rectangular edge?",
+              "options": [
+                "Perimeter",
+                "Volume",
+                "Area",
+                "Mass"
+              ],
+              "answer": 0,
+              "explanation": "Trim follows the boundary, a length.",
+              "misconception": "Use the quantity that matches what is measured.",
+              "difficulty": "application",
+              "id": "trade-measurement-quantities-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Area versus perimeter?",
+              "back": "Area covers a surface; perimeter follows its boundary."
+            }
+          ]
+        },
+        {
+          "id": "scale",
+          "title": "Read a simple scale drawing",
+          "minutes": 12,
+          "paragraphs": [
+            "A scale relates a distance on paper to a distance in the represented object. At 1/4 inch = 1 foot, each quarter-inch on the drawing represents one actual foot. A 2-inch line therefore represents 8 feet.",
+            "Read dimensions and notes before measuring a drawing. Printed or digital scaling can change the physical image size. A stated dimension and the project’s drawing conventions take precedence over an assumed screen scale; ask a qualified instructor or supervisor when they conflict.",
+            "Check that all measurements use the same scale and units. Never infer structural adequacy, safe electrical clearances or code compliance from these introductory examples. Construction requires applicable plans, authorization and qualified supervision."
+          ],
+          "example": {
+            "problem": "At 1/4 inch = 1 foot, what does 1.5 inches represent?",
+            "steps": [
+              "1.5 ÷ 0.25 = 6 scale intervals.",
+              "Each interval represents 1 foot.",
+              "The represented length is 6 feet."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "At 1/4 inch = 1 foot, a 2-inch line represents:",
+              "options": [
+                "2 feet",
+                "4 feet",
+                "8 feet",
+                "24 feet"
+              ],
+              "answer": 2,
+              "explanation": "2 divided by 0.25 equals 8 feet.",
+              "misconception": "Count the quarter-inch intervals.",
+              "difficulty": "introductory",
+              "id": "trade-measurement-scale-1"
+            },
+            {
+              "prompt": "A drawing was resized on a phone. What should guide interpretation?",
+              "options": [
+                "Assume the screen inches are exact",
+                "Use stated dimensions and confirm drawing conventions",
+                "Ignore every note",
+                "Guess based on appearance"
+              ],
+              "answer": 1,
+              "explanation": "Resizing changes physical display scale; dimension labels and approved instructions matter.",
+              "misconception": "A screen ruler does not establish drawing accuracy.",
+              "difficulty": "application",
+              "id": "trade-measurement-scale-2"
+            },
+            {
+              "prompt": "At 1/2 inch = 1 foot, a 3-inch line represents:",
+              "options": [
+                "6 feet",
+                "1.5 feet",
+                "3 feet",
+                "36 feet"
+              ],
+              "answer": 0,
+              "explanation": "3 divided by 0.5 equals 6 feet.",
+              "misconception": "Always read the current scale, rather than reusing the previous one.",
+              "difficulty": "application",
+              "id": "trade-measurement-scale-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "What is a drawing scale?",
+              "back": "A stated relationship between a drawing distance and represented distance; resizing can invalidate physical measurement."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "Convert 4 feet 9 inches to inches.",
+          "options": [
+            "49",
+            "57",
+            "48",
+            "69"
+          ],
+          "answer": 1,
+          "explanation": "4 × 12 + 9 = 57 inches.",
+          "misconception": "Convert the feet before adding the remaining inches.",
+          "difficulty": "application",
+          "id": "trade-measurement-assessment-1"
+        },
+        {
+          "prompt": "A 7 ft by 5 ft floor has perimeter:",
+          "options": [
+            "35 ft",
+            "24 ft",
+            "12 ft",
+            "35 ft²"
+          ],
+          "answer": 1,
+          "explanation": "2 × (7 + 5) = 24 feet.",
+          "misconception": "Area and perimeter use different operations and units.",
+          "difficulty": "application",
+          "id": "trade-measurement-assessment-2"
+        },
+        {
+          "prompt": "At 1/4 inch = 1 foot, 3 inches represents:",
+          "options": [
+            "12 feet",
+            "0.75 feet",
+            "3 feet",
+            "36 feet"
+          ],
+          "answer": 0,
+          "explanation": "3 divided by 0.25 equals 12 feet.",
+          "misconception": "Scale is a ratio, not a visual guess.",
+          "difficulty": "application",
+          "id": "trade-measurement-assessment-3"
+        }
+      ],
+      "references": []
+    },
+    {
+      "id": "electrical-models",
+      "academy": "trades",
+      "title": "Electrical theory: safe paper models",
+      "summary": "Use voltage, current and resistance in ideal classroom circuits.",
+      "audience": "Beginning apprenticeship students; theory only",
+      "prerequisites": [
+        "Solve a simple division problem",
+        "Recognize volts, amperes and ohms"
+      ],
+      "objectives": [
+        "Use Ohm’s law in an ideal resistor model",
+        "Distinguish series and parallel paths",
+        "Explain why calculations do not authorize live work"
+      ],
+      "minutes": 50,
+      "status": "introductory",
+      "editorialStatus": "Original introductory unit; author review only. Independent educator review pending.",
+      "lessons": [
+        {
+          "id": "quantities",
+          "title": "Voltage, current and resistance",
+          "minutes": 12,
+          "paragraphs": [
+            "Voltage is an electric potential difference, measured in volts (V). Current is the rate of flow of charge, measured in amperes (A). Resistance describes opposition to current in the simple resistor model and is measured in ohms (Ω). These quantities are related but not interchangeable.",
+            "For an ideal ohmic resistor at a fixed condition, V = IR. To find current, rearrange as I = V/R, with R nonzero. Real components can change with temperature or behave nonlinearly, so a simple model has limits.",
+            "This unit uses paper circuits only. It does not teach live measurement, installation or fault finding. Electrical work can cause shock, burns, arc flash or fire. Follow applicable rules, equipment instructions and qualified training; do not use these exercises as a procedure for working on energized equipment."
+          ],
+          "example": {
+            "problem": "An ideal 6 Ω resistor has 12 V across it. Find current.",
+            "steps": [
+              "Write I = V/R.",
+              "Substitute: I = 12 V / 6 Ω = 2 A.",
+              "Check: 2 A × 6 Ω = 12 V."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "An ideal 4 Ω resistor has 12 V across it. Current?",
+              "options": [
+                "48 A",
+                "3 A",
+                "0.33 A",
+                "8 A"
+              ],
+              "answer": 1,
+              "explanation": "I = 12/4 = 3 amperes.",
+              "misconception": "Multiplying V by R does not solve for current.",
+              "difficulty": "introductory",
+              "id": "electrical-models-quantities-1"
+            },
+            {
+              "prompt": "Which unit measures resistance?",
+              "options": [
+                "Volt",
+                "Ampere",
+                "Ohm",
+                "Watt"
+              ],
+              "answer": 2,
+              "explanation": "Resistance is measured in ohms.",
+              "misconception": "Watts measure power, not resistance.",
+              "difficulty": "application",
+              "id": "electrical-models-quantities-2"
+            },
+            {
+              "prompt": "At fixed resistance, doubling applied voltage in the ideal model does what to current?",
+              "options": [
+                "Doubles it",
+                "Halves it",
+                "Makes it zero",
+                "Leaves it unchanged"
+              ],
+              "answer": 0,
+              "explanation": "I = V/R, so doubling V doubles I when R stays fixed.",
+              "misconception": "The fixed-resistance assumption is essential.",
+              "difficulty": "application",
+              "id": "electrical-models-quantities-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Ohm’s law for current?",
+              "back": "I = V/R for the ideal resistor model, with R nonzero."
+            }
+          ]
+        },
+        {
+          "id": "paths",
+          "title": "Series and parallel paths",
+          "minutes": 12,
+          "paragraphs": [
+            "Series elements form a single current path. For ideal resistors in series, total resistance is the sum of their resistances. The same current flows through each, while voltage drops add to the source voltage in the simple circuit.",
+            "Parallel branches connect across the same two nodes and therefore have the same voltage across them. Current divides among branches according to each branch’s resistance. Two equal resistors R in parallel have equivalent resistance R/2.",
+            "A schematic shows electrical relationships, not necessarily physical layout or installation instructions. An open path interrupts its branch. A short circuit creates an unintended low-resistance path that can allow dangerous current. Protective design and safe work require more than these models."
+          ],
+          "example": {
+            "problem": "Find the equivalent resistance of ideal 3 Ω and 5 Ω resistors in series.",
+            "steps": [
+              "A single path means series.",
+              "Add: R_total = 3 + 5 = 8 Ω.",
+              "A 16 V ideal source would drive 16/8 = 2 A in this model."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "Ideal 2 Ω and 7 Ω resistors in series total:",
+              "options": [
+                "9 Ω",
+                "5 Ω",
+                "14 Ω",
+                "1.56 Ω"
+              ],
+              "answer": 0,
+              "explanation": "Series resistance adds: 2 + 7 = 9 ohms.",
+              "misconception": "The parallel formula does not apply to a single path.",
+              "difficulty": "introductory",
+              "id": "electrical-models-paths-1"
+            },
+            {
+              "prompt": "Parallel branches across the same two nodes share:",
+              "options": [
+                "Always the same current",
+                "The same voltage",
+                "Always the same resistance",
+                "No electrical relationship"
+              ],
+              "answer": 1,
+              "explanation": "Both branch endpoints are the same nodes, so the potential difference is equal.",
+              "misconception": "Current depends on each branch’s resistance.",
+              "difficulty": "application",
+              "id": "electrical-models-paths-2"
+            },
+            {
+              "prompt": "Two ideal 10 Ω resistors in parallel have equivalent resistance:",
+              "options": [
+                "20 Ω",
+                "10 Ω",
+                "5 Ω",
+                "100 Ω"
+              ],
+              "answer": 2,
+              "explanation": "Two equal parallel resistors give R/2 = 5 ohms.",
+              "misconception": "Adding the values would describe series, not parallel.",
+              "difficulty": "application",
+              "id": "electrical-models-paths-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Series versus parallel?",
+              "back": "Series shares one current path; parallel branches share the same two nodes and voltage."
+            }
+          ]
+        },
+        {
+          "id": "power",
+          "title": "Connect power to the model",
+          "minutes": 12,
+          "paragraphs": [
+            "Electrical power is the rate of energy transfer, measured in watts. In this ideal DC resistor context, P = VI. Combining it with V = IR gives P = I²R and P = V²/R. Use consistent units and state the assumptions.",
+            "Energy is power multiplied by time. A model drawing 10 watts for 3 hours uses 30 watt-hours. A watt is a rate; a watt-hour is energy. Real equipment ratings and safe operating limits require manufacturer instructions and applicable standards.",
+            "A correct calculation cannot establish that a real device is safe. Ratings, temperature, insulation, protective devices, environment and jurisdiction all matter. This unit grants no license, certification, apprenticeship credit or authorization to work. Consult qualified instructors and authorized providers for practical training."
+          ],
+          "example": {
+            "problem": "An ideal resistor carries 2 A with 6 V across it. Find power.",
+            "steps": [
+              "Use P = VI.",
+              "P = 6 V × 2 A = 12 W.",
+              "If constant for 2 hours, energy = 24 Wh."
+            ]
+          },
+          "questions": [
+            {
+              "prompt": "A paper circuit has 9 V and 2 A. Power?",
+              "options": [
+                "4.5 W",
+                "11 W",
+                "18 W",
+                "7 W"
+              ],
+              "answer": 2,
+              "explanation": "P = VI = 9 × 2 = 18 watts.",
+              "misconception": "Division computes a different ratio.",
+              "difficulty": "introductory",
+              "id": "electrical-models-power-1"
+            },
+            {
+              "prompt": "A constant 20 W model operates for 3 hours. Energy?",
+              "options": [
+                "60 Wh",
+                "60 W",
+                "6.67 Wh",
+                "23 A"
+              ],
+              "answer": 0,
+              "explanation": "Energy = power × time = 20 × 3 = 60 watt-hours.",
+              "misconception": "Watts alone describe a rate, not an amount of energy.",
+              "difficulty": "application",
+              "id": "electrical-models-power-2"
+            },
+            {
+              "prompt": "Does passing this unit authorize electrical installation?",
+              "options": [
+                "Yes, in every state",
+                "Yes, below a certain voltage",
+                "No; qualified training and applicable authorization are separate",
+                "Only if every quiz answer is correct"
+              ],
+              "answer": 2,
+              "explanation": "This is general theory, not practical authorization or a credential.",
+              "misconception": "Jurisdiction and task requirements must be checked with qualified authorities.",
+              "difficulty": "application",
+              "id": "electrical-models-power-3"
+            }
+          ],
+          "flashcards": [
+            {
+              "front": "Power versus energy?",
+              "back": "Power is an energy-transfer rate in watts; energy over time can be expressed in watt-hours."
+            }
+          ]
+        }
+      ],
+      "assessment": [
+        {
+          "prompt": "An ideal 8 Ω resistor has 24 V across it. Current?",
+          "options": [
+            "192 A",
+            "3 A",
+            "16 A",
+            "0.33 A"
+          ],
+          "answer": 1,
+          "explanation": "I = V/R = 24/8 = 3 amperes.",
+          "misconception": "Use division for current.",
+          "difficulty": "application",
+          "id": "electrical-models-assessment-1"
+        },
+        {
+          "prompt": "Two ideal 6 Ω resistors in series total:",
+          "options": [
+            "3 Ω",
+            "6 Ω",
+            "12 Ω",
+            "36 Ω"
+          ],
+          "answer": 2,
+          "explanation": "Series resistances add: 6 + 6 = 12 ohms.",
+          "misconception": "Half the resistance applies to two equal resistors in parallel.",
+          "difficulty": "application",
+          "id": "electrical-models-assessment-2"
+        },
+        {
+          "prompt": "An ideal DC resistor carries 3 A at 4 V. Power?",
+          "options": [
+            "12 W",
+            "7 W",
+            "0.75 W",
+            "1.33 W"
+          ],
+          "answer": 0,
+          "explanation": "P = VI = 4 × 3 = 12 watts.",
+          "misconception": "State the ideal DC model; do not infer real installation safety.",
+          "difficulty": "application",
+          "id": "electrical-models-assessment-3"
+        }
+      ],
+      "references": []
+    }
+  ],
+  "planned": {
+    "high-school": [
+      "Algebra II foundations",
+      "Geometry",
+      "Grammar and writing",
+      "Biology foundations",
+      "Chemistry foundations",
+      "Physics foundations",
+      "Study skills and exam preparation"
+    ],
+    "college": [
+      "College algebra and precalculus readiness",
+      "Academic writing",
+      "Biology and chemistry refreshers",
+      "Critical thinking",
+      "Study skills and time management"
+    ],
+    "trades": [
+      "EPA Section 608 exam preparation",
+      "NCCER Core preparation",
+      "Construction safety and OSHA Outreach awareness",
+      "Welding fundamentals",
+      "Automotive and ASE-related study",
+      "Blueprint reading and tool identification"
+    ]
+  },
+  "officialSources": [
+    {
+      "organization": "EPA",
+      "title": "Section 608 technician certification",
+      "url": "https://www.epa.gov/section608/section-608-technician-certification-0",
+      "status": "Access blocked by environment egress policy; current requirements not verified",
+      "verifiedOn": null
+    },
+    {
+      "organization": "OSHA",
+      "title": "Outreach Training Program",
+      "url": "https://www.osha.gov/training/outreach",
+      "status": "Access blocked by environment egress policy; current requirements not verified",
+      "verifiedOn": null
+    },
+    {
+      "organization": "NCCER",
+      "title": "Core curriculum",
+      "url": "https://www.nccer.org/programs-crafts/programs/core/",
+      "status": "Access blocked by environment egress policy; current requirements not verified",
+      "verifiedOn": null
+    },
+    {
+      "organization": "ASE",
+      "title": "Test series",
+      "url": "https://www.ase.com/test-series",
+      "status": "Access blocked by environment egress policy; current requirements not verified",
+      "verifiedOn": null
+    },
+    {
+      "organization": "Official ASVAB",
+      "title": "AFQT information",
+      "url": "https://www.officialasvab.com/applicants/afqt/",
+      "status": "Access blocked by environment egress policy; current requirements not verified",
+      "verifiedOn": null
+    }
+  ]
+}

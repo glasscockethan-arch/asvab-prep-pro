@@ -1,0 +1,20 @@
+{
+  "name": "aptitude-beacon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "python3 tests/e2e.py",
+    "check": "node scripts/check.mjs",
+    "audit:bank": "python3 tools/audit_question_bank.py --check && python3 tools/audit_semantics.py",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.11.0"
+  }
+}
