@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT/'data/courses.json').read_text())
-QUESTION_MAP = {q['id']:q for c in DATA['courses'] for q in [*c['assessment'],*[q for lesson in c['lessons'] for q in lesson['questions']]]}
+QUESTION_MAP = {q['id']:q for c in DATA['courses'] for q in [*c['assessment'],*[q for chapter in c.get('chapters',[]) for q in chapter['assessment']],*[q for lesson in c['lessons'] for q in lesson['questions']]]}
 KEY = 'aptitude-beacon-v1'
 LEGACY_KEY = 'asvab-prep-pro-v3'
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
@@ -70,12 +70,12 @@ class BrowserTests(unittest.TestCase):
         self.page.reload();expect(self.page.get_by_label('Learning pathway')).to_have_value('trades')
         self.visit('course.html?id=missing');expect(self.page.get_by_role('heading',name='Unit not found')).to_be_visible()
     def test_02_lessons_bookmarks_completion_and_theme(self):
-        c=DATA['courses'][0];self.visit('course.html?id='+c['id']);self.page.get_by_role('button',name='Save this unit',exact=True).click();expect(self.page.get_by_role('button',name='Saved to my learning')).to_have_attribute('aria-pressed','true')
+        c=DATA['courses'][1];self.visit('course.html?id='+c['id']);self.page.get_by_role('button',name='Save this unit',exact=True).click();expect(self.page.get_by_role('button',name='Saved to my learning')).to_have_attribute('aria-pressed','true')
         self.page.get_by_role('button',name='Switch color theme').click();theme=self.page.locator('html').get_attribute('data-theme');self.page.reload();expect(self.page.locator('html')).to_have_attribute('data-theme',theme)
         for lesson in c['lessons']:
             self.visit(f'course.html?id={c["id"]}&lesson={lesson["id"]}');self.page.get_by_role('button',name='Mark lesson as read',exact=True).click();expect(self.page.get_by_role('button',name='Lesson marked as read')).to_be_disabled()
         self.start('study.html?id='+c['id']+'&mode=assessment');self.answer_session();expect(self.page.get_by_role('heading',name='3 of 3 correct')).to_be_visible()
-        self.visit('dashboard.html');expect(self.page.locator('.stats-grid')).to_contain_text('1Introductory units completed');self.assertEqual(len(self.state()['lessons']),3)
+        self.visit('dashboard.html');expect(self.page.locator('.stats-grid')).to_contain_text('1Learning practice standards met');self.assertEqual(len(self.state()['lessons']),3)
     def test_03_practice_feedback_missed_review_and_history(self):
         self.start('study.html?id=reading-evidence');self.page.locator('input[name="answer"]').nth((QUESTION_MAP[self.state()['active']['ids'][0]]['answer']+1)%4).check();expect(self.page.locator('#feedback')).to_contain_text('Let’s review.');self.assertTrue(self.page.locator('input[name="answer"]').first.is_disabled())
         # Continue without changing the already-answered first item.
@@ -104,11 +104,11 @@ class BrowserTests(unittest.TestCase):
         self.visit('study.html?id=linear-equations');expect(self.page.get_by_role('heading',name='Protect your existing progress')).to_be_visible();self.assertEqual(self.page.evaluate('(key)=>localStorage.getItem(key)',KEY),'invalid-json')
     def test_07_flashcards_and_all_course_assessments(self):
         for course in DATA['courses']:
-            self.visit('study.html?id='+course['id']);self.page.get_by_role('button',name='Reveal answer',exact=True).click();expect(self.page.locator('.flash-answer')).to_have_text(course['lessons'][0]['flashcards'][0]['back']);self.page.get_by_role('button',name='Next card').click();expect(self.page.locator('#flashcard')).to_contain_text('Card 2 of 3')
-            self.page.locator('#mode').select_option('assessment');self.page.get_by_role('button',name='Start session',exact=True).click();self.answer_session();expect(self.page.get_by_role('heading',name='3 of 3 correct')).to_be_visible()
+            self.visit('study.html?id='+course['id']);self.page.get_by_role('button',name='Reveal answer',exact=True).click();expect(self.page.locator('.flash-answer')).to_have_text(course['lessons'][0]['flashcards'][0]['back']);self.page.get_by_role('button',name='Next card').click();expect(self.page.locator('#flashcard')).to_contain_text(f'Card 2 of {sum(len(l["flashcards"]) for l in course["lessons"])}')
+            self.page.locator('#mode').select_option('assessment');self.page.get_by_role('button',name='Start session',exact=True).click();self.answer_session();n=len(course['assessment']);expect(self.page.get_by_role('heading',name=f'{n} of {n} correct')).to_be_visible()
     def test_08_keyboard_responsive_and_accessibility(self):
         axe=ROOT/'node_modules/axe-core/axe.min.js';self.assertTrue(axe.exists(),'Run npm ci for axe-core')
-        routes=['','catalog.html','course.html?id=linear-equations','course.html?id=linear-equations&lesson=balance','dashboard.html','study.html?id=linear-equations','references.html','privacy.html','contact.html']
+        routes=['','catalog.html','course.html?id=linear-equations','course.html?id=linear-equations&lesson=balance','course.html?id=linear-equations&lesson=coordinates','dashboard.html','study.html?id=linear-equations','references.html','privacy.html','contact.html']
         for width,height in [(1440,1000),(768,1024),(390,844)]:
             self.page.set_viewport_size({'width':width,'height':height})
             for route in routes:
@@ -145,5 +145,54 @@ class BrowserTests(unittest.TestCase):
         self.visit('course.html?id=linear-equations');other=self.context.new_page();other.goto(self.base+'dashboard.html');expect(other.locator('#daily')).to_be_visible();other.locator('#daily').fill('11');other.get_by_role('button',name='Save goals').click();expect(self.page.locator('#status')).to_contain_text('Another tab');expect(self.page.get_by_role('button',name='Save this unit',exact=True)).to_be_disabled();other.close()
     def test_12_deletion_keeps_original_asvab_data(self):
         self.visit('dashboard.html');self.page.evaluate('localStorage.setItem("asvab-prep-pro-v3",JSON.stringify({history:[],missed:[],week:1}))');raw=self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")');self.page.locator('#data-controls details summary').click();self.page.locator('#delete-confirm').fill('DELETE');self.page.get_by_role('button',name='Delete new-platform progress',exact=True).click();expect(self.page.locator('#status')).to_contain_text('deleted');self.assertIsNone(self.page.evaluate('(key)=>localStorage.getItem(key)',KEY));self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),raw)
+
+    def test_13_foundation_enrollment_and_complete_course_standard(self):
+        course=DATA['courses'][0]
+        self.visit('course.html?id='+course['id'])
+        self.page.get_by_role('button',name='Add to my courses',exact=True).click()
+        expect(self.page.get_by_role('button',name='Added to my courses',exact=True)).to_be_disabled()
+        self.assertIn(course['id'],self.state()['enrollments'])
+        for lesson in course['lessons']:
+            self.visit(f'course.html?id={course["id"]}&lesson={lesson["id"]}')
+            self.page.get_by_role('button',name='Mark lesson as read',exact=True).click()
+            self.start(f'study.html?id={course["id"]}&lesson={lesson["id"]}')
+            self.answer_session()
+            expect(self.page.get_by_role('heading',name='6 of 6 correct')).to_be_visible()
+        self.start('study.html?id='+course['id']+'&mode=assessment');self.answer_session()
+        expect(self.page.get_by_role('heading',name='12 of 12 correct')).to_be_visible()
+        self.visit('course.html?id='+course['id']);expect(self.page.get_by_role('heading',name='Course practice standard: in progress',exact=True)).to_be_visible()
+        for chapter in course['chapters']:
+            self.start(f'study.html?id={course["id"]}&mode=chapter&chapter={chapter["id"]}')
+            self.assertEqual(self.state()['active']['chapterId'],chapter['id'])
+            self.answer_session();expect(self.page.get_by_role('heading',name='6 of 6 correct')).to_be_visible()
+        self.visit('course.html?id='+course['id']);expect(self.page.get_by_role('heading',name='Course practice standard: met',exact=True)).to_be_visible()
+        self.visit('dashboard.html');expect(self.page.locator('.stats-grid')).to_contain_text('1Learning practice standards met')
+        self.assertEqual(len(self.state()['attempts']),13)
+    def test_14_v1_active_assessment_migrates_without_false_completion(self):
+        course=DATA['courses'][0];self.visit()
+        legacy_raw=json.dumps({'history':[],'missed':[],'week':1})
+        old={'schemaVersion':1,'lessons':{course['id']+'-'+l['id']:'2026-10-25T12:00:00Z' for l in course['lessons'][:3]},'bookmarks':[course['id']],'attempts':[],'goals':{'daily':10,'weekly':50},'legacy':None,'active':{'courseId':course['id'],'mode':'assessment','ids':[q['id'] for q in course['assessment'][:3]],'answers':[None,None,None],'index':0,'deadline':None}}
+        self.page.evaluate('([key,raw,legacy])=>{localStorage.setItem(key,raw);localStorage.setItem("asvab-prep-pro-v3",legacy)}',[KEY,json.dumps(old),legacy_raw])
+        self.visit('study.html?id='+course['id']);expect(self.page.locator('.question-panel')).to_contain_text('Question 1 of 3');self.answer_session()
+        expect(self.page.get_by_role('heading',name='3 of 3 correct')).to_be_visible()
+        migrated=self.state();self.assertEqual(migrated['schemaVersion'],2);self.assertEqual(len(migrated['lessons']),3);self.assertEqual(migrated['attempts'][0]['contentRevision'],1)
+        self.visit('course.html?id='+course['id']);expect(self.page.get_by_role('heading',name='Course practice standard: in progress',exact=True)).to_be_visible()
+        self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),legacy_raw)
+    def test_15_accessible_graph_input_and_keyboard(self):
+        self.visit('course.html?id=linear-equations&lesson=coordinates')
+        graph_input=self.page.get_by_label('Try a whole-number input from -2 to 2',exact=True)
+        graph_input.fill('-2');expect(self.page.locator('#graph-output')).to_have_text('At x = -2, y = -3.')
+        graph_input.press('ArrowUp');expect(self.page.locator('#graph-output')).to_have_text('At x = -1, y = -1.')
+        expect(self.page.locator('#selected-point')).to_have_attribute('cx','130')
+        graph_input.fill('8');expect(self.page.locator('#graph-output')).to_contain_text('Choose a whole-number input')
+        self.page.add_script_tag(path=str(ROOT/'node_modules/axe-core/axe.min.js'))
+        violations=self.page.evaluate('async()=>(await axe.run()).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))')
+        self.assertEqual(violations,[])
+    def test_16_conflicting_backup_keeps_current_attempt(self):
+        self.start('study.html?id=statistics-foundations&mode=assessment');self.answer_session();self.visit('dashboard.html')
+        before=self.state();conflicting=json.loads(json.dumps(before));detail=conflicting['attempts'][0]['details'][0];detail['chosen']=(detail['chosen']+1)%4
+        self.page.locator('#import').set_input_files({'name':'conflict.json','mimeType':'application/json','buffer':json.dumps(conflicting).encode()})
+        expect(self.page.locator('#import-status')).to_contain_text('Conflicting attempt IDs')
+        self.assertEqual(self.state(),before)
 
 if __name__=='__main__':unittest.main(verbosity=2)
