@@ -27,3 +27,5 @@ for(const file of ['src/app.js','src/layout.js','src/static.js','src/storage.js'
 console.log(`PASS: ${data.courses.length} units, ${htmlFiles.length} HTML pages, ${links} static local links, ${scripts} inline scripts; JavaScript syntax and catalog valid.`);
 
 const curriculum=spawnSync(process.execPath,['scripts/curriculum-report.mjs'],{stdio:'inherit'});if(curriculum.status!==0)process.exit(curriculum.status??1);
+
+const college=spawnSync('python3',['tools/verify_college_math.py'],{stdio:'inherit'});if(college.status!==0)process.exit(college.status??1);

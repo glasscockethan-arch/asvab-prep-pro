@@ -61,6 +61,8 @@ export function validateCatalog(raw) {
     for (const lesson of course.lessons) {
       if (!lesson.id || lessonIds.has(lesson.id) || !lesson.title || !lesson.paragraphs?.length || !lesson.example?.steps?.length || !lesson.questions?.length || !lesson.objectives?.length) throw new Error('Invalid lesson.');
       if (lesson.prerequisites.some(id => !lessonIds.has(id))) throw new Error('Lesson prerequisites must exist earlier in the course.');
+      if (lesson.additionalExamples !== undefined && (!Array.isArray(lesson.additionalExamples) || lesson.additionalExamples.some(example => typeof example.problem !== 'string' || !example.problem || !Array.isArray(example.steps) || !example.steps.length || example.steps.some(step=>typeof step !== 'string' || !step)))) throw new Error('Invalid additional worked example.');
+      if (raw.schemaVersion === 2 && lesson.questions.some(question => question.skillId !== lesson.id)) throw new Error('Practice question must identify its lesson skill.');
       if (lesson.diagram) {
         const d = lesson.diagram;
         if (d.kind !== 'line' || !Number.isFinite(d.slope) || !Number.isFinite(d.intercept) || !Number.isInteger(d.xMin) || !Number.isInteger(d.xMax) || d.xMin < -2 || d.xMax > 2 || d.xMin >= d.xMax || [d.xMin,d.xMax].some(x => d.slope*x+d.intercept < -3 || d.slope*x+d.intercept > 5)) throw new Error('Diagram exceeds its supported coordinate window.');
@@ -72,8 +74,10 @@ export function validateCatalog(raw) {
       if (!chapter.id || chapterIds.has(chapter.id) || !chapter.title || !chapter.assessment?.length || !chapter.lessonIds?.length) throw new Error('Invalid chapter.');
       chapterIds.add(chapter.id);
       for (const id of chapter.lessonIds) { if (!lessonIds.has(id) || assignedLessons.has(id)) throw new Error('Invalid chapter lesson membership.'); assignedLessons.add(id); }
+      if (raw.schemaVersion === 2 && chapter.assessment.some(question => !chapter.lessonIds.includes(question.skillId))) throw new Error('Chapter question references a skill outside its chapter.');
     }
     if (course.completion.type === 'course-evidence' && (assignedLessons.size !== lessonIds.size || course.assessment.length < 12 || course.chapters.some(ch => ch.assessment.length < 6) || course.lessons.some(l => l.questions.length < 6))) throw new Error('Foundation standard needs complete chapter coverage and substantial assessments.');
+    if (course.completion.type === 'course-evidence' && [...lessonIds].some(id => !course.assessment.some(question=>question.skillId===id))) throw new Error('Cumulative final must cover every lesson skill.');
     for (const question of courseQuestions(course)) {
       if (!question.id || questionIds.has(question.id) || allQuestionIds.has(question.id) || !question.prompt || !question.explanation || !question.misconception || !['introductory','application','challenge'].includes(question.difficulty)) throw new Error('Invalid or duplicate question.');
       questionIds.add(question.id);allQuestionIds.add(question.id);

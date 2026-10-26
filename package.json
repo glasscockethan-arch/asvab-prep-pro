@@ -14,7 +14,9 @@
     "audit:bank": "python3 tools/audit_question_bank.py --check && python3 tools/audit_semantics.py",
     "build": "node scripts/build.mjs",
     "audit:curriculum": "node scripts/curriculum-report.mjs",
-    "check:references": "python3 tools/check_references.py"
+    "check:references": "python3 tools/check_references.py",
+    "audit:college": "python3 tools/verify_college_math.py",
+    "test:math": "python3 -m unittest discover -s tests -p 'test_college_math.py' -v"
   },
   "devDependencies": {
     "axe-core": "4.11.0"

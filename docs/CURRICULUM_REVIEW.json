@@ -1894,5 +1894,1694 @@
     "reviewStatus": "author-screened",
     "independent": false,
     "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-equations-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-equations-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-equations-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-equations-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-equations-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-equations-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-functions-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-functions-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-functions-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-functions-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-functions-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-functions-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-graphs-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-graphs-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-graphs-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-graphs-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-graphs-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-graphs-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-exponents-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-exponents-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-exponents-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-exponents-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-exponents-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-exponents-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-polynomials-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-polynomials-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-polynomials-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-polynomials-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-polynomials-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-polynomials-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-factoring-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-factoring-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-factoring-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-factoring-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-factoring-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-factoring-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-percentages-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-percentages-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-percentages-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-percentages-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-percentages-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-percentages-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-rates-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-rates-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-rates-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-rates-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-rates-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-rates-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-formulas-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-formulas-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-formulas-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-formulas-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-formulas-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-formulas-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-descriptive-data-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-descriptive-data-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-descriptive-data-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-descriptive-data-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-descriptive-data-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-descriptive-data-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-evidence-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "introductory",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-evidence-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-evidence-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-evidence-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-evidence-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-evidence-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-growth-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-growth-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-growth-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-growth-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-growth-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-growth-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-relationships-check-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-relationships-check-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-relationships-check-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-relationships-check-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-relationships-check-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-relationships-check-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-structure-check-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-structure-check-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-structure-check-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-structure-check-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-structure-check-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-structure-check-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-quantities-check-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-quantities-check-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-quantities-check-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-quantities-check-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-quantities-check-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-quantities-check-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-decisions-check-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-decisions-check-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-decisions-check-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-decisions-check-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-decisions-check-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-decisions-check-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-1",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-final-2",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "functions",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-functions"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-3",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "graphs",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-rates"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-4",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "exponents",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-exponents"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-5",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "polynomials",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-polynomials"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "polynomial"
+  },
+  {
+    "id": "college-quantitative-final-6",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "factoring",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-factoring"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "quadratic-roots"
+  },
+  {
+    "id": "college-quantitative-final-7",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-8",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-9",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "formulas",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-10",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "descriptive-data",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center",
+      "college-spread"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-11",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
+  },
+  {
+    "id": "college-quantitative-final-12",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "growth",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-growth"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-13",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "equations",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-equations"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "equation"
+  },
+  {
+    "id": "college-quantitative-final-14",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "rates",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original",
+      "college-center"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-15",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "percentages",
+    "difficulty": "application",
+    "sourceRefs": [
+      "college-original"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": "numeric"
+  },
+  {
+    "id": "college-quantitative-final-16",
+    "courseId": "college-quantitative",
+    "contentRevision": 1,
+    "questionRevision": 1,
+    "skillId": "evidence",
+    "difficulty": "challenge",
+    "sourceRefs": [
+      "college-original",
+      "college-design",
+      "college-sampling"
+    ],
+    "reviewStatus": "author-screened",
+    "independent": false,
+    "mathematicalModel": null
   }
 ]

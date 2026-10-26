@@ -12,7 +12,7 @@ function attempt(questions,mode='practice',chapterId){return {id:crypto.randomUU
 test('v1 catalogs normalize without mutating source or losing original question IDs',()=>{
  const before=JSON.stringify(old),normalized=normalizeCatalog(old);assert.equal(normalized.schemaVersion,2);assert.equal(JSON.stringify(old),before);
  const ids=new Set(catalog.courses.flatMap(courseQuestions).map(q=>q.id));for(const q of old.courses.flatMap(courseQuestions))assert.ok(ids.has(q.id),q.id);
- assert.equal(course.lessons.length,9);assert.equal(courseQuestions(course).length,84);assert.equal(catalog.courses.flatMap(courseQuestions).length,144);
+ assert.equal(course.lessons.length,9);assert.equal(courseQuestions(course).length,84);assert.equal(catalog.courses.filter(c=>c.id!=='college-quantitative').flatMap(courseQuestions).length,144);assert.equal(catalog.courses.flatMap(courseQuestions).length,256);
 });
 test('mathematical models catch a corrupted key and distinguish identities from contradictions',()=>{
  let checked=0;for(const q of courseQuestions(course))if(q.verification){assert.equal(verifyMathematicalKey(q).checked,true);const wrong=structuredClone(q);wrong.answer=(q.answer+1)%4;assert.throws(()=>verifyMathematicalKey(wrong));checked++;}assert.ok(checked>=40);

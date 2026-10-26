@@ -63,8 +63,8 @@ class BrowserTests(unittest.TestCase):
         self.page.get_by_role('button',name='Start session',exact=True).click()
         expect(self.page.locator('#question-title')).to_be_visible()
     def test_01_catalog_search_filter_and_empty_state(self):
-        self.visit('catalog.html');expect(self.page.locator('.course-card')).to_have_count(7)
-        self.page.get_by_label('Search units').fill('algebra');expect(self.page.locator('.course-card')).to_have_count(1)
+        self.visit('catalog.html');expect(self.page.locator('.course-card')).to_have_count(8)
+        self.page.get_by_label('Search units').fill('algebra');expect(self.page.locator('.course-card')).to_have_count(2)
         self.page.get_by_label('Search units').fill('nothing-matches');expect(self.page.get_by_role('heading',name='No matching units')).to_be_visible()
         self.page.get_by_label('Search units').fill('');self.page.get_by_label('Learning pathway').select_option('trades');expect(self.page.locator('.course-card')).to_have_count(2)
         self.page.reload();expect(self.page.get_by_label('Learning pathway')).to_have_value('trades')
@@ -108,7 +108,7 @@ class BrowserTests(unittest.TestCase):
             self.page.locator('#mode').select_option('assessment');self.page.get_by_role('button',name='Start session',exact=True).click();self.answer_session();n=len(course['assessment']);expect(self.page.get_by_role('heading',name=f'{n} of {n} correct')).to_be_visible()
     def test_08_keyboard_responsive_and_accessibility(self):
         axe=ROOT/'node_modules/axe-core/axe.min.js';self.assertTrue(axe.exists(),'Run npm ci for axe-core')
-        routes=['','catalog.html','course.html?id=linear-equations','course.html?id=linear-equations&lesson=balance','course.html?id=linear-equations&lesson=coordinates','dashboard.html','study.html?id=linear-equations','references.html','privacy.html','contact.html']
+        routes=['','catalog.html','course.html?id=linear-equations','course.html?id=linear-equations&lesson=balance','course.html?id=linear-equations&lesson=coordinates','dashboard.html','study.html?id=linear-equations','references.html','privacy.html','contact.html','course.html?id=college-quantitative','course.html?id=college-quantitative&lesson=graphs','course.html?id=college-quantitative&lesson=polynomials']
         for width,height in [(1440,1000),(768,1024),(390,844)]:
             self.page.set_viewport_size({'width':width,'height':height})
             for route in routes:
@@ -206,5 +206,67 @@ class BrowserTests(unittest.TestCase):
         self.page.get_by_role('link',name='Measure a constant rate of change',exact=True).click()
         expect(self.page.locator('h1')).to_have_text('Measure a constant rate of change')
         self.assertFalse(self.page.locator('#course-outline').evaluate('(el)=>el.open'))
+
+    def test_18_complete_college_course_and_merge_backup_with_existing_progress(self):
+        course=next(c for c in DATA['courses'] if c['id']=='college-quantitative')
+        self.visit();self.page.get_by_role('link',name=course['title'],exact=True).click()
+        expect(self.page.get_by_role('link',name=DATA['courses'][0]['title'],exact=True)).to_have_attribute('href','./course.html?id=linear-equations')
+        self.page.get_by_role('button',name='Add to my courses',exact=True).click()
+        for lesson in course['lessons']:
+            self.visit(f'course.html?id={course["id"]}&lesson={lesson["id"]}')
+            expect(self.page.get_by_text('Worked example 2',exact=True)).to_be_visible()
+            self.page.get_by_role('button',name='Mark lesson as read',exact=True).click()
+            self.start(f'study.html?id={course["id"]}&lesson={lesson["id"]}')
+            self.answer_session();expect(self.page.get_by_role('heading',name='6 of 6 correct',exact=True)).to_be_visible()
+        self.start(f'study.html?id={course["id"]}&mode=assessment');self.answer_session()
+        expect(self.page.get_by_role('heading',name='16 of 16 correct',exact=True)).to_be_visible()
+        self.visit('course.html?id='+course['id']);expect(self.page.get_by_role('heading',name='Course practice standard: in progress',exact=True)).to_be_visible()
+        for chapter in course['chapters']:
+            self.start(f'study.html?id={course["id"]}&mode=chapter&chapter={chapter["id"]}')
+            self.assertEqual(self.state()['active']['chapterId'],chapter['id'])
+            self.answer_session();expect(self.page.get_by_role('heading',name='6 of 6 correct',exact=True)).to_be_visible()
+        self.visit('course.html?id='+course['id']);expect(self.page.get_by_role('heading',name='Course practice standard: met',exact=True)).to_be_visible()
+        self.assertEqual(len(self.state()['attempts']),17)
+        self.assertEqual(sum(len(a['details']) for a in self.state()['attempts']),112)
+        self.visit('dashboard.html')
+        with self.page.expect_download() as downloaded:self.page.get_by_role('button',name='Export progress',exact=True).click()
+        backup=Path(downloaded.value.path()).read_bytes()
+        with self.browser.new_context() as fresh:
+            page=fresh.new_page();page.on('pageerror',lambda error:self.errors.append(str(error)))
+            page.goto(self.base+'dashboard.html');expect(page.locator('#import')).to_be_visible()
+            old={'schemaVersion':2,'lessons':{'linear-equations-balance':'2026-10-25T12:00:00Z'},'bookmarks':['linear-equations'],'enrollments':{},'attempts':[],'goals':{'daily':10,'weekly':50},'legacy':None,'active':None}
+            legacy=json.dumps({'history':[],'missed':[],'week':1})
+            page.evaluate('([key,old,legacy])=>{localStorage.setItem(key,JSON.stringify(old));localStorage.setItem("asvab-prep-pro-v3",legacy)}',[KEY,old,legacy])
+            page.reload();expect(page.locator('#import')).to_be_visible()
+            page.locator('#import').set_input_files({'name':'college.json','mimeType':'application/json','buffer':backup})
+            expect(page.locator('#status')).to_contain_text('Backup merged')
+            restored=page.evaluate('(key)=>JSON.parse(localStorage.getItem(key))',KEY)
+            self.assertEqual(len(restored['lessons']),13)
+            self.assertIn('linear-equations',restored['bookmarks'])
+            self.assertEqual(len(restored['attempts']),17)
+            self.assertEqual(page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),legacy)
+            page.goto(self.base+'course.html?id='+course['id']);expect(page.get_by_role('heading',name='Course practice standard: met',exact=True)).to_be_visible()
+    def test_19_college_timed_topic_recovery(self):
+        self.page.clock.install()
+        self.start('study.html?id=college-quantitative&lesson=exponents&mode=timed')
+        before=self.state()['active'];self.assertEqual(len(before['ids']),6)
+        self.page.locator('input[name="answer"]').nth(0).check();self.page.locator('#next').click()
+        self.page.reload();expect(self.page.locator('#question-title')).to_be_visible()
+        self.assertEqual(self.state()['active']['index'],1)
+        self.assertEqual(self.state()['active']['deadline'],before['deadline'])
+        self.page.clock.fast_forward(600_100);expect(self.page.locator('.results-summary')).to_be_visible()
+        state=self.state();self.assertIsNone(state['active']);self.assertEqual(state['attempts'][0]['courseId'],'college-quantitative');self.assertEqual(len(state['attempts'][0]['details']),6)
+    def test_20_college_graph_and_source_disclosure(self):
+        self.page.set_viewport_size({'width':390,'height':844})
+        self.visit('course.html?id=college-quantitative&lesson=graphs')
+        graph_input=self.page.get_by_label('Try a whole-number input from -2 to 2',exact=True)
+        graph_input.fill('-2');expect(self.page.locator('#graph-output')).to_have_text('At x = -2, y = 0.')
+        graph_input.press('ArrowUp');expect(self.page.locator('#graph-output')).to_have_text('At x = -1, y = 0.5.')
+        expect(self.page.get_by_role('img',name='Table and graph of y = 0.5x + 1',exact=True)).to_be_visible()
+        self.visit('course.html?id=college-quantitative')
+        self.page.locator('.course-sources summary').click()
+        expect(self.page.locator('.course-sources')).to_contain_text('OpenStax College Algebra 2e')
+        expect(self.page.locator('.course-sources')).to_contain_text('Scoped review:')
+        expect(self.page.locator('.lesson-content')).to_contain_text('Independent educator review remains pending')
 
 if __name__=='__main__':unittest.main(verbosity=2)
