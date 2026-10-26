@@ -25,3 +25,5 @@ for(const file of ['src/app.js','src/layout.js','src/static.js','src/storage.js'
  const source=fs.readFileSync(file,'utf8');if(/https?:\/\//.test(source)&&file!=='src/app.js')throw Error(`${file}: unexpected external URL; review privacy implications`);
 }
 console.log(`PASS: ${data.courses.length} units, ${htmlFiles.length} HTML pages, ${links} static local links, ${scripts} inline scripts; JavaScript syntax and catalog valid.`);
+
+const curriculum=spawnSync(process.execPath,['scripts/curriculum-report.mjs'],{stdio:'inherit'});if(curriculum.status!==0)process.exit(curriculum.status??1);

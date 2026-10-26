@@ -5,7 +5,7 @@ const integer = (value, min, max) => Number.isInteger(value) && value >= min && 
 const id = value => typeof value === 'string' && /^[a-z0-9-]{1,120}$/.test(value);
 const date = value => typeof value === 'string' && Number.isFinite(Date.parse(value));
 const fail = () => { throw new Error('Backup format is invalid. Your current progress has not been replaced.'); };
-export function emptyState() { return {schemaVersion:1, lessons:{}, bookmarks:[], attempts:[], goals:{daily:10,weekly:50}, legacy:null, active:null}; }
+export function emptyState() { return {schemaVersion:2, lessons:{}, bookmarks:[], enrollments:{}, attempts:[], goals:{daily:10,weekly:50}, legacy:null, active:null}; }
 export function validateLegacy(value) {
   if (!plain(value) || !Array.isArray(value.history) || !Array.isArray(value.missed) || !value.missed.every(item => /^q\d{4}$/.test(item)) || !integer(value.week ?? 1,1,6)) fail();
   const history = value.history.map(attempt => {
@@ -25,29 +25,34 @@ export function validateLegacy(value) {
   return {history, missed:[...new Set(value.missed)], week:value.week ?? 1};
 }
 export function validateState(value) {
-  if (!plain(value) || value.schemaVersion !== 1 || !plain(value.lessons) || !Array.isArray(value.bookmarks) || !Array.isArray(value.attempts) || !plain(value.goals)) fail();
+  if (!plain(value) || ![1,2].includes(value.schemaVersion) || !plain(value.lessons) || !Array.isArray(value.bookmarks) || !Array.isArray(value.attempts) || !plain(value.goals)) fail();
+  const enrollments = value.schemaVersion === 1 ? {} : value.enrollments;
+  if (!plain(enrollments) || !Object.entries(enrollments).every(([key,val]) => id(key) && date(val))) fail();
   if (!Object.entries(value.lessons).every(([key,val]) => id(key) && date(val)) || !value.bookmarks.every(id) || !integer(value.goals.daily,1,200) || !integer(value.goals.weekly,1,1400)) fail();
   const attempts = value.attempts.map(item => {
-    if (!plain(item) || !id(item.id) || !id(item.courseId) || !date(item.date) || !['practice','diagnostic','timed','assessment','review'].includes(item.mode) || !Array.isArray(item.details) || !item.details.length || item.details.length > 540) fail();
+    if (!plain(item) || !id(item.id) || !id(item.courseId) || !date(item.date) || !['practice','diagnostic','timed','assessment','review','chapter'].includes(item.mode) || !Array.isArray(item.details) || !item.details.length || item.details.length > 540 || (item.mode === 'chapter' && !id(item.chapterId)) || (item.contentRevision !== undefined && !integer(item.contentRevision,1,1000000))) fail();
     const details = item.details.map(detail => {
       if (!plain(detail) || !id(detail.id) || typeof detail.correct !== 'boolean' || !(detail.chosen === null || integer(detail.chosen,0,3))) fail();
       return {id:detail.id,chosen:detail.chosen,correct:detail.correct};
     });
-    return {id:item.id,courseId:item.courseId,date:item.date,mode:item.mode,details};
+    if (new Set(details.map(detail => detail.id)).size !== details.length) fail();
+    return {id:item.id,courseId:item.courseId,date:item.date,mode:item.mode,details,...(item.chapterId ? {chapterId:item.chapterId} : {}),...(item.contentRevision ? {contentRevision:item.contentRevision} : {})};
   });
+  if (new Set(attempts.map(attempt => attempt.id)).size !== attempts.length) fail();
   let active = null;
   if (value.active != null) {
     const a = value.active;
-    if (!plain(a) || !id(a.courseId) || !['practice','diagnostic','timed','assessment','review'].includes(a.mode) || !Array.isArray(a.ids) || !a.ids.length || !a.ids.every(id) || new Set(a.ids).size !== a.ids.length || !Array.isArray(a.answers) || a.answers.length !== a.ids.length || !a.answers.every(x => x === null || integer(x,0,3)) || !integer(a.index,0,a.ids.length-1) || !(a.deadline === null || Number.isFinite(a.deadline))) fail();
-    active = {courseId:a.courseId,mode:a.mode,ids:[...a.ids],answers:[...a.answers],index:a.index,deadline:a.deadline};
+    if (!plain(a) || !id(a.courseId) || !['practice','diagnostic','timed','assessment','review','chapter'].includes(a.mode) || !Array.isArray(a.ids) || !a.ids.length || !a.ids.every(id) || new Set(a.ids).size !== a.ids.length || !Array.isArray(a.answers) || a.answers.length !== a.ids.length || !a.answers.every(x => x === null || integer(x,0,3)) || !integer(a.index,0,a.ids.length-1) || !(a.deadline === null || Number.isFinite(a.deadline)) || (a.mode === 'chapter' && !id(a.chapterId)) || (a.contentRevision !== undefined && !integer(a.contentRevision,1,1000000))) fail();
+    active = {courseId:a.courseId,mode:a.mode,ids:[...a.ids],answers:[...a.answers],index:a.index,deadline:a.deadline,...(a.chapterId ? {chapterId:a.chapterId} : {}),...(a.contentRevision ? {contentRevision:a.contentRevision} : {})};
   }
-  return {schemaVersion:1,lessons:{...value.lessons},bookmarks:[...new Set(value.bookmarks)],attempts,goals:{daily:value.goals.daily,weekly:value.goals.weekly},legacy:value.legacy == null ? null : validateLegacy(value.legacy),active};
+  return {schemaVersion:2,lessons:{...value.lessons},bookmarks:[...new Set(value.bookmarks)],enrollments:{...enrollments},attempts,goals:{daily:value.goals.daily,weekly:value.goals.weekly},legacy:value.legacy == null ? null : validateLegacy(value.legacy),active};
 }
 export function parseBackup(text) {
   if (typeof text !== 'string' || text.length > 10_000_000) throw new Error('Backup must be a JSON file under 10 MB.');
   let parsed;
   try { parsed = JSON.parse(text); } catch { throw new Error('This file is not valid JSON. Your progress has not changed.'); }
-  if (parsed.schemaVersion === 1) return validateState(parsed);
+  if (!plain(parsed)) throw new Error('Backup must contain a progress object. Your progress has not changed.');
+  if (parsed && [1,2].includes(parsed.schemaVersion)) return validateState(parsed);
   if (parsed.version === 3 || (plain(parsed) && Array.isArray(parsed.history) && Array.isArray(parsed.missed))) {
     const state = emptyState(); state.legacy = validateLegacy(parsed); return state;
   }
@@ -55,9 +60,16 @@ export function parseBackup(text) {
 }
 export function mergeState(current, incoming) {
   const merged = validateState(current), addition = validateState(incoming);
-  merged.lessons = {...merged.lessons,...addition.lessons};
+  for (const [key,date] of Object.entries(addition.lessons)) if (!merged.lessons[key] || Date.parse(date) > Date.parse(merged.lessons[key])) merged.lessons[key] = date;
+  for (const [key,date] of Object.entries(addition.enrollments)) if (!merged.enrollments[key] || Date.parse(date) < Date.parse(merged.enrollments[key])) merged.enrollments[key] = date;
   merged.bookmarks = [...new Set([...merged.bookmarks,...addition.bookmarks])];
-  merged.attempts = [...new Map([...merged.attempts,...addition.attempts].map(item => [item.id,item])).values()];
+  const attempts = new Map(merged.attempts.map(item => [item.id,item]));
+  for (const attempt of addition.attempts) {
+    const old = attempts.get(attempt.id);
+    if (old && JSON.stringify(old) !== JSON.stringify(attempt)) throw new Error('Conflicting attempt IDs in backup. Current progress has not been replaced.');
+    attempts.set(attempt.id,attempt);
+  }
+  merged.attempts = [...attempts.values()].sort((a,b) => Date.parse(a.date)-Date.parse(b.date));
   if (addition.legacy) {
     const old = merged.legacy || {history:[],missed:[],week:1};
     merged.legacy = {week:old.week, missed:[...new Set([...old.missed,...addition.legacy.missed])], history:[...new Map([...old.history,...addition.legacy.history].map(item => [JSON.stringify(item),item])).values()]};

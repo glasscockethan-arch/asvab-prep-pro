@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {shuffle,score,secondsLeft,questionsFor,validateCatalog} from '../src/engine.js';
-const data = JSON.parse(fs.readFileSync(new URL('../data/courses.json',import.meta.url)));
+const data = JSON.parse(fs.readFileSync(new URL('./fixtures/catalog-v1.json',import.meta.url)));
 const course = data.courses[0];
 test('all released units satisfy the content contract with globally unique question IDs',()=>{
  validateCatalog(data);const questions=data.courses.flatMap(c=>[...c.lessons.flatMap(l=>l.questions),...c.assessment]);
