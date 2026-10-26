@@ -38,3 +38,5 @@
 .notice{border-left-color:#6655d8;background:#efedff}
 @media(max-width:850px){.hero-inner{grid-template-columns:1fr}.beacon-visual{max-width:540px}}
 @media(max-width:540px){.beacon-visual{min-height:0}.hero h1{font-size:clamp(42px,11vw,54px)}}
+
+/* Learning paths */.quiz-field{border:1px solid var(--line);border-radius:12px;margin:16px 0;padding:17px}.quiz-field legend{font-weight:700;padding:0 5px}.quiz-answer{display:block;padding:9px;margin:4px 0;border-radius:8px;cursor:pointer}.quiz-answer:hover{background:#f1f0ff}.quiz-answer input{accent-color:#6054dd}.quiz-result{margin-top:15px}.quiz-result p{padding:10px 12px;background:#f3f5fc;border-radius:8px}.learning-path-card{display:block;text-decoration:none;color:inherit}.learning-path-card:hover{border-color:#8880ea;transform:translateY(-2px);transition:transform .15s}.learning-path-card small{color:#615bd3;font-weight:750}.learning-path-card h3{margin:10px 0}.learning-path-card p{margin:0;color:var(--muted)}
