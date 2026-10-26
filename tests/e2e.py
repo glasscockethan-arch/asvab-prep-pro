@@ -195,4 +195,16 @@ class BrowserTests(unittest.TestCase):
         expect(self.page.locator('#import-status')).to_contain_text('Conflicting attempt IDs')
         self.assertEqual(self.state(),before)
 
+    def test_17_mobile_outline_keyboard_navigation(self):
+        self.page.set_viewport_size({'width':390,'height':844})
+        self.visit('course.html?id=linear-equations&lesson=coordinates')
+        outline=self.page.locator('#course-outline')
+        self.assertFalse(outline.evaluate('(el)=>el.open'))
+        summary=self.page.get_by_text('Lesson and chapter navigation',exact=True)
+        summary.focus();self.page.keyboard.press('Enter')
+        self.assertTrue(outline.evaluate('(el)=>el.open'))
+        self.page.get_by_role('link',name='Measure a constant rate of change',exact=True).click()
+        expect(self.page.locator('h1')).to_have_text('Measure a constant rate of change')
+        self.assertFalse(self.page.locator('#course-outline').evaluate('(el)=>el.open'))
+
 if __name__=='__main__':unittest.main(verbosity=2)

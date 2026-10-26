@@ -9,7 +9,7 @@ Reviewed October 25, 2026 (America/Chicago). Development branch: `feat/aptitude-
 - Expanded the existing `linear-equations` item in place into **Algebra I foundations: equations and linear models**, content revision 2: 3 chapters, 9 sequenced lessons, 54 practice questions, 18 chapter-check questions and a 12-question cumulative final.
 - Preserved the original course ID, three lesson IDs and all 12 question IDs. Older history, bookmarks and read flags remain usable. An old three-question result is retained but cannot complete the expanded course.
 - Platform totals: **24 lessons and 144 original questions**, across the bounded Algebra course and five introductory units. The standalone ASVAB app remains **540 questions**, with stable IDs and its existing storage key; it was not rewritten in Phase 2.
-- Added local course enrollment, chapter navigation, explicit reading/practice distinction, topic evidence, course completion summary, actionable recommendations and an accessible graph/table with keyboard-operable input.
+- Added local course enrollment, responsive collapsible chapter navigation, explicit reading/practice distinction, topic evidence, course completion summary, actionable recommendations and an accessible graph/table with keyboard-operable input.
 - Course practice standard requires all lessons read, each full topic pool answered with at least 80% latest accuracy, every complete chapter check and the complete final at least 80% for the current content revision. This is evidence on these materials, not broad mastery or an official credential. Repeated attempts reuse the same pools.
 - Catalog schema 2, compatible schema-1 adapter, course/question review trails, source and skill IDs, prerequisite validation, deterministic mathematical-key models, duplicate detection and generated review/coverage inventories.
 - Storage schema 2 retains the existing platform key. Version-1 state/backups and active sessions migrate without immediate rewriting. Conflicting attempt IDs and duplicate nested records are rejected, newer reading is preserved and valid old active sessions retain their original content revision.
@@ -20,7 +20,7 @@ Reviewed October 25, 2026 (America/Chicago). Development branch: `feat/aptitude-
 | Check | Result |
 |---|---|
 | Node tests | **28 passed**, 0 failed, 0 skipped; includes the original 16 checks with the original v1 catalog retained as a compatibility fixture |
-| Browser suite | **16 passed**, 0 failed, 0 skipped; latest full run 32.1 seconds |
+| Browser suite | **17 passed**, 0 failed, 0 skipped; latest full run 34.0 seconds |
 | Curriculum gate | 24 lessons, 144 platform questions, all course/question IDs/review/source references validated |
 | Algebra mathematical models | **54 of 84** question keys recomputed, 0 failures; remaining conceptual/inequality interpretations require editorial review |
 | Duplicate detection | 0 exact platform prompt duplicates; 13 number-normalized near-duplicate groups recorded for review |
@@ -32,9 +32,9 @@ Reviewed October 25, 2026 (America/Chicago). Development branch: `feat/aptitude-
 | Network/privacy smoke | No unexpected external app requests or JavaScript page errors during browser tests |
 | Live reference availability | **3 reachable, 3 failed; command exits nonzero**. NCCER 404, ASE 403 and official ASVAB 403 remain unresolved |
 
-The browser suite tests the built artifact beneath `/asvab-prep-pro/`, including all six final assessments, all three new chapter checks, the entire Algebra practice-standard completion flow, v1 unfinished-assessment migration, ASVAB V3 preservation, conflicting backup rejection, timer recovery, enrollment, graph interaction and legacy preview quizzes. It uses fresh isolated storage; no real learner storage was cleared.
+The browser suite tests the built artifact beneath `/asvab-prep-pro/`, including all six final assessments, all three new chapter checks, keyboard-operated mobile chapter navigation, the entire Algebra practice-standard completion flow, v1 unfinished-assessment migration, ASVAB V3 preservation, conflicting backup rejection, timer recovery, enrollment, graph interaction and legacy preview quizzes. It uses fresh isolated storage; no real learner storage was cleared.
 
-Automated accessibility scans are not WCAG conformance certification. Viewport emulation in Chromium is not actual Windows, iPad Safari, iPhone or Android hardware testing. Hosted GitHub Actions execution and production deployment are distinct from the local evidence above.
+Automated accessibility scans are not WCAG conformance certification. Viewport emulation in Chromium is not actual Windows, iPad Safari, iPhone or Android hardware testing. The earlier hosted CI failed while locating pip cache requirements; the workflow now explicitly points to requirements-dev.txt. Hosted validation passed for `7f4a392` after the cache fix: https://github.com/glasscockethan-arch/asvab-prep-pro/actions/runs/40268729179. The subsequent responsive-navigation change passed the full local suite; consult PR #1 for its latest hosted check status. Production deployment is distinct from validation and is not authorized.
 
 ## Coverage and review status
 

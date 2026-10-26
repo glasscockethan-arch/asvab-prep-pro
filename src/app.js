@@ -69,6 +69,8 @@ function renderCourse() {
  document.title=`${course.title} | Aptitude Beacon`;
  document.querySelector('link[rel="canonical"]').href=`https://glasscockethan-arch.github.io/asvab-prep-pro/course.html?id=${course.id}`;
  main.innerHTML=courseMarkup(course,state,lesson,labels[course.academy]);
+ const outline=document.querySelector('#course-outline');
+ if(outline && matchMedia('(max-width:700px)').matches)outline.open=false;
  document.querySelector('#bookmark')?.addEventListener('click',()=>{const saved=state.bookmarks.includes(course.id);state.bookmarks=saved?state.bookmarks.filter(id=>id!==course.id):[...state.bookmarks,course.id];const written=persist();renderCourse();if(written)notice(saved?'Unit removed from saved learning.':'Unit saved.');});
  document.querySelector('#enroll')?.addEventListener('click',()=>{state.enrollments[course.id]=new Date().toISOString();const written=persist();renderCourse();if(written)notice('Added to your courses on this browser.');});
  document.querySelector('#read-lesson')?.addEventListener('click',()=>{state.lessons[lessonKey(course,lesson)]=new Date().toISOString();const written=persist();renderCourse();if(written)notice('Lesson marked as read. Try its practice questions when you’re ready.');});
