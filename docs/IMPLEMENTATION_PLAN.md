@@ -26,3 +26,7 @@ Release individual introductory units only when they contain objectives, prerequ
 ## Phase 2 status
 
 The bounded Algebra I equations/inequalities/linear-models flagship is implemented with chapter/final evidence, local enrollment, versioned content/progress and compatibility tests. See `PHASE_2_MILESTONE.md` for scope and next-course order, and `OFFICIAL_SOURCE_REVIEW.md` for the EPA/OSHA review and unresolved reference failures. Do not treat this as completion of all planned academies.
+
+## Phase 3 college milestone
+
+College Algebra and Quantitative Literacy is implemented as the next coherent flagship with four chapters, 12 lessons, 112 original questions, 24 worked examples, a cumulative final and independent printed-choice mathematics checks. See PHASE_3_MILESTONE.md and COLLEGE_SOURCE_REVIEW.md. Trades/construction and AFQT remain next; certification pathways remain in development.

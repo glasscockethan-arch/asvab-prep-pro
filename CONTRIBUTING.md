@@ -8,8 +8,10 @@ Write original instructional content with worked reasoning and plausible distrac
 
 Use semantic HTML, keyboard-operable controls, visible focus, readable contrast, descriptive labels and reduced-motion support. No external fonts, trackers, analytics, paid service or advertising without explicit owner authorization.
 
-Run `npm ci --ignore-scripts`, `npm test`, `npm run check`, `npm run audit:bank`, `npm run audit:curriculum`, `npm run build` and `npm run test:e2e`. Include the evidence and limitations in your change description. Browser tests use isolated storage and the built site under `/asvab-prep-pro/`.
+Run `npm ci --ignore-scripts`, `npm test`, `npm run test:math`, `npm run check`, `npm run audit:bank`, `npm run audit:curriculum`, `npm run audit:college`, `npm run build` and `npm run test:e2e`. Include the evidence and limitations in your change description. Browser tests use isolated storage and the built site under `/asvab-prep-pro/`.
 
 Commits should form coherent milestones. A manual Pages workflow is provided; do not publish an unfinished product by accident. Review release blockers before requesting public release.
 
 Preserve the v1 content fixture as a compatibility test. For new content, use schema 2 review/source/skill metadata and keep prior question IDs. Course completion needs current full-pool evidence; do not replace it with a tiny score or count of read pages. Live source checks and independent educator review are separate from mathematical-model checks.
+
+College numerical changes must pass both the JavaScript model checker and the independent Python printed-choice audit. Keep exponent/domain/rounding assumptions explicit. Update the Phase 2 identity fixture only as a deliberate compatibility decision, never to hide loss of an existing ID.

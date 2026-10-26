@@ -34,6 +34,6 @@ A student course completion card, certification, professional license and appren
 - Official ASVAB: https://www.officialasvab.com/applicants/afqt/ returned **HTTP 403**. No new official scoring/eligibility verification is claimed.
 - OpenStax: https://openstax.org/details/books/elementary-algebra-2e returned HTTP 200 with a JavaScript shell. That establishes reachability of the landing page, not substantive review of the textbook or edition. Algebra instruction is original; model checks use the explicitly authored equations.
 
-`npm run check:references` reports availability separately from factual review. The current live audit has **3 reachable and 3 failed destinations** and exits nonzero. Those failures do not prevent the bounded original Algebra development workflow; they block treating the affected credential/scoring requirements as verified. Full network access is not a substitute for a valid source, and no secrets were added.
+`npm run check:references` reports availability separately from factual review. The Phase 2 audit covered six endpoints and had **3 reachable and 3 failed destinations** and exits nonzero. Those failures do not prevent the bounded original Algebra development workflow; they block treating the affected credential/scoring requirements as verified. Full network access is not a substitute for a valid source, and no secrets were added.
 
 Detailed record, retrieval hashes and scoped dates are in `data/courses.json`. Successful HTTP status never automatically sets a verification date.
