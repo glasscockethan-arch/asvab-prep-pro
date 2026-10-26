@@ -1,0 +1,4 @@
+*.zip
+*backup*.json
+*results*.json
+.DS_Store
