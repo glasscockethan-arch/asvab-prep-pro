@@ -4,7 +4,7 @@ Audit date: October 25, 2026 (owner timezone). Commit: `1ec5deb3e99096610e20a3fc
 
 ## Verified locally
 
-- Static site, 15 HTML documents, no package manifest, build, CI or automated browser tests.
+- Static site, 13 HTML documents, no package manifest, build, CI or automated browser tests.
 - All 19 referenced local page/asset URLs returned HTTP 200.
 - Existing structural audit: 540 unique questions across nine subjects; zero structural failures; three repeated prompt groups.
 - Chromium: completed a 45-question diagnostic across nine subjects with 100% score, persisted history across reload; initialized 90-question/90-minute and 40-question/40-minute modes; rendered spatial targets/options; scored a subject test at 95%, reviewed its one missed question and cleared the missed deck; exported valid JSON of three sessions; scored all three existing four-question quizzes; mobile home/practice pages fit a 390px viewport; zero JavaScript page errors in these flows.
