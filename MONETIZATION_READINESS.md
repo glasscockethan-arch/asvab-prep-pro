@@ -2,9 +2,9 @@
 
 **Not eligible for a launch-ready or monetization-ready claim.** No ads, trackers, paid backend, domain purchase, ad units or AdSense application have been activated.
 
-Completed preparation: cohesive learning UI, six original introductory units, preserved ASVAB app, local progress controls, policy/reference pages, static build, browser/unit checks and manual deployment workflow.
+Completed preparation: cohesive learning UI, a bounded Algebra foundations course and five introductory units, preserved ASVAB app, local progress controls, policy/reference pages, static build, browser/unit checks and manual deployment workflow.
 
-Outstanding: independent educator review and factual verification, remaining curriculum depth, official credential-source verification, real-device/accessibility testing, private support, owner/legal/privacy review, trademark due diligence and production deployment verification. Read the exact gates in `RELEASE_READINESS.md`.
+Outstanding: independent educator review and factual verification, remaining curriculum depth, detailed credential/technical-source verification beyond the scoped EPA/OSHA administrative review, real-device/accessibility testing, private support, owner/legal/privacy review, trademark due diligence and production deployment verification. Read the exact gates in `RELEASE_READINESS.md`.
 
 Aptitude Beacon remains a working brand, without trademark clearance or established domain ownership. No new verification of previous brand/domain notes is claimed.
 

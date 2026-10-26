@@ -1,79 +1,81 @@
-# Release readiness — development milestone, not public launch approval
+# Release readiness — Phase 2 development milestone
 
-Reviewed October 25, 2026 (America/Chicago). Baseline: `1ec5deb3e99096610e20a3fce2b04dd14791d877`. Branch: `feat/aptitude-beacon-platform`.
+Reviewed October 25, 2026 (America/Chicago). Development branch: `feat/aptitude-beacon-platform`. Draft PR: https://github.com/glasscockethan-arch/asvab-prep-pro/pull/1. Original rollback baseline: `1ec5deb3e99096610e20a3fce2b04dd14791d877`; Phase 1 milestone: `cac7d7a`.
 
-**Public launch gate: blocked.** A working development environment and tested platform foundation are available. The requested complete curriculum, independent educational review and production verification are not complete. No advertising, paid infrastructure or purchases were activated.
+**Public launch remains blocked.** The bounded Algebra I learning experience is implemented and locally validated. The complete requested academies, independent educational review and production verification are unfinished. Do not merge or deploy this draft. No purchase, domain registration, ads, tracking, cloud accounts or paid services were added.
 
-## Implemented
+## Current implementation
 
-- Shared semantic layout and purple/lavender design, original vector illustration, responsive catalog, live search and pathway filters, course overviews, lesson navigation and visible in-development tracks.
-- Six bounded introductory units, 18 original lessons, worked examples, objectives, prerequisites, practice explanations, flashcards and 72 original questions (54 lesson-practice plus 18 held-out assessment items).
-- Reusable study, six-question diagnostic, topic practice, two difficulty labels, randomized question order, ten-minute timed practice, final assessment and missed-question review modes.
-- Dashboard, saved units, read-progress indicators, small-unit completion records, practice history, daily/rolling-seven-day goals, activity streaks and deterministic recommendations.
-- Versioned local data, active-session recovery with absolute timer deadlines, validated backup merging, recovery download, deletion controls, cross-tab conflict protection and storage-failure warnings.
-- Original ASVAB app, key and backup format preserved; original baseline recoverable by commit. New platform reads V3 history without replacing it. Legacy backup validation now rejects malformed nested history and unsafe diagrams before replacement.
-- ASVAB improvements: two exact duplicate non-spatial prompts replaced, selected definitions clarified, 12 reversed-glossary items replaced with applications and reading distractors made relevant to their passages. Question count and stable IDs preserved.
-- Shared policy/reference pages, no unsupported credential claims, honest source-access status and browser-data deletion/export guidance.
-- Dependency-free runtime modules, repeatable static build, schema/syntax/link checks, automated CI and a separate manual Pages workflow. No publication was performed.
+- Expanded the existing `linear-equations` item in place into **Algebra I foundations: equations and linear models**, content revision 2: 3 chapters, 9 sequenced lessons, 54 practice questions, 18 chapter-check questions and a 12-question cumulative final.
+- Preserved the original course ID, three lesson IDs and all 12 question IDs. Older history, bookmarks and read flags remain usable. An old three-question result is retained but cannot complete the expanded course.
+- Platform totals: **24 lessons and 144 original questions**, across the bounded Algebra course and five introductory units. The standalone ASVAB app remains **540 questions**, with stable IDs and its existing storage key; it was not rewritten in Phase 2.
+- Added local course enrollment, chapter navigation, explicit reading/practice distinction, topic evidence, course completion summary, actionable recommendations and an accessible graph/table with keyboard-operable input.
+- Course practice standard requires all lessons read, each full topic pool answered with at least 80% latest accuracy, every complete chapter check and the complete final at least 80% for the current content revision. This is evidence on these materials, not broad mastery or an official credential. Repeated attempts reuse the same pools.
+- Catalog schema 2, compatible schema-1 adapter, course/question review trails, source and skill IDs, prerequisite validation, deterministic mathematical-key models, duplicate detection and generated review/coverage inventories.
+- Storage schema 2 retains the existing platform key. Version-1 state/backups and active sessions migrate without immediate rewriting. Conflicting attempt IDs and duplicate nested records are rejected, newer reading is preserved and valid old active sessions retain their original content revision.
+- Preserved the Phase 1 catalog, themes, study/timed/diagnostic/review modes, flashcards, goals/streaks, safe backups, ASVAB integration, privacy controls, shared layout, static build, CI and manually dispatched Pages workflow.
 
-## Validation evidence
+## Automated validation
 
 | Check | Result |
 |---|---|
-| Node unit tests | 16 passed, 0 failed, 0 skipped |
-| Python Playwright browser tests | 12 passed, 0 failed, 0 skipped; final full run 20.6 seconds |
-| New unit content schema | 6 units, 18 lessons, 72 questions validated |
-| ASVAB structural audit | 540 questions, 540 unique IDs, 9 subjects, 0 structural failures |
-| Independent quantitative recomputation | 128 keyed answers checked, 0 failures |
-| Independent rotation equivalence | All 60 spatial keys checked; exactly one rotation-equivalent choice each; 0 failures |
-| Static checks | 18 HTML pages, 156 static local links, inline/module syntax passed |
-| Build | Passed; generated `dist/` with application assets only |
-| Dependency security | `npm audit --audit-level=moderate`: 0 reported vulnerabilities |
-| Accessibility | axe-core 4.11.0 WCAG A/AA scans: no violations on 9 representative new/static screens in light and dark themes; full scan on an active new assessment passed |
-| Responsive/keyboard | No horizontal overflow across 9 screens at 1440×1000, 768×1024 and 390×844; skip-link keyboard activation tested |
-| Browser privacy smoke | No unexpected external requests and no JavaScript page errors during the 12 browser tests |
-| Git checks | Reviewed changes and whitespace checks; commits retained on development branch |
+| Node tests | **28 passed**, 0 failed, 0 skipped; includes the original 16 checks with the original v1 catalog retained as a compatibility fixture |
+| Browser suite | **16 passed**, 0 failed, 0 skipped; latest full run 32.1 seconds |
+| Curriculum gate | 24 lessons, 144 platform questions, all course/question IDs/review/source references validated |
+| Algebra mathematical models | **54 of 84** question keys recomputed, 0 failures; remaining conceptual/inequality interpretations require editorial review |
+| Duplicate detection | 0 exact platform prompt duplicates; 13 number-normalized near-duplicate groups recorded for review |
+| ASVAB structure | 540 questions, 9 subjects, 540 unique IDs, 0 structural failures |
+| ASVAB semantic baseline | 128 quantitative keys and all 60 spatial keys recomputed, 0 failures; this does not verify all factual answers/explanations |
+| Static validation/build | 18 HTML pages, 156 static local links, JavaScript syntax and `dist/` build passed |
+| Dependency audit | `npm audit --audit-level=moderate`: 0 reported vulnerabilities; no npm runtime dependency |
+| Accessibility/responsive | axe scans in light/dark themes, keyboard skip-link and graph controls; no overflow at 1440×1000, 768×1024 and 390×844 on representative screens |
+| Network/privacy smoke | No unexpected external app requests or JavaScript page errors during browser tests |
+| Live reference availability | **3 reachable, 3 failed; command exits nonzero**. NCCER 404, ASE 403 and official ASVAB 403 remain unresolved |
 
-The final browser suite ran against the built artifact under `/asvab-prep-pro/`, with isolated learner storage. It covers catalog/empty/error states, all six assessments, lesson read/bookmark/completion, flashcards, dark-mode persistence, scoring, missed review, absolute timer expiry after refresh, new/legacy backups, malformed input, unreadable storage, cross-tab changes, deletion isolation, old diagnostic and all three legacy preview quizzes. The first browser run exposed and led to a search fix; its backup-dialog test also needed to wait for the asynchronous validation result. The final run passed all 12.
+The browser suite tests the built artifact beneath `/asvab-prep-pro/`, including all six final assessments, all three new chapter checks, the entire Algebra practice-standard completion flow, v1 unfinished-assessment migration, ASVAB V3 preservation, conflicting backup rejection, timer recovery, enrollment, graph interaction and legacy preview quizzes. It uses fresh isolated storage; no real learner storage was cleared.
 
-Additional local scans of the legacy dashboard, three preview quizzes and arithmetic guide found no WCAG-tagged violations. These are automated checks, not a WCAG 2.2 AA conformance certification. Real assistive-technology testing and all interactive states remain outstanding.
+Automated accessibility scans are not WCAG conformance certification. Viewport emulation in Chromium is not actual Windows, iPad Safari, iPhone or Android hardware testing. Hosted GitHub Actions execution and production deployment are distinct from the local evidence above.
 
-## Content coverage and editorial status
+## Coverage and review status
 
-| Academy | Available | Explicitly unreleased |
+| Area | Available in development | Remaining |
 |---|---|---|
-| High school | Linear equations; reading evidence (2 introductory units) | Algebra II, geometry, grammar/writing, biology, chemistry, physics, study skills/full courses |
-| College | Introductory statistics; research literacy (2 introductory units) | Full college algebra/precalculus, academic writing, science refreshers, critical thinking and time-management courses |
-| Trades | Trade measurement; ideal electrical paper models (2 introductory units) | EPA 608, NCCER Core, OSHA awareness, welding, automotive/ASE, full blueprint/tool and apprenticeship pathways |
-| Military | Preserved 540-question V3 app and 4 static AFQT guides | Complete independent answer/source review, richer difficulty calibration and all-subject guide expansion |
+| High school | Bounded Algebra equations/inequalities/linear-graphs course; introductory reading-evidence unit | Full Algebra I, systems, exponents, quadratics, Algebra II, geometry, grammar/writing and science courses |
+| College | Introductory statistics and research-literacy units | Substantial college algebra/quantitative literacy, precalculus, academic writing, critical thinking, biology/chemistry and study-skills courses |
+| Trades | Introductory measurement and ideal electrical paper models; scoped EPA/OSHA reference review | Complete trade-math/construction flagship, EPA preparation course and other credential pathways; detailed technical and state requirements |
+| Military | Preserved 540-question V3 application and four AFQT guides | Independent review of every answer/explanation, remaining template/distractor improvements, difficulty calibration and full AFQT flagship |
 
-The new units have author review only; no independent educator or subject-expert approval is claimed. Three-question assessments are small practice checks, not sufficient evidence of broad mastery. Unit completion is an activity record, not a credential. Estimated times are rough self-paced estimates, not measured outcomes.
+All platform instruction remains **author-screened, not independently educator-reviewed**. `docs/CURRICULUM_REVIEW.json` inventories every platform question; `docs/CURRICULUM_COVERAGE.md` records quantitative and duplicate checks. `docs/QUESTION_REVIEW.csv` inventories every legacy ASVAB question. No independent subject-expert approval is claimed for either bank.
 
-`docs/QUESTION_REVIEW.csv` inventories all 540 legacy items. 188 have independent numeric/geometry key checks; the other 352 have author screening with source/editorial review pending. All explanations, factual nuances, distractors and educational value still require independent review. Ten number-normalized prompt groups remain repeated; reversed glossary concepts and shared reading passages also reduce variety. The single exact repeated prompt group is the graphical instruction shared across spatial items. Do not treat structural success as factual verification.
+The Algebra course is bounded, not a full school-year Algebra I curriculum. Its separate assessment pools improve the evidence compared with the previous three-question check, but they remain finite practice pools. Mathematical models validate the key against the authored model, not the word-problem interpretation, all distractors, explanations or educational sufficiency.
 
-## Exact blockers to broad public launch
+## Official source verification
 
-1. Independently review every released lesson and answer. Complete factual/source review of the legacy bank, improve remaining templates/distractors and verify explanations. Do not claim the full curricula requested are complete.
-2. Apply the saved environment domain additions and successfully review current EPA, OSHA, NCCER, ASE and official ASVAB information before releasing credential-specific preparation. Initial CONNECT requests were denied by egress policy. Access attempts are recorded without fabricated verification dates. Jurisdiction/state licensing rules have not been researched.
-3. Establish a verified private support channel and have the owner review privacy, terms, minors-related obligations, copyright and operator/jurisdiction details. Public GitHub issues are not a private support channel.
-4. Test on actual Windows desktop browsers, iPad Safari and Android/iPhone, plus screen readers and keyboard-only primary flows. Current device sizes are Chromium emulation only. Advanced zoom/reflow, all error states, more contrast/focus scenarios and manual assistive-technology checks remain.
-5. Review and merge the development branch, configure GitHub Pages to deploy the built artifact, authorize the intended release, then verify the real deployed URLs, data paths, persistence and backups. Local artifact validation does not establish production deployment. The live site was initially inaccessible through the environment proxy.
+On October 25, 2026, the EPA certification-requirements and test-topics pages and OSHA Outreach page were successfully retrieved and read. Verified scope is limited to EPA certification administration/types, the proctored Core distinction for Universal, the published topic-category structure, and OSHA Outreach's program/card/training distinctions. The pages do not approve Aptitude Beacon or verify a course that has not been written.
 
-## Known limitations and technical debt
+NCCER's saved Core URL returned 404; ASE and official ASVAB endpoints returned 403. OpenStax's algebra landing page returned a JavaScript shell: reachability is recorded, without substantive textbook verification. No date is fabricated for unreviewed content. See `docs/OFFICIAL_SOURCE_REVIEW.md` and the scoped records in `data/courses.json`.
 
-- No login, backend, automatic cross-device sync or offline caching for the new modules. A static HTTP server is required; `file:` loading of the new homepage is unsupported. The original app remains self-contained offline.
-- The original V3 app still contains embedded styles/data/logic. Migration is additive; full extraction awaits further regression coverage and a separate compatibility review.
-- Source/lesson content is mostly client rendered. Routes use query strings; clean static per-lesson pages and richer prerendering are future SEO work. No fabricated structured data was added.
-- Storage quotas can prevent persistence. Recovery/export controls are supplied, but browser eviction cannot be prevented. Repeated assessment uses the same small held-out pool after its first exposure.
-- Backup import validates shape and merges data; it does not provide cryptographic provenance or establish an independently verified educational result.
-- CI and manual Pages workflow files were created and inspected; hosted GitHub Actions execution has not been observed.
-- No MSI/Windows connector or local Windows path is accessible here. README documents a non-destructive handoff; no MSI sync is claimed.
-- No exhaustive penetration test, comprehensive dependency supply-chain review, legal review or accreditation is claimed. Runtime introduces no package dependency, secret, tracking or external service.
+## Exact launch blockers
 
-## Exact blockers to future monetization
+1. Independent educator/subject-expert review of every released lesson, answer and explanation, including all ASVAB items. Resolve material inaccuracies, weak distractors and repetitive templates before broad launch.
+2. Complete a deliberate release scope; the full requested curricula are not implemented. Keep unfinished subjects and all credential preparation explicitly in development.
+3. Before credential-specific release, verify detailed current regulations, exam-domain coverage, provider requirements and state-specific licensing applicability. EPA/OSHA administrative review is a starting point, not a completed preparation course. Resolve the failed references.
+4. Establish a verified private support channel and complete owner/operator, legal/privacy, minors-related, jurisdiction and brand/trademark review. No legal-compliance or trademark-clearance claim is made.
+5. Conduct actual desktop/mobile/iPad and assistive-technology testing, including expanded reflow/zoom/focus/error-state checks. Current automation does not establish hardware compatibility or full WCAG 2.2 AA conformance.
+6. Separately authorize any eventual release, review hosted CI, configure Pages to deploy only the built artifact, and verify the real deployed primary flows and backups. No merge or production publication is authorized in this milestone.
 
-All public-launch blockers above, plus brand/trademark due diligence, a suitable operator/payment/tax/age review, current provider eligibility/policy review and any required consent/privacy implementation. See `docs/BRAND_AND_MONETIZATION.md`. No trademark clearance, domain ownership, AdSense acceptance or revenue is claimed. Potential future ad locations are documentation only, outside assessments.
+## Known limitations
 
-## Environment and delivery
+- No automatic cross-device sync, account backend or new-platform offline cache. New modules need HTTP/HTTPS; `practice.html` remains standalone.
+- Browser quota/eviction can still lose unsaved data; export remains necessary. Backups are locally editable activity records, not cryptographically verified academic results.
+- Existing platform storage key remains `aptitude-beacon-v1` while its envelope is schema 2. Forward/older backups are supported only by explicit adapters; unknown versions are rejected.
+- The V3 application remains monolithic. Full extraction, comprehensive factual review and advanced ASVAB/AFQT features remain future milestones.
+- Most content is client-rendered with query routes. Richer prerendering, cleaner lesson URLs and wider performance measurement remain SEO work.
+- New content JSON is about 240 KB uncompressed, including review metadata. No production transport/performance benchmark is claimed.
+- No connected MSI/Windows filesystem is available; no Windows-project synchronization is claimed.
 
-The existing cloud checkout, Node 24, Python 3.12, pinned axe-core and preinstalled Playwright/Chromium support development and local validation. Installation/start instructions and domain additions are saved to the onboarding draft for review. A draft save does not apply network changes or publish the snapshot. No fresh-task restoration, production publication, remote push or MSI synchronization is established by this report.
+## Monetization and delivery
+
+Public launch blockers also block a monetization-ready claim. Additional brand, operator/payment/tax/age and current advertising-policy checks remain. No ad placement is active. See `MONETIZATION_READINESS.md` and `docs/BRAND_AND_MONETIZATION.md`.
+
+Changes belong only on `feat/aptitude-beacon-platform` and draft PR #1. `main`, the live Pages site and V3 learner storage must remain unchanged. Push/PR verification is reported separately after the commits are made; local tests do not establish remote delivery or snapshot publication.

@@ -22,3 +22,7 @@ Release individual introductory units only when they contain objectives, prerequ
 - Initial requests to the live GitHub Pages site, EPA, OSHA, NCCER, ASE and official ASVAB site were denied by the environment's egress proxy (HTTP CONNECT 403). Domain additions are saved to the environment draft; saving alone does not apply them. Do not attach a false verification date to these sources.
 - No connected MSI computer/filesystem capability is exposed. Do not infer access to `C:\Users\Ethan\Documents\ASVAB-Prep-Pro-V3` from the path alone. Git commits and documented clone/pull steps are the handoff.
 - Do not publish an incomplete product. Verify deployment after an authorized publication is actually available.
+
+## Phase 2 status
+
+The bounded Algebra I equations/inequalities/linear-models flagship is implemented with chapter/final evidence, local enrollment, versioned content/progress and compatibility tests. See `PHASE_2_MILESTONE.md` for scope and next-course order, and `OFFICIAL_SOURCE_REVIEW.md` for the EPA/OSHA review and unresolved reference failures. Do not treat this as completion of all planned academies.

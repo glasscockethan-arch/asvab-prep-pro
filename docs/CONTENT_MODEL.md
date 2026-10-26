@@ -1,32 +1,39 @@
-# Learning content and progress contracts
+# Content and progress contracts — schema 2
 
-`data/courses.json` is the authored source of truth. `schemaVersion: 1` contains available introductory units, a separate in-development list and official-source metadata. `src/engine.js:validateCatalog` rejects missing instruction, duplicate identifiers, invalid choices and unsupported difficulty levels. Tests require globally unique question IDs.
+`data/courses.json` is the original authored source. Schema 2 includes courses, chapters, question metadata, source records and explicitly unreleased tracks. `src/engine.js` validates it; `src/curriculum.js:normalizeCatalog` retains a schema-1 compatibility adapter. The original v1 dataset is preserved in `tests/fixtures/catalog-v1.json`, so baseline regression checks remain meaningful.
 
-An available unit supplies its audience, prerequisites, learning objectives, honest 50-minute estimate, three ordered lessons, original instruction, one worked example per lesson, three practice questions per lesson, flashcards and three separate assessment questions. Questions carry a stable ID, four options, an answer index, an explanation and a misconception note. `introductory` questions ask direct concepts; `application` questions require a reasoning step. These tiers are editorial labels, not psychometrically calibrated difficulty.
+## Course scope and review
 
-Assessment questions are held out of lesson practice. They become visible with explanations after submission, so repeat assessment is practice rather than a fresh measurement. A six-question diagnostic samples the lesson pool. Timed practice has a ten-minute absolute deadline. Topic and difficulty filters apply to study and timed practice only; other modes have defined question sets. Missed review uses the latest completed answer to each question. Shuffling changes question order, preserving authored answer-option order.
+A course supplies audience, prerequisites, objectives, ordered lessons, estimated time, content revision, completion standard, editorial history and source IDs. Lessons have objectives, earlier-lesson prerequisite IDs, original explanatory paragraphs, worked examples, practice and flashcards. Chapters reference existing lessons exactly once and have separate checks. The course final uses a separate ID pool.
 
-Unit completion records all three lessons as read plus at least 80% on the small final assessment. It does not mean accredited completion, credential readiness or broad mastery. No badge or certificate is issued. Content remains subject to independent educator review.
+Every platform question has a stable ID, revision, skill ID, difficulty, four distinct options, answer index, correct-answer explanation, misconception note, source IDs and review history. `introductory`, `application` and `challenge` are author difficulty labels, not calibrated exam difficulty. All review records currently identify author screening; no independent educator approval is fabricated.
 
-## Storage
+The bounded Algebra course has 9 lessons, 54 practice questions, 18 chapter questions and 12 final questions. The other five units remain short introductory activities. Full curricula and credential tracks remain unfinished. Question counts do not measure depth.
 
-`aptitude-beacon-v1` has `schemaVersion`, lesson timestamps, saved course IDs, completed attempts, daily/rolling-seven-day goals, an optional active session and optional legacy history. A session persists its question IDs, answers, index and absolute deadline, so closing or refreshing does not reset a timed deadline. Only completed attempts affect goals, history and recommendations.
+Sources distinguish `accessedOn` from `verifiedOn` and state their reviewed scope. HTTP success does not substantively verify content. Original mathematical derivations can have no external citation; an inaccessible textbook landing page is not represented as a reviewed textbook. Detailed EPA/OSHA findings and failed NCCER/ASE/ASVAB references are recorded separately.
 
-Imports are parsed and validated before any write. New-platform backups merge by stable attempt IDs; lessons and bookmarks are retained. Legacy backups are normalized and merged without touching `asvab-prep-pro-v3`. Legacy correctness is recomputed; valid diagram coordinates survive export. Unknown versions and malformed nested records are rejected. Source data that cannot be read is preserved with a recovery download path. Storage errors leave the current session in memory with an export warning. A cross-tab write disables the stale tab until reload instead of silently overwriting newer progress.
+`npm run audit:curriculum` validates shape, prerequisites, global IDs, review/source references, exact duplicates and mathematical-key models; number-normalized near duplicates are review signals. `node scripts/curriculum-report.mjs --write` updates the coverage/review inventories intentionally. `npm run check:references` checks live availability and can fail for unresolved references; it never silently sets verification dates. Mathematical models are original specifications, not independent expert reviews of wording or pedagogy.
 
-The original app still owns its V3 key and its own confirmed replace-on-import behavior. New-platform export includes a validated snapshot of readable legacy history, not a promise that the original app has been restored. Use the original app's backup tools to transfer its active history between browsers.
+## Study and completion
 
-Deletion of new-platform data does not remove V3 or theme data. Clearing browser site data can remove all keys. Backup JSON can reveal study interests and should remain private. There is no account or automatic synchronization.
+Study and timed modes use topic/difficulty filters and random question order. Diagnostic selection spreads six questions across the lesson sequence. Chapter mode uses the selected full chapter pool; final mode uses the full final pool. Those defined modes ignore topic/difficulty filters. Timed practice retains its absolute ten-minute deadline on reload. Study shows explanations after each answer; other modes show them after submission. Unanswered items are incorrect.
 
-## Adding a unit
+For the expanded course, the standard requires all lessons read, the full practice pool for every topic answered with at least 80% latest accuracy, at least 80% on each complete chapter assessment and at least 80% on the complete final. Best complete chapter/final attempts on the current content revision count. Exact expected ID coverage prevents a tiny old assessment or duplicated response from qualifying. Topic evidence recomputes from choices and current keys in chronological order, not an imported correctness flag.
 
-1. Write original, bounded instruction and answer explanations. Do not add counts for marketing.
-2. Use stable IDs. Preserve IDs and progress compatibility when improving wording.
-3. Verify all answers independently, including distractor plausibility and limits.
-4. Add official-source verification dates only after successfully reviewing the actual current source; record jurisdiction where relevant.
-5. Keep credential tracks in development until reviewed. A national certification is not a state license, training card or credit.
-6. Run the content validator, unit tests, bank checks, build and browser checks. Update release and coverage records.
+For the five original introductory units, reading plus their small final remains an activity record. Neither type establishes broad mastery, school credit, licensing or certification. Repeated attempts reuse questions, so they are practice rather than fresh independent measurements.
 
-## Release limits
+## Storage, migration and backups
 
-The 72 new questions have author review, not independent subject-expert approval. Most requested full courses, credential pathways, richer assessments and advanced study material remain unreleased. The old four-question pathway previews are retained and explicitly labeled as previews. Source access attempts blocked by network policy have no verified date.
+The storage **key remains** `aptitude-beacon-v1`; the **envelope schema is 2**. It includes reading timestamps, saved units, local enrollment timestamps, attempts, goals, optional active session and optional validated legacy history. Enrollment is local interest tracking, not a school/course-provider registration. Attempts and active sessions can retain chapter IDs and content revisions.
+
+Schema-1 data migrates in memory with empty enrollments, preserving existing readings, bookmarks, attempts and active sessions. Reading or loading does not immediately rewrite the old bytes. On a later explicit save, the validated schema-2 envelope is persisted. A resumed old session without revision metadata finishes as content revision 1; it cannot be relabeled as evidence for the expanded revision-2 course.
+
+Imports validate before mutation. V1/V2 new-platform backups and valid ASVAB V3 backups are supported; unknown versions, non-object JSON, duplicate nested records and conflicting attempt IDs are rejected. Merges retain newer read timestamps, earliest enrollment, bookmarks and complete history. A conflicting attempt cannot silently replace a different current record. Current active sessions are retained rather than overwritten by an imported one. Imports do not establish educational provenance.
+
+`asvab-prep-pro-v3` is read but never replaced by new-platform migration or deletion. Original diagrams survive validated legacy export. Use the original app's own confirmed restore to transfer its actual history. Corrupt data is preserved with recovery controls; quota failures warn that state remains in memory. Cross-tab writes disable the stale tab pending reload.
+
+Backups can reveal interests and should remain private. Browser eviction and clearing site data remain risks; there is no automatic sync or server database. New-platform deletion leaves V3 and theme data intact.
+
+## Maintainer workflow
+
+Keep IDs stable and append review history when meaning changes. A revised assessment pool needs a content-revision change and compatibility tests. Verify measurable objectives and prerequisites, not only JSON structure. Keep regulated/technical material bounded by its reviewed references. Run unit tests, both bank/curriculum audits, the build and browser tests; update release evidence. Independent review, actual-device/assistive-technology checks and owner launch gates remain separate.
