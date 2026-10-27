@@ -30,3 +30,7 @@ The bounded Algebra I equations/inequalities/linear-models flagship is implement
 ## Phase 3 college milestone
 
 College Algebra and Quantitative Literacy is implemented as the next coherent flagship with four chapters, 12 lessons, 112 original questions, 24 worked examples, a cumulative final and independent printed-choice mathematics checks. See PHASE_3_MILESTONE.md and COLLEGE_SOURCE_REVIEW.md. Trades/construction and AFQT remain next; certification pathways remain in development.
+
+## Current priority override — October 26, 2026
+
+The revenue-first request supersedes the historical course sequence above. Defer college/trades expansion and subscriptions. Prepare free ASVAB recruitment and the $19.99 one-time/90-day pass using existing learning flows. See ASVAB_REVENUE_SPRINT.md and ../RELEASE_READINESS.md for implemented local service boundaries, independent review, production/security/provider gates and explicit deployment restrictions. No new curriculum was added in this sprint.

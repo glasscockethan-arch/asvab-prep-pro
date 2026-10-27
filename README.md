@@ -1,12 +1,12 @@
 # Aptitude Beacon
 
-A free static learning platform with bounded Algebra I and College Algebra/Quantitative Literacy courses plus five introductory units, totaling 36 lessons and 256 original questions, plus the preserved 540-question ASVAB V3 application. No account, server database, subscription, advertising, analytics or runtime API key is required.
+A free static learning platform with bounded Algebra I and College Algebra/Quantitative Literacy courses plus five introductory units, totaling 36 lessons and 256 original questions, plus the preserved 540-question ASVAB V3 application. The free learning app requires no account or runtime secret. An optional, local-only ASVAB beta service now prepares recruitment, accounts, cloud copies and test payments; it is not deployed or approved for real personal/payment data. The proposed first paid offer is a $19.99 one-time 90-day Exam Pass; subscriptions and course expansion are deferred.
 
 **This is not launch-ready.** See [RELEASE_READINESS.md](RELEASE_READINESS.md) for content, source-verification, accessibility and owner gates. The bounded courses state their scope; neither is a complete school-year or semester curriculum. Five other units remain introductions. No academic or professional credential is issued. The legacy bank remains subject to independent editorial review.
 
 ## Develop locally
 
-Use Node 22 or newer (cloud validation uses Node 24), Python 3.12 and the existing checkout:
+Use Node 24 (required by the built-in SQLite development service), Python 3.12 and the existing checkout:
 
 ```sh
 cd /workspace/asvab-prep-pro
@@ -14,7 +14,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Use a static HTTP server for the new module-based platform. Opening the new homepage directly as a `file:` URL does not support loading the lesson JSON. The standalone `practice.html` remains usable offline in compatible browsers; iPad Files may render HTML as a preview.
+Use a static HTTP server for the new module-based platform. Opening the new homepage directly as a `file:` URL does not support loading the lesson JSON. For a local copy of V3, keep `practice.html` and `asvab-recovery.js` together; the helper is now required for unfinished-session recovery. No offline installation/cache guarantee is made, and iPad Files may render HTML as a preview.
 
 ## Validate and build
 
@@ -38,6 +38,7 @@ python3 -m pip install -r requirements-dev.txt
 python3 -m playwright install --with-deps chromium
 npm run build
 npm run test:e2e
+npm run test:launch:e2e
 ```
 
 In this cloud environment, Python Playwright and `/usr/bin/chromium` are already installed. Tests select that executable if available; otherwise they use Playwright's installed Chromium. `CHROMIUM_PATH` can select an executable. Tests cover a desktop viewport, iPad-sized and phone-sized layouts in Chromium. Emulation is not real Windows, Safari/iPad or Android device testing.
@@ -79,4 +80,12 @@ EPA certification administration and OSHA Outreach distinctions were reviewed wi
 
 ## Phase 3 college flagship
 
-[docs/PHASE_3_MILESTONE.md](docs/PHASE_3_MILESTONE.md) describes the 12-lesson college course and its practice standard. [docs/COLLEGE_SOURCE_REVIEW.md](docs/COLLEGE_SOURCE_REVIEW.md) records the scoped first-party textbook review and unavailable NIST alternatives. `npm run audit:college` recomputes modeled keys and parses printed choices independently in Python; it does not replace educator review. Trades/construction and AFQT flagship expansion remain the next coherent courses.
+[docs/PHASE_3_MILESTONE.md](docs/PHASE_3_MILESTONE.md) describes the 12-lesson college course and its practice standard. [docs/COLLEGE_SOURCE_REVIEW.md](docs/COLLEGE_SOURCE_REVIEW.md) records the scoped first-party textbook review and unavailable NIST alternatives. `npm run audit:college` recomputes modeled keys and parses printed choices independently in Python; it does not replace educator review. The revenue-first sprint now prioritizes ASVAB launch gates; college/trades expansion is deferred. This historical milestone is not a launch approval.
+
+## ASVAB revenue-first development
+
+See [sprint status](docs/ASVAB_REVENUE_SPRINT.md), [operator runbook](docs/BETA_OPERATIONS.md), [provider test plan](docs/PAYMENT_TEST_PLAN.md) and [release gates](RELEASE_READINESS.md). From this existing checkout, `npm run build` then `npm run dev:beta` serves the built site and optional API on loopback port 8001. It uses Node 24 built-ins and a 0600 SQLite file outside the repository. A plain static server still serves free learning but honestly disables email collection. GitHub Pages cannot host this API.
+
+`npm run owner -- review` and the runbook's private export/invitation/backup/deletion commands operate on the same local database. Never expose the service via a tunnel, collect real requests, publish personal data, or put secrets/exports in this checkout. No mail is sent automatically. Stripe is off by default and requires secure test bindings for future sandbox tests. No live payment or production startup is supported.
+
+The sprint passes 62 Node tests, 6 Python checker tests and 30 browser tests across both suites. V3's 540-question array is unchanged; active recovery is separate from its completed-progress key. Cloud copies are explicit merges, not automatic sync, and preserve V3 bytes. Independent human educational and security review, a private support channel, approved policies/hosting and actual provider/device acceptance remain mandatory before release.
