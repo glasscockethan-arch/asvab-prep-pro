@@ -33,6 +33,9 @@ jobs:
       - run: npm run audit:bank
       - run: npm audit --audit-level=moderate
       - run: npm run build
+      - run: npm run test:launch:e2e
+        env:
+          CHROMIUM_PATH: ''
       - run: npm run test:e2e
       - uses: actions/upload-pages-artifact@v3
         with:

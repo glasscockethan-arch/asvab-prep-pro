@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
@@ -16,7 +16,10 @@
     "audit:curriculum": "node scripts/curriculum-report.mjs",
     "check:references": "python3 tools/check_references.py",
     "audit:college": "python3 tools/verify_college_math.py",
-    "test:math": "python3 -m unittest discover -s tests -p 'test_college_math.py' -v"
+    "test:math": "python3 -m unittest discover -s tests -p 'test_college_math.py' -v",
+    "dev:beta": "node server/main.js",
+    "test:launch:e2e": "python3 tests/launch_e2e.py",
+    "owner": "node server/owner.js"
   },
   "devDependencies": {
     "axe-core": "4.11.0"

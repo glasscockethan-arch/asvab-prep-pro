@@ -20,7 +20,7 @@ for(const file of htmlFiles){
   const checked=spawnSync(process.execPath,['--check','--input-type=commonjs'],{input:match[1],encoding:'utf8'});if(checked.status!==0)throw new Error(`${file}: ${checked.stderr}`);scripts++;
  }
 }
-for(const file of ['learning.js',...fs.readdirSync('src').filter(f=>f.endsWith('.js')).map(f=>'src/'+f)]){const result=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});if(result.status!==0)throw Error(result.stderr);}
+for(const file of ['learning.js','asvab-recovery.js',...['src','server'].flatMap(folder=>fs.readdirSync(folder).filter(f=>f.endsWith('.js')).map(f=>folder+'/'+f))]){const result=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});if(result.status!==0)throw Error(result.stderr);}
 for(const file of ['src/app.js','src/layout.js','src/static.js','src/storage.js','src/engine.js','platform.css']){
  const source=fs.readFileSync(file,'utf8');if(/https?:\/\//.test(source)&&file!=='src/app.js')throw Error(`${file}: unexpected external URL; review privacy implications`);
 }

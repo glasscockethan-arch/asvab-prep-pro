@@ -8,3 +8,11 @@ dist/
 __pycache__/
 *.pyc
 test-results/
+
+# Private launch-service data must also live outside the checkout.
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+.env
+.env.*
