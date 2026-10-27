@@ -72,6 +72,7 @@ export class Store {
   const pass=this.one("SELECT MAX(expires) AS expires FROM checkouts WHERE account=? AND state='paid' AND revoked=0",account.id);
   return {beta:account.beta_until>now,betaUntil:account.beta_until,pass:!!pass?.expires&&pass.expires>now,passUntil:pass?.expires??null};
  }
+ revokeSessions(email) {this.transaction(()=>{this.run('DELETE FROM invitations WHERE email=?',email);this.run('DELETE FROM sessions WHERE account IN (SELECT id FROM accounts WHERE email=?)',email);});}
  deleteAccount(email) {this.transaction(()=>{this.run('DELETE FROM invitations WHERE email=?',email);this.run('DELETE FROM signups WHERE email=?',email);this.run('DELETE FROM accounts WHERE email=?',email);});}
  prune(now) {this.transaction(()=>{this.run('DELETE FROM signups WHERE created<? AND email NOT IN (SELECT email FROM accounts)',now-90*DAY);this.run('DELETE FROM feedback WHERE created<?',now-90*DAY);this.run('DELETE FROM invitations WHERE expires<=?',now);this.run('DELETE FROM sessions WHERE expires<=?',now);this.run('DELETE FROM rate_limits WHERE expires<=?',now);});}
  rateLimit(key,max,now) {

@@ -1,6 +1,6 @@
 # Aptitude Beacon
 
-A free static learning platform with bounded Algebra I and College Algebra/Quantitative Literacy courses plus five introductory units, totaling 36 lessons and 256 original questions, plus the preserved 540-question ASVAB V3 application. The free learning app requires no account or runtime secret. An optional, local-only ASVAB beta service now prepares recruitment, accounts, cloud copies and test payments; it is not deployed or approved for real personal/payment data. The proposed first paid offer is a $19.99 one-time 90-day Exam Pass; subscriptions and course expansion are deferred.
+A free static learning platform with bounded Algebra I and College Algebra/Quantitative Literacy courses plus five introductory units, totaling 36 lessons and 256 original questions, plus the preserved 540-question ASVAB V3 application. The free learning app requires no account or runtime secret. An optional local ASVAB beta service and separate staged hosted entry prepare recruitment, accounts, guided study and private progress; neither has been publicly deployed or approved for real customer data. The proposed first paid offer is a $19.99 one-time 90-day Exam Pass; subscriptions and course expansion are deferred.
 
 **This is not launch-ready.** See [RELEASE_READINESS.md](RELEASE_READINESS.md) for content, source-verification, accessibility and owner gates. The bounded courses state their scope; neither is a complete school-year or semester curriculum. Five other units remain introductions. No academic or professional credential is issued. The legacy bank remains subject to independent editorial review.
 
@@ -21,6 +21,7 @@ Use a static HTTP server for the new module-based platform. Opening the new home
 ```sh
 npm test
 npm run test:math
+npm run test:review
 npm run check
 npm run audit:bank
 npm run audit:curriculum
@@ -86,6 +87,12 @@ EPA certification administration and OSHA Outreach distinctions were reviewed wi
 
 See [sprint status](docs/ASVAB_REVENUE_SPRINT.md), [operator runbook](docs/BETA_OPERATIONS.md), [provider test plan](docs/PAYMENT_TEST_PLAN.md) and [release gates](RELEASE_READINESS.md). From this existing checkout, `npm run build` then `npm run dev:beta` serves the built site and optional API on loopback port 8001. It uses Node 24 built-ins and a 0600 SQLite file outside the repository. A plain static server still serves free learning but honestly disables email collection. GitHub Pages cannot host this API.
 
-`npm run owner -- review` and the runbook's private export/invitation/backup/deletion commands operate on the same local database. Never expose the service via a tunnel, collect real requests, publish personal data, or put secrets/exports in this checkout. No mail is sent automatically. Stripe is off by default and requires secure test bindings for future sandbox tests. No live payment or production startup is supported.
+`npm run owner -- review` and the runbook's private export/invitation/backup/deletion commands operate on the same local database. Never expose the service via a tunnel, collect real requests, publish personal data, or put secrets/exports in this checkout. No mail is sent automatically. Stripe is off by default and requires secure test bindings for future sandbox tests. No live payment is supported. The separate hosted entry is prepared/tested in isolation and requires explicit configuration, hosting/budget/security approval and stage acceptance before deployment.
 
-The sprint passes 62 Node tests, 6 Python checker tests and 30 browser tests across both suites. V3's 540-question array is unchanged; active recovery is separate from its completed-progress key. Cloud copies are explicit merges, not automatic sync, and preserve V3 bytes. Independent human educational and security review, a private support channel, approved policies/hosting and actual provider/device acceptance remain mandatory before release.
+The first revenue sprint passed 62 Node tests, 6 Python checker tests and 30 browser tests. The current sprint passes 83 Node, 13 Python and 35 browser tests. V3's 540-question array is unchanged; active recovery is separate from its completed-progress key. Cloud copies are explicit merges, not automatic sync, and preserve V3 bytes. Independent human educational and security review, a private support channel, approved policies/hosting and actual provider/device acceptance remain mandatory before release.
+
+## Revenue Sprint 2: study value and staged beta
+
+[Feature matrix](docs/EXAM_PASS_FEATURES.md), [sprint evidence](docs/REVENUE_SPRINT_2.md), [hosting comparison/migration](docs/BETA_HOSTING.md) and [qualified-review workflow](review/README.md) describe the current work. `exam-pass.html` provides personalized calendars, weak-area guidance, a practice-evidence dashboard and guided existing-question sessions. Free ASVAB questions/modes/history stay free. No new questions or official score prediction was added.
+
+`npm run review:asvab` validates 540 pending review records; `npm run release:content` intentionally fails until actual qualified independent signoff exists. Ordinary CI passing is not expert approval. `deployment/Dockerfile` and the unapplied Render example prepare one non-root Node service with persistent SQLite, HTTPS origin, default closed stage and no hosted payments. The image's isolated smoke uses no public networking or real customer data. See the hosting document before any build, cost commitment, provider change or deployment; current authorization permits none of those public actions.

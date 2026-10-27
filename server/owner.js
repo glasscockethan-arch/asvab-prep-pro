@@ -17,7 +17,7 @@ export function privateOutput(filename,content) {
 }
 export function runOwner(args) {
  const [command,value]=args;
- if(!['review','export','invite','delete','feedback','metrics','prune','backup'].includes(command))throw new Error('Usage: node server/owner.js review | export /private/path.csv | invite email | delete email | feedback /private/path.csv | metrics | prune | backup /private/path.sqlite');
+ if(!['review','export','invite','delete','revoke-sessions','feedback','metrics','prune','backup'].includes(command))throw new Error('Usage: node server/owner.js review | export /private/path.csv | invite email | delete email | revoke-sessions email | feedback /private/path.csv | metrics | prune | backup /private/path.sqlite');
  const store=new Store(process.env.BEACON_DB_PATH??resolve(tmpdir(),'aptitude-beacon-development','launch.sqlite'));
  try {
   if(command==='review')console.log(JSON.stringify(store.all('SELECT email,test_date,consent_version,created FROM signups ORDER BY created'),null,2));
@@ -25,6 +25,7 @@ export function runOwner(args) {
   if(command==='feedback')console.log(privateOutput(value,csv(store.all('SELECT f.category,f.question_id,f.message,f.created,a.email FROM feedback f JOIN accounts a ON a.id=f.account ORDER BY f.created'),['email','category','question_id','message','created'])));
   if(command==='metrics')console.log(JSON.stringify(store.all('SELECT name,total FROM metrics ORDER BY name'),null,2));
   if(command==='invite') {const port=Number(process.env.BEACON_PORT??8001);const origin=process.env.BEACON_PUBLIC_ORIGIN?publicOrigin(process.env.BEACON_PUBLIC_ORIGIN):`http://127.0.0.1:${port}`;const secret=store.invite(canonicalEmail(value),Date.now());console.log(`Private, single-use link, expires in 30 minutes. Deliver only to the opted-in address through a verified private channel:\n${origin}/account.html#invite=${secret}`);}
+  if(command==='revoke-sessions'){store.revokeSessions(canonicalEmail(value));console.log('All account sessions and outstanding invitations revoked. Learning data remains intact. Verify the requester privately before issuing a fresh invitation.');}
   if(command==='delete'){store.deleteAccount(canonicalEmail(value));console.log('Private development data removed; separately remove exported/backed-up copies under the retention policy.');}
   if(command==='prune'){store.prune(Date.now());console.log('Expired invites/sessions, 90-day uninvited requests and 90-day feedback removed.');}
   if(command==='backup') {

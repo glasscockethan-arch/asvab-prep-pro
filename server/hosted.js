@@ -1,0 +1,20 @@
+// Staged deployment entry. Preparing this file is not approval to deploy or collect real data.
+import {fileURLToPath} from 'node:url';
+import {statSync,realpathSync} from 'node:fs';
+import {sep} from 'node:path';
+import {Store} from './store.js';
+import {hostedSettings} from './hosting.js';
+import {createLaunchServer} from './app.js';
+import {readBank} from './study.js';
+const settings=hostedSettings(process.env),root=fileURLToPath(new URL('../dist',import.meta.url));
+const mount=realpathSync(settings.storage);
+if(mount!==settings.storage)throw Error('Persistent mount must not be a symlink.');
+if(!statSync(root+'/index.html').isFile())throw Error('Build artifact unavailable.');
+readBank(root+'/practice.html');
+const store=new Store(settings.filename);
+if(!realpathSync(store.filename).startsWith(mount+sep))throw Error('Database escaped the persistent mount.');
+store.prune(Date.now());
+const cleanup=setInterval(()=>{try{store.prune(Date.now());}catch{console.error('Private beta cleanup failed; operator action required.');}},60*60_000);cleanup.unref();
+const server=createLaunchServer({store,staticRoot:root,origin:settings.origin,deployment:settings});
+server.listen(settings.port,'0.0.0.0',()=>console.log(`Hosted beta entry prepared in stage ${settings.stage}; payments disabled. Deployment authorization must be established separately.`));
+for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{clearInterval(cleanup);server.close(()=>{store.close();process.exit(0);});});

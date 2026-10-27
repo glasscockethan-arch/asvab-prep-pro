@@ -37,3 +37,7 @@ test('hosted throttle persists through database reopen and expires without recor
 test('hosted beta cannot inject a Stripe adapter even in test mode',t=>{
  const f=fixture(t);assert.throws(()=>createLaunchServer({store:f.store,staticRoot:'dist',deployment:{mode:'hosted-beta',stage:'invited-beta',origin:PUBLIC},stripe:{}}),/payments are disabled/);
 });
+
+test('operator recovery revokes all sessions and links without deleting account or learning records',t=>{
+ const f=fixture(t);f.store.signup('recovery@example.test',null,NOW);const a=f.store.redeem(f.store.invite('recovery@example.test',NOW),NOW),b=f.store.redeem(f.store.invite('recovery@example.test',NOW),NOW),pending=f.store.invite('recovery@example.test',NOW);f.store.revokeSessions('recovery@example.test');assert.equal(f.store.account(a.session,NOW),undefined);assert.equal(f.store.account(b.session,NOW),undefined);assert.equal(f.store.redeem(pending,NOW),null);assert.ok(f.store.one('SELECT id FROM accounts WHERE id=?',a.account.id));const fresh=f.store.redeem(f.store.invite('recovery@example.test',NOW),NOW);assert.equal(fresh.account.id,a.account.id);assert.equal(fresh.account.beta_until,a.account.beta_until);
+});

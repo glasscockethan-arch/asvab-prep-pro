@@ -16,3 +16,6 @@ test-results/
 *.db-*
 .env
 .env.*
+*study_archive*.json
+*signups*.csv
+*feedback*.csv

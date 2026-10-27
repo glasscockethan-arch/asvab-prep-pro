@@ -1,5 +1,7 @@
 # ASVAB revenue-first sprint — development handoff
 
+Historical Sprint 1 evidence. The current feature promise, staged hosting, review workflow and release gates are in REVENUE_SPRINT_2.md and ../RELEASE_READINESS.md.
+
 Review session: October 26, 2026 (America/Chicago). Starting commit: `933e02d`. Existing development branch and draft PR #1. This is implementation evidence and a staged launch plan, not a launch authorization.
 
 ## Product decision and scope

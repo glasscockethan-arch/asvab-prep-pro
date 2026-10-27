@@ -1,0 +1,28 @@
+# REVIEW ONLY: importing/applying this example can incur charges and publish a service.
+# Do not apply without the owner's deployment/budget approval and completed beta gates.
+services:
+  - type: web
+    name: aptitude-beacon-beta
+    runtime: docker
+    dockerfilePath: ./deployment/Dockerfile
+    # Select the currently approved paid single-instance compute SKU in the Dashboard.
+    # No plan is defaulted here: omitting a plan is NOT a claim that durable hosting is free.
+    autoDeployTrigger: 'off'
+    healthCheckPath: /healthz
+    numInstances: 1
+    disk:
+      name: private-beta-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BEACON_RELEASE_STAGE
+        value: closed
+      - key: BEACON_PUBLIC_ORIGIN
+        sync: false
+      - key: BEACON_STORAGE_ROOT
+        value: /var/data
+      - key: BEACON_DB_PATH
+        value: /var/data/launch.sqlite
+# No payment key, email sender, custom domain, analytics or marketing provider is configured.

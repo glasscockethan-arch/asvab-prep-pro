@@ -1,74 +1,70 @@
-# Release readiness — ASVAB revenue-first sprint
+# Release readiness — Revenue Sprint 2
 
-Review session: October 26, 2026 (America/Chicago). Branch: `feat/aptitude-beacon-platform`. [Draft PR #1](https://github.com/glasscockethan-arch/asvab-prep-pro/pull/1) remains unmerged. Sprint baseline: `933e02d`; original live/main rollback baseline: `1ec5deb3e99096610e20a3fce2b04dd14791d877`.
+Review session: October 26, 2026 (America/Chicago). Starting commit `ff9b2f0`; existing `feat/aptitude-beacon-platform` and [draft PR #1](https://github.com/glasscockethan-arch/asvab-prep-pro/pull/1). Original main/live baseline: `1ec5deb3e99096610e20a3fce2b04dd14791d877`.
 
-**Public beta recruitment is not yet approved or operational. Paid launch is blocked.** The recruitment/account/payment preparations work locally with fictional data. No deployment, live payment, production collection, purchase, advertising or third-party analytics has been enabled. Finish the gates below before seeking the separate release approval.
+**No public deployment, real signup collection, customer invitation or live payment has been authorized/performed.** Implementation and isolated tests are complete; the three owner-acceptance gates below remain separate. No merge, domain/service purchase, paid infrastructure provisioning, advertising, third-party analytics or marketing send occurred.
 
-## Launch scope
+## Current product and evidence
 
-Initial offer: **$19.99 USD one-time Exam Pass / 90 days**, no recurring subscription. Proposed paid scope is private cross-device progress and saved review history, currently trialed free in the beta. The owner must approve the exact value/delivery promise. Keep the existing 540-question ASVAB app, diagnostics, timed/targeted practice, explanations, local history and backups genuinely free. Do not add a paywall to existing student work.
+The proposed **$19.99 USD one-time Exam Pass / 90-day access** now includes personalized 30/60/90-day calendars, chosen weekdays/time budgets, structured four-subject review, a practice-evidence dashboard, guided sessions with saved answers/review/reflection and private progress continuity. The free beta trials these tools without payment. Calendars do not extend the entitlement; creating a new plan preserves earlier activity and does not renew access. Subscriptions, college/trades expansion and new questions remain deferred.
 
-Defer Beacon Plus ($9.99/month), college/trades expansion, certification pathways, advertising and nonessential features. Existing 7 learning items / 36 lessons / 256 platform questions and their identities remain intact. Their broader curriculum gaps are recorded in docs/CURRICULUM_COVERAGE.md; completing those academies is not on the critical path to an explicitly ASVAB-only offer. Unfinished certification pathways stay under development.
+All existing 540 V3 questions/explanations, diagnostics, timed/subject practice, local recommendations/history and backups remain free. The question array/IDs are byte-for-byte unchanged. Seven platform items / 36 lessons / 256 questions and schema-1/schema-2/V3 progress compatibility remain. Guided study uses the existing bank; no exclusive or AI-generated question pool is added. [Feature matrix](docs/EXAM_PASS_FEATURES.md).
 
-## Verified project status
-
-| Area | Current evidence and limit |
+| Verification | Result and limit |
 |---|---|
-| ASVAB learning | All 540 questions retained byte-for-byte; 45-question diagnostic, 90-question mixed/40-question AFQT timed modes, 20-question drills, explanations, missed-item review and weak-area recommendations functional |
-| Reliability | Separate validated V3 recovery record retains answers/position/deadline after refresh; duplicate completion recovery and stale-write guards added; local backups remain necessary |
-| Recruitment | Landing page, consent/privacy, optional date, duplicate prevention, private SQLite storage, local review/CSV export and no false success on static/unavailable service |
-| Accounts | Development-only manual single-use invitations, hashed expiring sessions, sign-out and active-data deletion; email delivery/ownership/recovery operations not implemented |
-| Progress | Explicit account-isolated revision-checked cloud save/merge, two-browser restore, original V3 bytes preserved; no background sync or production durability claim; 1 MB limit |
-| Payments | Default-off Stripe test adapter, fixed server price, signed/retrieved settled events, replay protection, 90-day expiry and conservative refund/dispute revocation; provider sandbox unrun |
-| Analytics | Private aggregate test/business-event counters only; no third-party tracker, browsing beacon, ad or marketing campaign |
-| Deployment | GitHub API confirms existing Pages build from `main:/` (`legacy`); branch publication workflow stays manual; Node API cannot run on Pages; no hosting/settings change |
+| Node unit / HTTP / SQLite / compatibility | **83 passed**, zero failures/skips; includes previous 62, study calendar/evidence/scoring, entitlement/refund/account boundaries, migration/restore, staged hosting and session recovery |
+| Python mathematical-checker tests | **6 passed**; preserved mathematical content unchanged |
+| Python reviewer-workflow tests | **7 passed**; fictional attestations only, no actual human approval |
+| Existing platform / V3 browser suite | **23 passed**, zero failures/skips; original scoring, recovery/timers, storage, backups, accessibility and course flows retained |
+| Connected beta / premium browser suite | **12 passed**, zero failures/skips; includes calendar lengths, guided resume/scoring/review, expiry/local-flag denial, data export, changed-bank recovery and keyboard/responsive/axe checks |
+| Build / audits | 22 HTML pages, static links/syntax/schema; 540 structural checks, 128 quantitative and 60 spatial keys; preserved platform/college model audits passed; no new curriculum |
+| Dependency audit | Zero reported moderate-or-higher npm vulnerabilities; no runtime npm package added. This is not a container/first-party security audit. |
+| Container | Build and isolated non-root/read-only smoke passed; no public network or published port; all release stages, Secure cookie, guided scoring, restart persistence and private consistent backup exercised |
+| Human review gate | **0/540 approvals**, zero registered reviewers. Record integrity passes; `npm run release:content` intentionally blocks paid release. |
+| Hosted provider / real devices / Stripe | Not deployed or validated; actual TLS/disk/sender/recovery/real-device/provider acceptance remains required. Local signed Stripe fixtures and mocks are not merchant acceptance. |
 
-Full implementation/limitations: [docs/ASVAB_REVENUE_SPRINT.md](docs/ASVAB_REVENUE_SPRINT.md). Operator instructions: [docs/BETA_OPERATIONS.md](docs/BETA_OPERATIONS.md). Provider cases/source review: [docs/PAYMENT_TEST_PLAN.md](docs/PAYMENT_TEST_PLAN.md).
+Practice dashboard evidence uses the latest distinct-question answers from 30 days, canonical practice keys, explicit unanswered/missing evidence and four AFQT areas. Repetition/imports do not establish mastery. The ten-answer minimum and 70%/85% bands are unvalidated organization heuristics, not official AFQT percentiles or qualification/readiness predictions. Qualified pedagogical review is required before sale.
 
-## Verified automated checks
+## Gate A — before collecting beta signups
 
-| Check | Result |
-|---|---|
-| Node unit / HTTP / SQLite / compatibility | **62 passed**, zero failures/skips; previous 38 retained plus 20 launch-service and 4 V3 recovery checks |
-| Independent Python mathematics checker tests | **6 passed**, zero failures/skips |
-| Existing platform and V3 browser suite | **23 passed**, zero failures/skips; previous 20 retained plus 3 recovery/conflict regressions |
-| Connected-beta browser suite | **7 passed**, zero failures/skips; consent/duplicates, private links, two-browser merge, feedback/deletion, outage, keyboard/axe/responsive and unconnected project-prefix behavior |
-| ASVAB audits | 540 structural records, 128 quantitative keys and 60 spatial keys passed; 10 normalized template groups still flagged |
-| Other preserved content checks | 7 learning items / 256 questions, 138 JavaScript models; 84 independently recomputed college models and 7 printed equation models; no curriculum added in this sprint |
-| Static build | 21 HTML pages / 191 static local links, syntax/schema/content checks and dist build passed; server/tests/DB/secrets excluded |
-| Dependency audit | `npm audit --audit-level=moderate`: zero reported vulnerabilities; no runtime npm package added; Node 24 required for development backend |
-| Responsive / accessibility | Beta/account/guide/policy screens scanned in light/dark themes; 390/768/1440px layout checks; keyboard flows pass; representative existing course screens retained |
+All items require actual evidence and owner acceptance, not merely a configured stage value:
 
-The test suites operate on isolated fictional data and do not clear real student storage. Payment-provider responses are mocked, while HTTP, signature verification, storage, access and expiration are exercised. No successful provider sandbox run, penetration test, external expert review, legal approval or full WCAG certification is claimed. Both CI workflows include the new browser suite; exact pushed-head hosted results are reported on PR #1.
+- [ ] Identify the operator/controller and a verified private support/consent-withdrawal route; assign monitoring and a realistic response/incident process. Public GitHub issues are not a private channel.
+- [ ] Approve actual recruitment privacy/terms, adult-only initial eligibility, explicit beta contact consent without marketing, optional date purpose, regional/data-processing requirements and a retention/export/backup deletion schedule. Collect no DOB, military/school records, official scores, card details or unnecessary data.
+- [ ] Approve the hosting approach and full cost ceiling/quote. Recommend one paid Render Node/Docker instance plus a private persistent SQLite disk; approximate compute-plus-1-GB floor is $7.25/month before other charges. Exact current compute SKU, workspace, bandwidth, tax, backup and email costs need confirmation. Nothing has been purchased/provisioned.
+- [ ] Independently review the signup/data/security boundary, trusted TLS ingress, origin/host checks, body limits, persistent throttles, CSP compatibility exception, private operator access, provider logs, encryption/region and data deletion. Dependency/axe scans are not that review.
+- [ ] After explicit deployment approval only, create the exact reviewed artifact in **closed** stage and verify actual HTTPS redirects/proxy headers, private paths, host rejection, health, non-root disk permissions and persistence across provider restart/redeploy. GitHub Pages cannot run this backend; never tunnel the local development service.
+- [ ] Establish consistent private database backups and approved encrypted off-service retention/restore operations for signup records. Verify a restoration and private CSV review/export with fictional data. Do not rely on a custom-database volume snapshot as proof of recovery.
+- [ ] Validate the form, consent, error/duplicate states, privacy/support and keyboard/mobile usability on actual intended devices; verify no unexpected collection/marketing. Confirm owner can handle withdrawal/deletion without public disclosure.
+- [ ] Separately approve opening **signup** stage. This stage permits requests but denies invitation redemption and account/study work. No emails or marketing are automatically sent.
 
-## Gates before public recruitment or an invited remote beta
+## Gate B — before inviting beta testers
 
-All remain unchecked until evidence/owner acceptance is recorded:
+Complete Gate A plus:
 
-- [ ] Identify the operator/data controller and provide a verified private support and consent-withdrawal channel. Define who reviews requests/feedback, a realistic response target, closure/export/deletion and incident handling. Public GitHub issues are not private support.
-- [ ] Approve actual recruitment privacy/consent/terms, initial adult-only eligibility, retention and deletion of active records, invitations, CSV exports and backups. Do not collect DOB, military/school records, official scores, card details or other unnecessary data.
-- [ ] Choose and approve a production-capable hosting/authentication/storage path within an explicitly accepted cost ceiling. GitHub Pages is static; local/ephemeral SQLite is not a hosted durability solution. No provider was purchased, registered, provisioned or assumed free indefinitely.
-- [ ] Replace/review the local-only serving and authentication boundary: HTTPS, Secure cookies, verified email delivery and safe recovery, operator access, trusted-proxy and shared rate-limit handling, request/log privacy, database encryption/access/backups, monitoring and a successful production-like restore/deletion drill. Independently review security before exposing any endpoint. Do not tunnel the current development server.
-- [ ] Verify the intended preview artifact on actual devices and with assistive technology, including touch/keyboard, focus/error recovery, 200–400% zoom, tab suspension/expired timers, interrupted requests, storage denial and two-device merge. Test large histories and define quotas beyond the current 1 MB cloud limit.
-- [ ] Review beta disclaimers/known content errors and the feedback/correction process. A clearly labeled free exploratory beta is not a paid-quality signoff.
-- [ ] Obtain explicit approval for the exact deployment/collection scope. Do not merge or deploy under this sprint's authorization.
+- [ ] Approve the exact invitation cohort/scope and beta disclosures, known content limitations and feedback/correction triage. Full independent paid-quality signoff is not claimed by a clearly labeled free exploratory beta; address known material errors before exposure.
+- [ ] Verify email possession through an actual private delivery/receipt rehearsal using an owner-controlled opted-in test address. Initial manual delivery can avoid a new sender service/domain, but must go only to the requested address. No delivery/ownership proof has yet occurred. Approve a verified sender/managed identity integration if the security review requires it.
+- [ ] Test actual HTTPS/Secure-cookie sign-in, 30-minute single use, seven-day session expiry, private reissue, sign-out and operator lost-device recovery. `owner revoke-sessions` invalidates sessions/invitations without deleting learning records; requester identity must be checked privately. No address-change or automated recovery service exists.
+- [ ] Validate two real devices, shared-browser/account switching, explicit cloud upload, old-origin export/import migration, guided scoring/resume, stale conflicts, access expiry, exports/deletion, offline/network/storage failure and sufficiently large histories. Current cloud-copy limit is 1 MB. Unfinished V3 sessions remain device-local.
+- [ ] Rehearse application-consistent backup and restore including accounts, original progress, plans, guided answers/results and completion rows. Verify identities/counts and old progress before accepting writes; define maintenance, rollback, incident, quota and operator coverage. A local tmpfs/process-restart test is not provider disaster recovery.
+- [ ] Review the actual responsive/accessibility artifact with iOS/iPadOS Safari, Android, Windows browsers and assistive technology, 200–400% zoom, keyboard/focus/error paths, tab suspension and interrupted saves. Chromium emulation/axe is only partial evidence.
+- [ ] Separately approve **invited-beta** stage. Start with a small consenting free cohort and validate whether calendars/recommendations/review are useful. No real tester data, outreach or willingness-to-pay evidence was collected in this task.
 
-## Additional gates before accepting real payments (priority order)
+## Gate C — before accepting real payments
 
-1. **Qualified independent educational signoff.** Review all 540 available ASVAB prompts, keys, explanations, distractors, ambiguity, repetition, passage reuse and technical claims; AR/MK/WK/PC first, then every remaining available subject. Record reviewer qualifications, sources, findings, corrections and approval in the question-review record without changing existing IDs. Current records mark independent review pending. Automated/AI review does not satisfy this gate.
-2. **Approve a truthful, useful paid deliverable and commercial terms.** Confirm the $19.99/90-day cloud-history offer is sufficient and clearly distinguish it from the free tier. Publish owner-approved refund, cancellation, access/expiry, tax, delivery, outage/support and privacy terms; establish operator/merchant identity, jurisdiction/minors requirements and appropriate brand due diligence. No legal/tax/brand clearance is claimed.
-3. **Complete real Stripe sandbox acceptance.** Secure test-key/webhook bindings are absent. Run success, 3DS, decline, cancellation, replay/out-of-order, failed and successful refunds/disputes, outages/reconciliation and renewal-denial cases in docs/PAYMENT_TEST_PLAN.md. Verify merchant onboarding/payout capability, matching API/webhook schema, alerting and reconciliation. Resolve pending-refund/dispute-restoration workflows; test counters do not prove actual conversion or payment delivery.
-4. **Meet the recruitment infrastructure/security/device gates above and test the actual paid artifact.** Include server-owned access/expiry, account switching/recovery, historical progress migration, cloud/local export after expiry, access loss after refund and recovery from restored backups. Resolve material errors before a sale.
-5. **Separate owner release/live-payment approval.** Authorize the exact reviewed merge/artifact, hosting configuration and live mode only after the above evidence. Production startup/live keys are deliberately rejected by the current development service. Nothing in this sprint enables them.
+Complete Gates A and B plus:
 
-## Remaining limitations and references
+1. **Qualified independent educational approval for all offered material.** Review all 540 prompts, keys, explanations, distractors, ambiguity, repetition, rights and technical claims; AFQT 240 first, then the other 300. Register real independently qualified reviewers by scope, verify qualifications privately and record actual sources/derivations/findings/signoff against the current content hashes. Resolve corrections with the same question IDs and independent recheck. The reviewer workflow is prepared, not completed. Also review the new guidance heuristics/claims for pedagogical appropriateness.
+2. **Truthful paid value and consumer/operator terms.** Approve the exact $19.99/90-day deliverable, free comparison, access/expiry, no-renewal, refund/failure/dispute, outage/support, privacy, tax, merchant/operator, jurisdiction/minors and brand requirements. Assess beta value/limitations without promising score gains. No legal, tax, trademark or merchant eligibility assurance is made.
+3. **Real Stripe sandbox acceptance.** Test secret/signing bindings remain absent. Complete actual successful/3DS/declined/canceled/replayed/out-of-order/refunded/failed-refund/disputed and outage/reconciliation cases in PAYMENT_TEST_PLAN.md. Verify account, merchant/payout capability, API/event schema, alerts and recovery. Existing local test adapter/mocks do not satisfy this gate.
+4. **Reviewed paid deployment implementation.** The hosted beta intentionally rejects every payment configuration and has no paid/live stage. A separate reviewed change and approval must introduce any live-payment path after content/security/provider acceptance, while retaining server-owned expiry, refund revocation and own-data export. A client flag or stage string cannot enable sales.
+5. **Exact release approval and post-release verification.** Recheck all tests/content fingerprints, container/image vulnerabilities and immutable digest, actual artifact/device/support/backup/provider evidence, then obtain separate explicit merge/deployment/live-payment authorization. Do not merge PR #1 or deploy under this sprint's authorization.
 
-- All new development work has author screening, not independent expert approval. No educational reviewer was engaged or paid in this sprint.
-- Browser storage can be evicted; local checks are not transactional cross-tab locking. Unfinished V3 sessions stay device-local. Keep backups and avoid simultaneous local editing.
-- The V3 completed-progress key and both platform schema-1/schema-2 compatibility remain; no forced migration/reset. Course identities and the old 540-question inventory remain. New optional session IDs allow recovery without changing answer IDs.
-- Free beta accounts expire after 90 days, sessions after 7 days and links after 30 minutes; reissuing a link does not extend access. Free practice and own cloud retrieval remain after entitlement expiration.
-- Uninvited signup/feedback pruning runs on startup and owner command; final account/export/backup retention needs approval. No live support inbox, email sender, encryption-at-rest, recovery delivery, operational alerts or production deployment exists.
-- Prior source availability: 14/17 reachable in Phase 3, with NCCER 404 and ASE/official ASVAB 403; that optional live audit was not rerun here. Resolve any source needed for claims actually offered, rather than treating unavailable unrelated credential sources as a reason to build more courses. Scoped EPA/OSHA/OpenStax records remain historical evidence, not new expert signoff.
-- New payment technical sources and one unavailable guessed changelog path are documented in PAYMENT_TEST_PLAN.md. Technical source checks do not validate merchant/legal readiness.
+## Operational and review records
 
-Planning critical path: approximately **10–20 business days after reviewer availability, owner decisions and test access**, conditional on findings. Review/corrections and production payment/security acceptance drive the date; completing additional academies or a subscription does not. No merge, deployment, live payment, infrastructure expense, domain purchase, advertisement or campaign has occurred.
+- [Hosting comparison, source evidence and migration](docs/BETA_HOSTING.md); the Render example is unapplied review material and does not default a billable compute plan.
+- [Reviewer qualification/correction/signoff workflow](review/README.md). Ordinary CI permits honest pending states; `release:content` requires all 540 approvals. Software validates records, not the truth of human credentials/attestations.
+- [Updated free/premium product matrix](docs/EXAM_PASS_FEATURES.md), [operator runbook](docs/BETA_OPERATIONS.md), [Stripe cases](docs/PAYMENT_TEST_PLAN.md).
+- All new work has development-author screening/testing only. The 10 ASVAB normalized-template groups, glossary/passages, explanations and factual keys still need expert review. Older OpenStax/EPA/OSHA source records remain scoped historical evidence; no new curriculum signoff is inferred.
+
+Shortest planning path, conditional on owner decisions/qualified help: approximately **1–3 engineering days after approvals** to configure and accept signup-only hosting, then **1–3 days** for invitation/recovery/device acceptance and a small cohort. These are not elapsed work or deployment promises. Paid launch remains roughly **10–20 business days after reviewer/test access and owner decisions**, potentially longer for corrections/security/legal/provider findings; 540 items at 4–8 minutes is 36–72 reviewer hours before fixes/recheck. Parallelize human review with approved beta preparation; do not expand the catalog or build subscriptions to fill waiting time.

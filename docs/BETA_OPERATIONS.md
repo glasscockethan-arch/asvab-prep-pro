@@ -1,6 +1,6 @@
 # Private beta development operations
 
-This is local fictional-data testing, not public recruitment. Do not expose the loopback server. Public collection needs the gates in RELEASE_READINESS.md and a separately approved production service. No email is sent automatically; never post records, invitation links or exports publicly.
+The default workflow below is local fictional-data testing, not public recruitment. A separate staged hosted entry is prepared in BETA_HOSTING.md; it has not been deployed or approved for real data. Do not expose the loopback server. Public collection needs the gates in RELEASE_READINESS.md and a separately approved production service. No email is sent automatically; never post records, invitation links or exports publicly.
 
 ## Run and validate
 
@@ -61,3 +61,13 @@ If a provider test is authorized/configured later, run Stripe's test tooling aga
 The public-facing beta-guide.html gives session and feedback instructions. Internally check diagnostic and explanations, timer recovery, optional cloud copy on two browsers, session logout/reissue, storage/network failure, an intact V3 backup, export/deletion and a restored database. Use fictional data until privacy/controller/support and deployment approvals exist.
 
 Actual-device checks: iPhone/iPad Safari (including keyboard/zoom and tab suspension), Android Chrome, Windows Chrome/Edge/Firefox, screen readers, reduced motion/contrast, landscape, 200–400% zoom, and intermittent network/storage. Review free/paid language with human testers; no claims of improved scores, official alignment or willingness to pay have been validated.
+
+## Revenue Sprint 2 operations
+
+Open exam-pass.html through the connected service to test schedules, guided existing-question sessions, private results and archive export. Plans and guided records are account-scoped SQLite tables; they do not overwrite original V3/browser keys. The trial/pass is checked on each premium operation. Expired users retain free practice and their own archive export. Old plan versions/results persist; reflection text is not collected.
+
+For a privately verified lost-device/session request, `npm run owner -- revoke-sessions volunteer@example.test` invalidates every session and pending link while retaining the account, study data and original trial end. Verify the requester through the approved private channel before creating a fresh invitation. Set BEACON_PUBLIC_ORIGIN to the approved HTTPS origin for a future hosted operator link; without it, development links remain loopback. This does not send mail or prove delivery.
+
+After a private consistent backup, `node server/verify-backup.js /private/new.sqlite` checks integrity, foreign keys and aggregate schema counts read-only. Restore rehearsal must also compare known account/progress/plan/session identities/results. Actual off-service encrypted storage, provider disk restore/redeploy, monitoring and retention remain owner acceptance work. Do not use provider volume snapshots alone as custom-database recovery evidence.
+
+Use `npm run test:review` and `npm run review:asvab` for workflow integrity; `npm run release:content` remains blocked at zero human approvals. This command cannot establish the truth of a reviewer qualification or signoff. See ../review/README.md for private packets, findings, corrections and version-bound signoff.

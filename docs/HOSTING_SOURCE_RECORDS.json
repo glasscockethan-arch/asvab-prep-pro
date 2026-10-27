@@ -1,0 +1,196 @@
+{
+  "reviewSession": "2026-10-26 America/Chicago",
+  "scope": "First-party technical/pricing source retrieval, not service provisioning or legal/security approval. Prices require a current owner-approved quote.",
+  "records": [
+    {
+      "url": "https://render.com/pricing",
+      "status": 200,
+      "sha256": "b392e52de21792eb3fef4a9537212ee1dec4f5ca6317c6e9cba928c26e77f3ff",
+      "snippets": {
+        "Starter": "Not found in extracted visible text",
+        "$7": "er containers SSDs for $0.25/GB per month Free ( limitations apply ) $0/month 512 MB RAM free Less than 1 CPU $7/month 512 MB RAM 0.5c-512mb 1 CPU $25/month 2 GB RAM 1c-2g 2 CPU $85/month 4 GB RAM 2c-4g 2 CPU $135/month 8 GB RAM 2c-8g 2 CPU $200/month 16 GB RAM 2c-16g 4 CPU $175/month 8 GB RAM 4c-8g 4 CPU $225/month 16 GB RAM 4c-16g 4 CPU $350/month 32 GB RAM 4c-32g 8 CPU $300/month 16 GB RAM 8c-16g 8 CPU $450/month 32 GB RAM 8c-32g 8 CPU $1,000/month 64 GB RAM 8c-64g 12 CPU $450/month 24 GB RAM 12c-24g 12 CPU $800/month 48 GB RAM 12c-48g 12 CPU $1,500/month 96 GB RAM 12c-96g Expand compute table Postgres Scale up to 128 C",
+        "disk": " in migration credits. Apply now Product Platform Overview Features Autoscaling Private Networking Persistent Disks Infrastructure as Code Preview Environments Zero Downtime Deploys Render CLI and MCP Services Workflows New Sandboxes Early Access Static Sites Web Services Private Services Background Workers Cron Jobs Postgres Key Value Developers Docs Learn how to build and deploy on Render Agents Deploy to Render with your coding agent Get started Framework Quickstarts Templates Updates & Announcements Blog Changelog Resources Customers How the best teams scale faster Migration Credits Apply for credits to cover switching"
+      }
+    },
+    {
+      "url": "https://render.com/docs/disks",
+      "status": 200,
+      "sha256": "218fb1eb672a6ff100354f12f177660ae245b83ecda1843c64cdc117f7c835e2",
+      "snippets": {
+        "$0.25": "Not found in extracted visible text",
+        "snapshot": "as Render Postgres and Key Value instances. All disks are encrypted at rest, and so are their automatic daily snapshots . Setup Before you attach a persistent disk, it's helpful to understand important limitations and considerations . You create a persistent disk from the Render Dashboard . You can do so during service creation (click Advanced at the bottom of the creation form), or any time after creation from your service's Disk page: Set your disk's mount path . Only filesystem changes under this path are preserved across deploys and restarts! The rest of your service's filesystem remains ephemeral. For more details, se",
+        "single": "viders (GitHub, etc.) Build pipeline Deploy hooks Monorepo support Troubleshooting deploys Previewing changes Single-service previews Preview environments (multi-service) Docker deploys Overview Deploy a registered image Using secrets Runtime Native runtimes Environment variables & secrets Default environment variables Workflows Intro to workflows Tutorial Limits & pricing How to\u2026 Define tasks Trigger runs Develop locally SDK reference TypeScript SDK Python SDK Example workflows TypeScript examples Python examples Render Postgres Overview Create & connect Database credentials Extensions Version upgrades Logical replication"
+      }
+    },
+    {
+      "url": "https://render.com/docs/tls",
+      "status": 200,
+      "sha256": "3cc2b6dbf5bf4bfa90925991501c6df1ec01129752c191910e96a3b11e9d2ae4",
+      "snippets": {
+        "TLS": "Fully Managed TLS Certificates \u2013 Render Docs Docs Changelog Search Ask AI Sign in Get started Search Ask Start Home Your first deploy Free instances Platform features by plan Use with coding agents FAQ Templates Migrate from\u2026 Heroku Railway Compute Compute plans New Service types Which to use? Static sites Web services Private services Background workers Cron jobs Workflows Multi-service architectures Data storage Render Postgres Render Key Value (Redis\u00ae-compatible) Persistent disks Sandboxes EA Overview CLI commands TypeScript ",
+        "redirect": "Dedicated IP addresses Outbound bandwidth Handling network changes Static site config Custom response headers Redirects & rewrites Operational Controls The Render Dashboard SSH / Shell access Projects & environments Service actions Scaling Rollbacks Maintenance mode One-off jobs Infrastructure as code Blueprints overview render.yaml reference Terraform provider Observability In-dashboard metrics Health checks Uptime best practices Logging In-dashboard logs Log streams (syslog/HTTPS) OpenTelemetry (OTel) metrics Provider setup Metrics reference Notifications Webhooks Email / Slack Integrations MCP Server Render CLI Overview"
+      }
+    },
+    {
+      "url": "https://render.com/docs/free",
+      "status": 200,
+      "sha256": "1df3eab1ad78006f2db0b2b26cdb322a02d526d8f523ccfbcf6d96a37f692b0d",
+      "snippets": {
+        "ephemeral": "al files lost on redeploy ). Local files lost on redeploy Like all Render services, Free web services have an ephemeral filesystem . This means that any changes to your web service's filesystem (uploaded images, local SQLite databases, etc.) are lost every time the service redeploys, restarts, or spins down . For long-term data storage: Paid services can preserve local filesystem changes by attaching a persistent disk , but Free web services cannot . Paid and Free services can persist relational data in a Render Postgres database. Note that Free Render Postgres databases expire 30 days after creation . Monthly usage limits",
+        "disk": "lows Multi-service architectures Data storage Render Postgres Render Key Value (Redis\u00ae-compatible) Persistent disks Sandboxes EA Overview CLI commands TypeScript SDK Python SDK Deploys How deploys work Supported languages Git providers (GitHub, etc.) Build pipeline Deploy hooks Monorepo support Troubleshooting deploys Previewing changes Single-service previews Preview environments (multi-service) Docker deploys Overview Deploy a registered image Using secrets Runtime Native runtimes Environment variables & secrets Default environment variables Workflows Intro to workflows Tutorial Limits & pricing How to\u2026 Define tasks Trig"
+      }
+    },
+    {
+      "url": "https://railway.com/pricing",
+      "status": 200,
+      "sha256": "45e1b7371afb094a924874c8ccfb90c41be8a1938f8c9e90e5857c48c8c29c77",
+      "snippets": {
+        "$5": "per month Perfect for getting started and deploying small apps on Railway Start with a 30-day free trial with $5 credits, then $1 per month Up to 1 vCPU / 0.5 GB RAM per service 0.5 GB of volume storage Community support Deploy a new project No credit card required Hobby $ 5 minimum usage For hobbyist developers building side projects Includes $5 of monthly usage credits After credits are used, you'll only be charged for extra resource usage Up to 48 vCPU / 48 GB RAM per service Up to 5 replicas, at 8 vCPU / 8 GB RAM per replica Up to 5 GB storage Single developer workspace Community support 99.9% Availability Target 7-Day",
+        "Volume": "t with a 30-day free trial with $5 credits, then $1 per month Up to 1 vCPU / 0.5 GB RAM per service 0.5 GB of volume storage Community support Deploy a new project No credit card required Hobby $ 5 minimum usage For hobbyist developers building side projects Includes $5 of monthly usage credits After credits are used, you'll only be charged for extra resource usage Up to 48 vCPU / 48 GB RAM per service Up to 5 replicas, at 8 vCPU / 8 GB RAM per replica Up to 5 GB storage Single developer workspace Community support 99.9% Availability Target 7-Day Log History Global regions Deploy with Hobby Pro $ 20 minimum usage For profe",
+        "usage": "ice 0.5 GB of volume storage Community support Deploy a new project No credit card required Hobby $ 5 minimum usage For hobbyist developers building side projects Includes $5 of monthly usage credits After credits are used, you'll only be charged for extra resource usage Up to 48 vCPU / 48 GB RAM per service Up to 5 replicas, at 8 vCPU / 8 GB RAM per replica Up to 5 GB storage Single developer workspace Community support 99.9% Availability Target 7-Day Log History Global regions Deploy with Hobby Pro $ 20 minimum usage For professional developers and teams shipping production applications Includes $20 of monthly usage cred"
+      }
+    },
+    {
+      "url": "https://docs.railway.com/reference/volumes",
+      "status": 200,
+      "sha256": "d13185e64c109962561139eaf5baa4d5f6aafd4720be818c40127472e9283540",
+      "snippets": {
+        "backup": " Availability Redis Redis High Availability MongoDB MongoDB High Availability Database view Reference Volumes Backups Point-in-Time Recovery Reference Storage buckets Uploading & serving Billing Troubleshooting Recover PostgreSQL from corrupted WAL ENOTFOUND redis.railway.internal Networking Public networking Specs & limits Private networking Library configuration Domains Working with Domains Railway Domains TCP proxy Outbound networking Static outbound IPs Edge networking CDN WAF Edge rules Troubleshooting SSL Network diagnostics Application failed to respond 405 method not allowed Observability Logs Metrics Tracing Autom",
+        "replica": "Caveats Here are some limitations of which we are currently aware: Each service can only have a single volume Replicas cannot be used with volumes To prevent data corruption, we prevent multiple deployments from being active and mounted to the same service. This means that there will be a small amount of downtime when re-deploying a service that has a volume attached, even if there is a healthcheck endpoint configured Down-sizing a volume is not currently supported, but increasing size is supported Volume resizing is performed live without downtime. The underlying storage is expanded while your service continues running, a"
+      }
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://developers.cloudflare.com/d1/reference/time-travel/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers/runtime-apis/nodejs/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://resend.com/pricing",
+      "status": 200,
+      "sha256": "c8c12717710f32d166e44e3425ff65e1c68f4ca2dab7395c6d3cbff1fb8fd3ea",
+      "snippets": {
+        "3,000": "r domain limit is set in your contract. Add domains Dedicated IPs - $30 / mo Available to customers exceeding 3,000 emails sent per day on the Scale plan. We take great care to maintain good-standing shared IP's, but for some high-volume senders, you can't leave anything up to chance. We will warmup, monitor, and autoscale it based on your utilization so you can focus on one thing, sending. Request dedicated IP Single Sign-On - $150 / mo Let your team sign in to Resend with your identity provider. Available as an add-on on Scale plans, and included on Enterprise plans. Get started Sending & receiving Free Pro Scale Enterpr",
+        "100": "ains, but if you send from a separate one for each customer or brand, that number runs out quickly. This adds 100 more on top of it. Available on Pro and Scale, and you can add or remove it yourself whenever you need to. On Enterprise, your domain limit is set in your contract. Add domains Dedicated IPs - $30 / mo Available to customers exceeding 3,000 emails sent per day on the Scale plan. We take great care to maintain good-standing shared IP's, but for some high-volume senders, you can't leave anything up to chance. We will warmup, monitor, and autoscale it based on your utilization so you can focus on one thing, sendin",
+        "Free": "\u00b7 Resend Open main menu Features Company Enterprise Help Docs AI Pricing Log in Get started Pricing Start for free and scale as you grow. Are you an AI agent? See pricing Add-ons Domains - $20 / mo Your plan already comes with domains, but if you send from a separate one for each customer or brand, that number runs out quickly. This adds 100 more on top of it. Available on Pro and Scale, and you can add or remove it yourself whenever you need to. On Enterprise, your domain limit is set in your contract. Add domains Dedicated IPs - $30 / mo Available to customers exceeding 3,000 emails sent per day on the Scale plan. We tak"
+      }
+    },
+    {
+      "url": "https://resend.com/docs/knowledge-base/account-quotas-and-limits",
+      "status": 200,
+      "sha256": "86c1b3e3c14de2ce62d875f84ec4204aa00db591e01fbbbc23a325098b2927ea",
+      "snippets": {
+        "domain": "d limits? Search... \u2318 K Knowledge Base Introduction API Keys Manage API Keys API Key Security Leaked API Keys Domains Avoid MX Conflicts Domain Not Verifying Error 1010 Domain Mismatch resend.dev Domain Error Domain already registered DMARC Analyzer DNS Guides Sending What sending feature to use? Why use Topics? When to Add an Unsubscribe Link How do Dedicated IPs work? Creating email address Unsupported Attachment Types CORS Issues Cancel a Broadcast Deliverability Managing the Suppression List Receiving Emails Subdomain vs Root Domain Delivered Email Not Arriving Sending to Apple Private Email Relay Why are my open rates",
+        "100": "\u200b Free Account Quotas and Limits Free accounts have the following: Transactional emails: daily email quota of 100 emails/day and 3,000 emails/month. This quota includes both sent and received emails. Multiple To , CC , or BCC recipients in sent emails count as separate emails towards this quota. The daily quota is a UTC calendar day (00:00\u201324:00 UTC) and resets at midnight UTC. It is not a rolling 24-hour window from your first send or from when you hit the limit. Marketing emails: unlimited emails to up to 1,000 contacts per month. Domains: up to 3 verified domains. Inboxes: up to 3 inboxes. \u200b Paid Plan Quota Transactiona"
+      }
+    },
+    {
+      "url": "https://render.com/docs/disks",
+      "sha256": "8dd1b749b636d67f8f50988952e88fb9656ead6643706a25678107ea18c0b85e",
+      "snippets": {
+        "one instance": [
+          "Not found in extracted visible text"
+        ],
+        "single instance": [
+          "Not found in extracted visible text"
+        ],
+        "7 days": [
+          "Not found in extracted visible text"
+        ],
+        "custom database": [
+          "shboard : Restoring a custom database If you use a persistent disk specifically to back a custom database instance on Render (such as MySQL or MongoDB), do not perform a disk restore for database recovery purposes. If you do, your database might restore to a corrupted state. Instead, create regular backups of your database using a tool like mysqldump for MySQL or mongodump for MongoDB. Restore your database's state using one of these backups. Transferring files You can securely transfer files between your disk-back",
+          "Disks Setup Mount path Disallowed mount paths Monitoring usage Disk snapshots Restoring a custom database Transferring files SCP Magic-Wormhole Disk limitations and considerations Pricing Blog Security Customers Careers \u00a9 Render 2026 shell Copy to clipboard $ ssh YOUR_SERVICE@ssh.YOUR_REGION.render.com shell Copy to clipboard # Copying a file from your service to your local machine $ scp -s YOUR_SERVICE@ssh.YOUR_REGION.render.com:/path/to/remote/file /destination/path/for/local/file file 100 % 5930KB 999 .9KB/s 00:"
+        ],
+        "encrypted at rest": [
+          " the same high-performance SSDs as Render Postgres and Key Value instances. All disks are encrypted at rest, and so are their automatic daily snapshots . Setup Before you attach a persistent disk, it's helpful to understand important limitations and considerations . You create a persistent disk from the Render Dashboard . You can do so during service creation (click Advanced at the bottom of the creation form), or any time after creation from your service's Disk page: Set your disk's mount path . Only filesystem ch"
+        ]
+      }
+    },
+    {
+      "url": "https://render.com/docs/tls",
+      "sha256": "a69560a586f40d231dcf4bc3ec37764394d3ca90ae259127f7d49b6a19fb6621",
+      "snippets": {
+        "redirects": [
+          "es Outbound bandwidth Handling network changes Static site config Custom response headers Redirects & rewrites Operational Controls The Render Dashboard SSH / Shell access Projects & environments Service actions Scaling Rollbacks Maintenance mode One-off jobs Infrastructure as code Blueprints overview render.yaml reference Terraform provider Observability In-dashboard metrics Health checks Uptime best practices Logging In-dashboard logs Log streams (syslog/HTTPS) OpenTelemetry (OTel) metrics Provider setup Metrics ",
+          " custom domains you add to it, including wildcard domains . Finally, Render automatically redirects all HTTP requests to HTTPS so your users' security is never compromised. Copy page Fully Managed TLS Certificates Pricing Blog Security Customers Careers \u00a9 Render 2026"
+        ],
+        "certificates": [
+          "ustom domain and automatically renews them before their expiration date. You get free TLS certificates for the onrender.com subdomain for your service, as well as the custom domains you add to it, including wildcard domains . Finally, Render automatically redirects all HTTP requests to HTTPS so your users' security is never compromised. Copy page Fully Managed TLS Certificates Pricing Blog Security Customers Careers \u00a9 Render 2026",
+          "quests to HTTPS so your users' security is never compromised. Copy page Fully Managed TLS Certificates Pricing Blog Security Customers Careers \u00a9 Render 2026"
+        ],
+        "TLS 1.2": [
+          "Not found in extracted visible text"
+        ]
+      }
+    },
+    {
+      "url": "https://render.com/docs/blueprint-spec",
+      "sha256": "e41f2690307c1ae1e388e5b615317a0db2d7ea93f2db8f0302460d748c10bff9",
+      "snippets": {
+        "starter": [
+          "Not found in extracted visible text"
+        ],
+        "autoDeployTrigger": [
+          "toDeploy: false This field replaces the deprecated autoDeploy field. If you include both, autoDeployTrigger takes precedence. This field has no effect for services that deploy a prebuilt Docker image . If you omit this field: Render uses commit for a new service. Render retains the current value for an existing service. domains Web services and static sites only. A list of custom domains for the service. Internet-accessible services are always reachable at their onrender.com subdomain. For each root domain in the l",
+          "ll preDeployCommand : bundle exec ruby migrate.rb startCommand : bundle exec ruby main.rb autoDeployTrigger : 'off' # Disable automatic deploys maxShutdownDelaySeconds : 120 # Increase graceful shutdown period. Default: 30, Max: 300 initialDeployHook : ./seed_database.sh # Runs after the first successful deploy of a service domains : # Custom domains - example.com - www.example.org renderSubdomainPolicy : disabled # Disable access via the service's onrender.com subdomain. Default: enabled envVars : # Environment va"
+        ],
+        "healthCheckPath": [
+          "uses enabled for a new service. Render retains the current value for an existing service. healthCheckPath Web services only. The path of the service's health check endpoint . This value always starts with a / character. maxShutdownDelaySeconds Web services , private services , and background workers only. The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal. For details, see Zero-downtime deploys . After this delay, Render termin",
+          "led : true uri : https : //example.com/maintenance # Optional custom maintenance page URL healthCheckPath : / registryCredential : # Default: No credential fromRegistryCreds : name : my - credentials envVars : - key : REDIS_HOST fromService : # Reference a property from another service (see available properties below) type : keyvalue name : lightning property : host - key : REDIS_PORT fromService : type : keyvalue name : lightning property : port - fromGroup : conc - settings # A private service with an attached pe"
+        ]
+      }
+    },
+    {
+      "url": "https://docs.railway.com/reference/volumes",
+      "sha256": "d13185e64c109962561139eaf5baa4d5f6aafd4720be818c40127472e9283540",
+      "snippets": {
+        "replicas": [
+          "e limitations of which we are currently aware: Each service can only have a single volume Replicas cannot be used with volumes To prevent data corruption, we prevent multiple deployments from being active and mounted to the same service. This means that there will be a small amount of downtime when re-deploying a service that has a volume attached, even if there is a healthcheck endpoint configured Down-sizing a volume is not currently supported, but increasing size is supported Volume resizing is performed live wi"
+        ],
+        "encrypted": [
+          "Not found in extracted visible text"
+        ],
+        "pricing": [
+          "illed at a rate per GB / minutely, and invoiced monthly. You can find specific per-minute pricing here . You are only charged for the amount of storage used by your volumes. Each volume requires approx 2-3% of the total storage to store metadata about the filesystem, so a new volume will always start with some used amount of space used depending on the size. Backups Services with volumes support manual and automated backups, backups are covered in the backups reference guide. Deletion and Restoration When a volume ",
+          "uckets On this page How it works Size limits Volume limits per project I/O specifications Pricing Backups Deletion and Restoration Caveats Support Ask AI about this page Copy page Open in ChatGPT Open in Claude Open in Cursor Deploy with Railway Edit this page on GitHub"
+        ]
+      }
+    },
+    {
+      "url": "https://docs.railway.com/reference/backups",
+      "sha256": "6594b4dd18d9eb0b2931fece27d755bfd0db4c1542782e09714731fbc1286549",
+      "snippets": {
+        "daily": [
+          " Daily / Weekly / Monthly schedule. Backup schedules Backups can be scheduled to run on a daily, weekly or monthly basis. They will be kept for a number of days / months based on the schedule. You can set the schedule in the service settings panel, under the Backups tab. Daily - Backed up every 24 hours, kept for 6 days Weekly - Backed up every 7 days, kept for 27 days Monthly - Backed up every 30 days, kept for 89 days You can select multiple backup schedules for a single volume. These schedules can be modified at",
+          " schedule. You can set the schedule in the service settings panel, under the Backups tab. Daily - Backed up every 24 hours, kept for 6 days Weekly - Backed up every 7 days, kept for 27 days Monthly - Backed up every 30 days, kept for 89 days You can select multiple backup schedules for a single volume. These schedules can be modified at any time, and you can also manually trigger backups as needed. How to restore a backup The available backups for a volume are listed in the attached service's Backups tab. To restor"
+        ],
+        "restore": [
+          "ey may show slightly stale data. Wiping a volume deletes all backups. Backups can only be restored into the same project + environment. Previous Volumes Next Point-in-Time Recovery On this page How it works Backup schedules How to restore a backup Pricing Volume backup limits Caveats Ask AI about this page Copy page Open in ChatGPT Open in Claude Open in Cursor Deploy with Railway Edit this page on GitHub",
+          "ous Volumes Next Point-in-Time Recovery On this page How it works Backup schedules How to restore a backup Pricing Volume backup limits Caveats Ask AI about this page Copy page Open in ChatGPT Open in Claude Open in Cursor Deploy with Railway Edit this page on GitHub"
+        ],
+        "retention": [
+          "Not found in extracted visible text"
+        ]
+      }
+    },
+    {
+      "url": "https://docs.railway.com/guides/public-networking",
+      "sha256": "7a783c3ffeb5f86bffe46567dd57f02b417c8676b4e31faf5ca9dfeafde8a4d4",
+      "snippets": {
+        "TLS": [
+          "Not found in extracted visible text"
+        ],
+        "certificate": [
+          "y-provided domains, and support for custom domains. Key features Automatic SSL - Free SSL certificates automatically provisioned and renewed Railway Domains - Get a .railway.app domain instantly Custom Domains - Bring your own domain with easy DNS configuration Global Edge Network - Traffic routed through Railway's edge network Learn more Topic Description Domains Configure Railway-provided domains and custom domains for your services. Learn about DNS setup, SSL certificates, and domain management. Edge rules Match",
+          "Railway-provided domains and custom domains for your services. Learn about DNS setup, SSL certificates, and domain management. Edge rules Match and handle requests at Railway's edge before they reach your service. Specs & Limits Understand request limits, timeouts, and other specifications for public networking. Quick start To expose a service to the internet: Go to your service's Settings Find Networking \u2192 Public Networking Click Generate Domain to get a Railway-provided domain Or configure a custom domain by addi"
+        ]
+      }
+    }
+  ]
+}
