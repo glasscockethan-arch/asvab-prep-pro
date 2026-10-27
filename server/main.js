@@ -1,0 +1,17 @@
+import {resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {fileURLToPath} from 'node:url';
+import {Store} from './store.js';
+import {createLaunchServer} from './app.js';
+import {StripeTestClient} from './stripe.js';
+if(process.env.NODE_ENV==='production')throw new Error('Production startup is disabled. This service is a local beta/test preparation only.');
+const port=Number(process.env.BEACON_PORT??8001);
+if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Invalid development port.');
+const enabled=process.env.BEACON_STRIPE_TEST_MODE==='true';
+if(process.env.STRIPE_SECRET_KEY&&!process.env.STRIPE_SECRET_KEY.startsWith('sk_test_'))throw new Error('Live Stripe keys are prohibited.');
+if(enabled&&(!process.env.STRIPE_SECRET_KEY||!process.env.STRIPE_WEBHOOK_SECRET))throw new Error('Stripe test mode needs securely configured test-key and webhook-secret bindings. Do not place them in source or chat.');
+const store=new Store(process.env.BEACON_DB_PATH??resolve(tmpdir(),'aptitude-beacon-development','launch.sqlite'));
+store.prune(Date.now());
+const server=createLaunchServer({store,staticRoot:fileURLToPath(new URL('../dist',import.meta.url)),origin:`http://127.0.0.1:${port}`,stripe:enabled?new StripeTestClient(process.env.STRIPE_SECRET_KEY):null,webhookSecret:enabled?process.env.STRIPE_WEBHOOK_SECRET:null});
+server.listen(port,'127.0.0.1',()=>console.log(`Development beta service listening on loopback port ${port}; real payments and public hosting disabled.`));
+for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>server.close(()=>{store.close();process.exit(0);}));

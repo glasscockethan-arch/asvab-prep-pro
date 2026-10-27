@@ -1,38 +1,17 @@
-# Monetization readiness checklist
+# Monetization readiness — ASVAB Exam Pass
 
-Status: PREPARATION ONLY. No advertising provider scripts, ad placements, tracking pixels, or custom domain have been configured or purchased.
+**No paid launch approval. No live payments or production collection enabled.**
 
-## Important brand hold
-A different ASVAB practice website is already operating at https://www.missionasvab.org/ using the exact name "Mission ASVAB". Do not commercially rebrand to this name before legal trademark and common-law clearance. The site now uses the working brand **Aptitude Beacon**; this is provisional commercial branding pending comprehensive federal/state/common-law clearance. A preliminary `.com` registry request did not return a registration record for `aptitudebeacon.com`, but this is NOT purchase confirmation or trademark clearance.
+The first proposed offer is **$19.99 USD once for 90 days**, no automatic renewal. Keep all existing ASVAB questions, diagnostics, timed/targeted practice, explanations, browser-local history and backups free. The proposed paid addition combines personalized 30/60/90-day calendars, structured weak-area guidance, a practice-evidence dashboard, guided review sessions and private cross-device progress/history; invited beta testers trial it without payment. Owner approval of the deliverable/value promise is still required.
 
-## Before applying for Google AdSense
-- [x] Publish a useful accessible homepage, navigation, and practice entry point
-- [x] Publish initial About, Privacy, Terms, and Contact pages
-- [x] Preserve the complete V3 practice application
-- [x] Add sitemap and robots files
-- [x] Add repeatable structural audit with valid IDs, choices, answer indices and explanations (540 checked; zero structural errors)\n- [ ] Independently verify all 540 answer keys and explanations for factual accuracy and meaningful variety; replace repeated/template-like questions
-- [x] Publish initial original worked lesson guides for the four AFQT subject areas\n- [ ] Expand and editorially review the remaining five subject guides
-- [ ] Choose a distinctive, legally cleared brand
-- [ ] Register a domain (optional but recommended), verify ownership, and configure DNS + HTTPS
-- [ ] Provide a working private business/support contact method and review policy language for accuracy
-- [ ] Check age of owner, applicable tax/payment information, and AdSense eligibility
-- [ ] Evaluate site performance, accessibility, mobile layout, and real-device test flows
-- [ ] Integrate privacy/cookie disclosures and consent-management solution as required for visitor jurisdictions
-- [ ] Apply for AdSense, complete site ownership verification, and wait for approval
-- [ ] Only after approval: add properly labeled and non-disruptive ads outside timed examinations; monitor policy compliance
+The $9.99/month Beacon Plus subscription, additional college/trades content, advertising and paid infrastructure are deferred. No subscription product, recurring billing, marketing sender, advertising unit or third-party analytics script was added.
 
-Official policies:
-https://support.google.com/adsense/answer/9724?hl=en
-https://support.google.com/adsense/answer/48182?hl=en
-https://support.google.com/adsense/answer/10502938?hl=en
+Implemented locally: free recruitment page, consent/privacy, private signup review/export, invitation-based beta accounts, optional cloud copies and structured study tools, test-only Checkout adapter, signed/retrieved fulfillment, server-owned expiry and refund/dispute revocation, private aggregate operational counters. No runtime npm dependency or paid service is required for these development tests.
 
-## Notes
-- Practice scores are **not** official AFQT percentiles.
-- The free app currently keeps progress in browser storage and does not have a server database or cross-device sync.
-- GitHub Pages is hosting the site; it does not provide ad monetization by itself.
+**Provider acceptance is unrun.** Stripe test-key/signing-secret bindings are absent; no actual Checkout, 3DS, webhook delivery or Dashboard refund has been executed. Local signed fixtures and mocked provider responses do not prove a working merchant account. The local entry rejects default production startup; the separate staged hosted-beta entry starts closed and rejects all payment configuration. Nothing is deployed.
 
-## October 25, 2026 implementation notes
-- Four original AFQT guides have been added and linked from the homepage; links appear in sitemap.xml.
-- Structural audit lives at `tools/audit_question_bank.py`; findings in `QUESTION_BANK_AUDIT.md`. This is not a substitute for educational content review.
-- No ads, trackers, domain purchase, or AdSense application were created.
-- Next legal milestone: review live and pending USPTO marks and confusingly similar education brands, search relevant state registries, and examine common-law use; seek qualified legal clearance before committing capital.
+Before revenue: independent qualified review of all offered ASVAB material, approved private support/privacy/consumer terms, production authentication/TLS/storage/backups/security, real devices and real Stripe sandbox acceptance, followed by separate owner approval. See [RELEASE_READINESS.md](RELEASE_READINESS.md), [payment cases](docs/PAYMENT_TEST_PLAN.md) and [sprint audit](docs/ASVAB_REVENUE_SPRINT.md).
+
+Aptitude Beacon remains a working brand with no trademark-clearance assurance. No new domain availability, merchant eligibility, fee, tax or legal assurance is made. The historical advertising concept in docs/BRAND_AND_MONETIZATION.md is deferred and is not part of the first paid launch.
+
+Current implementation/evidence: [Revenue Sprint 2](docs/REVENUE_SPRINT_2.md), [feature matrix](docs/EXAM_PASS_FEATURES.md), [hosting decision](docs/BETA_HOSTING.md) and [human review workflow](review/README.md). Zero reviewers/approvals are recorded. Owner budget/deployment approval remains required before provisioning any proposed paid hosting.

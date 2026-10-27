@@ -2,3 +2,20 @@
 *backup*.json
 *results*.json
 .DS_Store
+
+node_modules/
+dist/
+__pycache__/
+*.pyc
+test-results/
+
+# Private launch-service data must also live outside the checkout.
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+.env
+.env.*
+*study_archive*.json
+*signups*.csv
+*feedback*.csv

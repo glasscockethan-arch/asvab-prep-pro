@@ -7,13 +7,14 @@ These checks do not replace editorial review of answer correctness.
 import collections
 import json
 import re
+import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "practice.html"
 REPORT = ROOT / "QUESTION_BANK_AUDIT.md"
 
-def run():
+def run(check=False):
     source = SOURCE.read_text(encoding="utf-8")
     match = re.search(r"const QUESTIONS=(\[.*?\]);", source, re.S)
     if not match:
@@ -81,9 +82,13 @@ def run():
     note += ["", "## Structural failures", ""]
     note += [f"- {item}" for item in failures] or ["None detected."]
     note.append("")
-    REPORT.write_text("\n".join(note),encoding="utf-8")
+    if not check:
+        REPORT.write_text("\n".join(note),encoding="utf-8")
     print(f"Questions={count}; subjects={len(subjects)}; uniqueIDs={len(seen_ids)}; failures={len(failures)}; duplicate_prompt_groups={len(duplicate_groups)}")
     for failure in failures[:20]:print("FAIL",failure)
     if failures:
         raise SystemExit(1)
-if __name__ == "__main__": run()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='Validate without rewriting the report')
+    run(check=parser.parse_args().check)
