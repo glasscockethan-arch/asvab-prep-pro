@@ -269,4 +269,31 @@ class BrowserTests(unittest.TestCase):
         expect(self.page.locator('.course-sources')).to_contain_text('Scoped review:')
         expect(self.page.locator('.lesson-content')).to_contain_text('Independent educator review remains pending')
 
+    def test_21_v3_recovery_keeps_answers_deadline_and_prevents_duplicate_submission(self):
+        self.page.clock.install();self.visit('practice.html');self.page.get_by_role('button',name='Practice',exact=True).click();self.page.get_by_role('button',name='Start AFQT practice',exact=True).click()
+        answer=self.page.evaluate('QUESTIONS.find(q=>q.id===session.ids[0]).answer');self.page.locator('button.opt').nth(answer).click();self.page.get_by_role('button',name='Next',exact=False).click()
+        saved=self.page.evaluate('localStorage.getItem(AsvabRecovery.key)');record=json.loads(saved);deadline=record['end'];self.page.reload();expect(self.page.get_by_role('button',name='Resume saved practice')).to_be_visible();self.page.get_by_role('button',name='Resume saved practice').click()
+        self.assertEqual(self.page.evaluate('session.end'),deadline);self.assertEqual(self.page.evaluate('session.answers[0]'),answer);self.assertEqual(self.page.evaluate('session.i'),1)
+        self.page.clock.fast_forward(41*60*1000);expect(self.page.get_by_role('heading',name='Exam result: 3%')).to_be_visible();self.assertEqual(self.page.evaluate('data.history.length'),1);self.assertIsNone(self.page.evaluate('localStorage.getItem(AsvabRecovery.key)'))
+        self.page.evaluate('(saved)=>localStorage.setItem(AsvabRecovery.key,saved)',saved);self.page.reload();self.assertEqual(self.page.evaluate('data.history.length'),1);self.assertIsNone(self.page.evaluate('localStorage.getItem(AsvabRecovery.key)'));expect(self.page.get_by_role('button',name='Resume saved practice')).to_have_count(0)
+    def test_22_v3_corrupt_recovery_is_preserved_until_explicit_discard(self):
+        self.visit('practice.html');original='{"history":[],"missed":["q0001"],"week":3}';self.page.evaluate('(value)=>{localStorage.setItem("asvab-prep-pro-v3",value);localStorage.setItem(AsvabRecovery.key,"{broken recovery");}',original);self.page.reload();expect(self.page.get_by_role('heading',name='Unfinished practice needs recovery.')).to_be_visible()
+        self.page.once('dialog',lambda dialog:dialog.accept());self.page.get_by_role('button',name='Start diagnostic',exact=True).click();self.assertEqual(self.page.evaluate('localStorage.getItem(AsvabRecovery.key)'),'{broken recovery');self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),original)
+        with self.page.expect_download() as download:self.page.get_by_role('button',name='Download unfinished-session recovery').click()
+        self.assertEqual(Path(download.value.path()).read_text(),'{broken recovery');self.page.once('dialog',lambda dialog:dialog.accept());self.page.get_by_role('button',name='Discard unreadable session').click();self.assertIsNone(self.page.evaluate('localStorage.getItem(AsvabRecovery.key)'));self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),original)
+        self.page.get_by_role('button',name='Start diagnostic',exact=True).click();expect(self.page.locator('#view')).to_contain_text('Question 1 / 45')
+    def test_23_v3_another_tab_cannot_silently_replace_active_answers_or_completed_progress(self):
+        self.visit('practice.html');self.page.get_by_role('button',name='Start diagnostic',exact=True).click();other=self.context.new_page();other.goto(self.base+'practice.html');other.get_by_role('button',name='Resume saved practice').click();self.page.locator('button.opt').nth(0).click();before=self.page.evaluate('localStorage.getItem(AsvabRecovery.key)')
+        messages=[]
+        def accept_other(dialog): messages.append(dialog.message);dialog.accept()
+        other.on('dialog',accept_other);other.locator('button.opt').nth(1).click();other.remove_listener('dialog',accept_other)
+        self.assertTrue(any('Another tab' in message for message in messages));self.assertEqual(other.evaluate('localStorage.getItem(AsvabRecovery.key)'),before);other.close()
+        # A concurrent V3 history update also blocks stale writes from the old page.
+        original='{"history":[],"missed":["q0002"],"week":4}';self.page.evaluate('(raw)=>localStorage.setItem("asvab-prep-pro-v3",raw)',original)
+        warnings=[]
+        def accept(dialog): warnings.append(dialog.message);dialog.accept()
+        self.page.on('dialog',accept);self.page.get_by_role('button',name='Submit test',exact=True).click();self.page.remove_listener('dialog',accept);self.assertTrue(any('Another tab changed ASVAB progress' in message for message in warnings))
+        # The submit confirmation is followed by a distinct stale-progress warning.
+        expect(self.page.locator('#current-question')).to_be_visible();self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),original)
+
 if __name__=='__main__':unittest.main(verbosity=2)
