@@ -35,7 +35,13 @@ export class Store {
    CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY, created INTEGER NOT NULL);
    CREATE TABLE IF NOT EXISTS refunds(payment_intent TEXT PRIMARY KEY, created INTEGER NOT NULL);
    CREATE TABLE IF NOT EXISTS feedback(id TEXT PRIMARY KEY, account TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, category TEXT NOT NULL, question_id TEXT, message TEXT NOT NULL, created INTEGER NOT NULL);
+   CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY, total INTEGER NOT NULL, expires INTEGER NOT NULL);
    CREATE TABLE IF NOT EXISTS metrics(name TEXT PRIMARY KEY, total INTEGER NOT NULL);
+   CREATE TABLE IF NOT EXISTS study_plans(id TEXT PRIMARY KEY, account TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, revision INTEGER NOT NULL, body TEXT NOT NULL, current INTEGER NOT NULL, created INTEGER NOT NULL);
+   CREATE UNIQUE INDEX IF NOT EXISTS one_current_study_plan ON study_plans(account) WHERE current=1;
+   CREATE TABLE IF NOT EXISTS guided_sessions(id TEXT PRIMARY KEY, account TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, plan_id TEXT NOT NULL REFERENCES study_plans(id) ON DELETE CASCADE, day TEXT NOT NULL, ids TEXT NOT NULL, answers TEXT NOT NULL, position INTEGER NOT NULL, revision INTEGER NOT NULL, state TEXT NOT NULL, bank_hash TEXT NOT NULL, created INTEGER NOT NULL, updated INTEGER NOT NULL, completed INTEGER, result TEXT);
+   CREATE UNIQUE INDEX IF NOT EXISTS one_active_guided_session ON guided_sessions(account) WHERE state='active';
+   CREATE TABLE IF NOT EXISTS study_days(account TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, plan_id TEXT NOT NULL REFERENCES study_plans(id) ON DELETE CASCADE, day TEXT NOT NULL, session_id TEXT NOT NULL REFERENCES guided_sessions(id) ON DELETE CASCADE, completed INTEGER NOT NULL, PRIMARY KEY(account,plan_id,day));
    CREATE UNIQUE INDEX IF NOT EXISTS one_pending_checkout ON checkouts(account) WHERE state IN ('creating','open');`);
  }
  one(sql,...args) { return this.db.prepare(sql).get(...args); }
@@ -67,6 +73,15 @@ export class Store {
   return {beta:account.beta_until>now,betaUntil:account.beta_until,pass:!!pass?.expires&&pass.expires>now,passUntil:pass?.expires??null};
  }
  deleteAccount(email) {this.transaction(()=>{this.run('DELETE FROM invitations WHERE email=?',email);this.run('DELETE FROM signups WHERE email=?',email);this.run('DELETE FROM accounts WHERE email=?',email);});}
- prune(now) {this.transaction(()=>{this.run('DELETE FROM signups WHERE created<? AND email NOT IN (SELECT email FROM accounts)',now-90*DAY);this.run('DELETE FROM feedback WHERE created<?',now-90*DAY);this.run('DELETE FROM invitations WHERE expires<=?',now);this.run('DELETE FROM sessions WHERE expires<=?',now);});}
+ prune(now) {this.transaction(()=>{this.run('DELETE FROM signups WHERE created<? AND email NOT IN (SELECT email FROM accounts)',now-90*DAY);this.run('DELETE FROM feedback WHERE created<?',now-90*DAY);this.run('DELETE FROM invitations WHERE expires<=?',now);this.run('DELETE FROM sessions WHERE expires<=?',now);this.run('DELETE FROM rate_limits WHERE expires<=?',now);});}
+ rateLimit(key,max,now) {
+  return this.transaction(()=>{
+   this.run('DELETE FROM rate_limits WHERE expires<=?',now);
+   const old=this.one('SELECT * FROM rate_limits WHERE key=?',key);
+   if(!old&&this.one('SELECT COUNT(*) AS count FROM rate_limits').count>=10_000)return false;
+   if(old&&old.total>=max)return false;
+   this.run('INSERT INTO rate_limits VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET total=total+1',key,now+15*60_000);return true;
+  });
+ }
  close(){this.db.close();}
 }

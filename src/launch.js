@@ -1,3 +1,4 @@
+import {api} from './api.js';
 import {mountLayout} from './layout.js';
 import {loadState,mergeState,saveState,STORAGE_KEY,LEGACY_KEY} from './storage.js';
 // Capture then remove invitation fragments before any network request. Never persist the bearer token.
@@ -8,14 +9,9 @@ const $=selector=>document.querySelector(selector);
 const say=(selector,message)=>{$(selector).textContent=message;};
 mountLayout('launch',storage,message=>{const status=$('#status');status.hidden=false;status.textContent=message;});
 const page=document.body.dataset.launch;
-async function api(route,{method='GET',body}={}) {
- const response=await fetch(new URL('./api/'+route,document.baseURI),{method,credentials:'same-origin',cache:'no-store',headers:{...(method!=='GET'?{'Content-Type':'application/json'}:{})},...(body!==undefined?{body:JSON.stringify(body)}:{})});
- let data;try{data=await response.json();}catch{throw Error('The private beta service is not connected. No signup or cloud save has been confirmed.');}
- if(!response.ok){const error=Error(data.error||'Request failed. Nothing has been confirmed.');error.status=response.status;throw error;}return data;
-}
 let config=null;
 async function initialize() {
- try{config=await api('config');if(config.mode!=='development'||config.consentVersion!=='beta-2026-10-26')throw Error('Unrecognized service configuration.');say('#service-status','Development beta service connected. Free beta; no real payment required.');}
+ try{config=await api('config');if(!['development','hosted-beta'].includes(config.mode)||config.consentVersion!=='beta-2026-10-26')throw Error('Unrecognized service configuration.');say('#service-status',!config.betaOpen?'Beta recruitment is currently closed. No request has been saved.':config.mode==='development'?'Development beta service connected. Free beta; no real payment required.':'Free beta service connected. No payment required.');}
  catch{say('#service-status','Private signup collection is not connected on this static preview. Your email has not been saved. Free practice remains available.');return;}
  if(page==='beta') {
   $('#signup-fields').disabled=!config.betaOpen;

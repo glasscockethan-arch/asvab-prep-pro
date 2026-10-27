@@ -5,6 +5,8 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sqlite3
+import re
 import tempfile
 import threading
 import unittest
@@ -82,4 +84,45 @@ class LaunchBrowserTests(unittest.TestCase):
         try:
             page=self.new_context().new_page();page.goto(f'http://127.0.0.1:{server.server_port}/asvab-prep-pro/beta.html');expect(page.locator('#service-status')).to_contain_text('not connected');expect(page.locator('#beta-email')).to_be_disabled();expect(page.locator('#signup-submit')).to_be_disabled();page.close()
         finally: server.shutdown();server.server_close();thread.join()
+    def create_study_plan(self,days=30,minutes=15):
+        self.visit('exam-pass.html');expect(self.page.locator('#premium-study')).to_be_visible();self.page.locator('#plan-days').select_option(str(days));self.page.locator('#plan-minutes').select_option(str(minutes));self.page.get_by_role('button',name='Create / replace my study plan').click();expect(self.page.locator('#plan-message')).to_contain_text('saved')
+    def test_08_personalized_calendars_and_honest_dashboard(self):
+        self.sign_in();self.create_study_plan();expect(self.page.locator('#study-limits')).to_contain_text('not validated readiness');expect(self.page.locator('#practice-summary')).to_contain_text('No evidence');expect(self.page.locator('#calendar-summary')).to_contain_text('30 calendar days')
+        for days in [60,90]:
+            self.page.locator('#plan-days').select_option(str(days));self.page.once('dialog',lambda dialog:dialog.accept());self.page.get_by_role('button',name='Create / replace my study plan').click();expect(self.page.locator('#calendar-summary')).to_contain_text(str(days)+' calendar days')
+        archive=self.page.request.get(self.base+'api/study/archive').json();self.assertEqual(len(archive['plans']),3);self.assertEqual(len(archive['plans'][-1]['body']['entries']),90)
+    def test_09_guided_resume_score_review_and_preserved_free_progress(self):
+        self.sign_in();self.page.evaluate('localStorage.setItem("asvab-prep-pro-v3",JSON.stringify({history:[],missed:["q0001"],week:3}))');v3=self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")');self.create_study_plan();self.page.locator('[data-study-day]').first.click();expect(self.page.locator('#guided-panel')).to_be_visible()
+        bank=json.loads(re.search(r'const QUESTIONS=(\[.*?\]);',(ROOT/'practice.html').read_text(),re.S)[1]);answers={q['id']:q['answer'] for q in bank}
+        for index in range(5):
+            expect(self.page.locator('#guided-content')).to_contain_text(f'Question {index+1} of 5');qid=re.search(r'q[0-9]{4}',self.page.locator('#guided-content').inner_text())[0];self.page.locator('[name=guided-answer]').nth(answers[qid]).check()
+            if index<4:
+                self.page.locator('#guided-next').click();expect(self.page.locator('#guided-content')).to_contain_text(f'Question {index+2} of 5')
+                if index==0:
+                    self.page.reload();expect(self.page.locator('#guided-content')).to_contain_text('Question 2 of 5');expect(self.page.locator('#study-message')).to_contain_text('Resumed')
+        self.page.locator('#guided-finish').click();expect(self.page.locator('#guided-content')).to_contain_text('Practice result: 5/5 (100%)');expect(self.page.locator('#guided-content')).to_contain_text('not an official AFQT');self.page.locator('#reviewed').check();self.page.locator('#reflected').check();self.page.get_by_role('button',name='Mark this study day complete').click();expect(self.page.locator('#calendar-summary')).to_contain_text('1 days complete');self.assertEqual(self.page.evaluate('localStorage.getItem("asvab-prep-pro-v3")'),v3)
+        self.assertEqual(self.page.request.get(self.base+'api/study/archive').json()['sessions'][0]['state'],'completed')
+    def test_10_premium_expiry_local_flag_spoof_and_data_export(self):
+        self.visit('exam-pass.html');self.page.evaluate('localStorage.setItem("exam-pass-active","true")');self.page.reload();expect(self.page.locator('#premium-study')).to_be_hidden();expect(self.page.locator('#study-message')).to_contain_text('Sign in');self.sign_in();self.create_study_plan();self.page.locator('[data-study-day]').first.click();expect(self.page.locator('#guided-panel')).to_be_visible()
+        with sqlite3.connect(str(Path(self.directory.name)/'launch.sqlite')) as db:db.execute('UPDATE accounts SET beta_until=0')
+        self.page.reload();expect(self.page.locator('#premium-study')).to_be_hidden();expect(self.page.locator('#study-message')).to_contain_text('ended');self.assertEqual(self.page.request.get(self.base+'api/study').status,403)
+        with self.page.expect_download() as info:self.page.locator('#study-export').click()
+        archive=json.loads(Path(info.value.path()).read_text());self.assertEqual(len(archive['sessions']),1);self.visit('practice.html');expect(self.page.get_by_role('button',name='Start diagnostic',exact=True)).to_be_visible();self.assertEqual(self.page.evaluate('QUESTIONS.length'),540)
+    def test_11_guided_recovery_when_question_revision_changes(self):
+        self.sign_in();self.create_study_plan();self.page.locator('[data-study-day]').first.click();expect(self.page.locator('#guided-panel')).to_be_visible()
+        def changed(route):
+            if route.request.method=='GET':route.fulfill(status=409,content_type='application/json',body='{"error":"The practice bank changed. Export and archive this unfinished session."}')
+            else:route.continue_()
+        self.page.route('**/api/study/sessions/*',changed);self.page.reload();expect(self.page.locator('#active-study-notice')).to_be_visible();self.page.once('dialog',lambda dialog:dialog.accept());self.page.get_by_role('button',name='Archive saved unfinished session').click();expect(self.page.locator('#active-study-notice')).to_be_hidden();self.assertEqual(self.page.request.get(self.base+'api/study/archive').json()['sessions'][0]['state'],'archived')
+    def test_12_study_keyboard_mobile_and_accessibility(self):
+        self.sign_in();self.create_study_plan();axe=ROOT/'node_modules/axe-core/axe.min.js'
+        for theme in ['light','dark']:
+            for guided in [False,True]:
+                self.page.locator('html').evaluate('(el,theme)=>el.dataset.theme=theme',theme)
+                if guided:self.page.locator('[data-study-day]').first.click();expect(self.page.locator('#guided-panel')).to_be_visible()
+                self.page.add_script_tag(path=str(axe));violations=self.page.evaluate('async()=> (await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa","wcag22aa"]}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))');self.assertEqual(violations,[],f'{theme} guided={guided}')
+        for width,height in [(390,844),(768,1024),(1440,1000)]:
+            self.page.set_viewport_size({'width':width,'height':height});self.assertFalse(self.page.evaluate('document.documentElement.scrollWidth>innerWidth'))
+        self.page.locator('[name=guided-answer]').first.focus();self.page.keyboard.press('Space');expect(self.page.locator('[name=guided-answer]').first).to_be_checked();self.page.keyboard.press('ArrowDown');expect(self.page.locator('[name=guided-answer]').nth(1)).to_be_checked()
+
 if __name__=='__main__': unittest.main(verbosity=2)

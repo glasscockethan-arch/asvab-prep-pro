@@ -1,3 +1,5 @@
+import {deploymentMode} from './hosting.js';
+import {readBank,studySnapshot,createPlan,startSession,sessionView,updateSession,completeDay,archiveSession,studyArchive} from './study.js';
 import {createServer} from 'node:http';
 import {readFile, realpath} from 'node:fs/promises';
 import {resolve, extname, sep} from 'node:path';
@@ -18,13 +20,18 @@ export function validateSignup(input,now) {
  }
  return {email,testDate};
 }
-export function createLaunchServer({store,staticRoot,now=Date.now,stripe=null,webhookSecret=null,origin=null,signupLimit=8}={}) {
- // This deliberately is not a production server. External hosting/TLS/email/legal approval remains a release gate.
- if(process.env.NODE_ENV==='production')throw new Error('The launch service is development-only. Production operation requires separate review and approval.');
- if(origin && !/^http:\/\/127\.0\.0\.1:\d+$/.test(origin))throw new Error('Development origin must use the loopback interface.');
- const attempts=new Map(),root=resolve(staticRoot);
+export function createLaunchServer({store,staticRoot,now=Date.now,stripe=null,webhookSecret=null,origin=null,signupLimit=8,deployment=null}={}) {
+ const hosted=deploymentMode(deployment),mode=hosted?'hosted-beta':'development',stage=hosted?.stage??'invited-beta';
+ // The default entry remains local. Hosted operation needs its separate fixed-origin/staged configuration.
+ if(hosted&&(stripe||webhookSecret))throw new Error('Hosted beta payments are disabled.');
+ if(hosted)origin=hosted.origin;
+ if(process.env.NODE_ENV==='production'&&!hosted)throw new Error('The launch service is development-only. Production operation requires separate review and approval.');
+ if(!hosted && origin && !/^http:\/\/127\.0\.0\.1:\d+$/.test(origin))throw new Error('Development origin must use the loopback interface.');
+ const attempts=new Map(),root=resolve(staticRoot);let bank;
+ const getBank=()=>bank??=readBank(resolve(root,'practice.html'));
  const getOrigin=()=>origin??`http://127.0.0.1:${server.address().port}`;
  function limit(key,max) {
+  if(hosted){if(!store.rateLimit(key,max,now()))throw fail(429,'Too many requests. Please try again in 15 minutes.');return;}
   const time=now(),old=attempts.get(key),bucket=old&&old.until>time?old:{count:0,until:time+15*60_000};
   if(attempts.size>2000){for(const [k,v] of attempts)if(v.until<=time)attempts.delete(k);if(attempts.size>2000)throw fail(429,'Please try again later.');}
   attempts.set(key,bucket);if(++bucket.count>max)throw fail(429,'Too many requests. Please try again in 15 minutes.');
@@ -38,6 +45,13 @@ export function createLaunchServer({store,staticRoot,now=Date.now,stripe=null,we
   const send=(status,value)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(value));};
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');
   try {
+   const probe=req.url==='/healthz'&&['GET','HEAD'].includes(req.method);
+   if(probe){store.one('SELECT 1 AS ready');send(200,{ready:true});return;}
+   if(hosted){
+    res.setHeader('Strict-Transport-Security','max-age=31536000');
+    res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+    if(req.headers['x-forwarded-proto']!=='https')throw fail(403,'The approved TLS proxy is required.');
+   }
    const configured=new URL(getOrigin());
    if(req.headers.host!==configured.host)throw fail(403,'Unrecognized development host.');
    const url=new URL(req.url,getOrigin()),route=url.pathname;
@@ -49,6 +63,7 @@ export function createLaunchServer({store,staticRoot,now=Date.now,stripe=null,we
     let actual,content;try{actual=await realpath(target);if(!actual.startsWith(root+sep))throw fail(404,'Page not found.');content=await readFile(actual);}catch(error){if(error.status)throw error;throw fail(404,'Page not found.');}
     res.writeHead(200,{'Content-Type':types[extname(target)]});res.end(req.method==='HEAD'?undefined:content);return;
    }
+   if(hosted&&route.startsWith('/api/')&&route!=='/api/config'&&(stage==='closed'||stage==='signup'&&route!=='/api/beta-signups'))throw fail(503,'This beta stage is closed for this action. No collection or sign-in was confirmed.');
    if(req.method==='POST'&&route==='/api/stripe/webhook') {
     if(!stripe||!webhookSecret)throw fail(503,'Stripe test webhooks are not configured.');
     limit('webhook:'+req.socket.remoteAddress,120);
@@ -66,36 +81,52 @@ export function createLaunchServer({store,staticRoot,now=Date.now,stripe=null,we
     try{input=JSON.parse(raw.toString('utf8'));}catch{throw fail(400,'Invalid JSON request.');}
     if(input===null||typeof input!=='object'||Array.isArray(input))throw fail(400,'JSON object required.');
    }
-   if(req.method==='GET'&&route==='/api/config'){send(200,{mode:'development',betaOpen:true,consentVersion:CONSENT_VERSION,testCheckout:!!stripe&&!!webhookSecret,offer:PASS});return;}
+   if(req.method==='GET'&&route==='/api/config'){send(200,{mode,stage,betaOpen:stage!=='closed',consentVersion:CONSENT_VERSION,testCheckout:!!stripe&&!!webhookSecret,offer:PASS});return;}
    if(req.method==='POST'&&route==='/api/beta-signups') {
-    limit('signup:'+req.socket.remoteAddress,signupLimit);
+    limit(hosted?'signup-global':'signup:'+req.socket.remoteAddress,hosted?120:signupLimit);
     const signup=validateSignup(input,now());
+    if(hosted)limit('signup-email:'+digest(signup.email),3);
     if(!input.website)store.signup(signup.email,signup.testDate,now());
     // Identical response for new, duplicate and honeypot submissions: no address enumeration.
     send(202,{message:'Your beta request has been received. If a place is available, the owner may contact you about the free beta. No payment is required.'});return;
    }
    const cookie=req.headers.cookie?.split(';').map(part=>part.trim()).find(part=>part.startsWith('beacon_session='))?.slice(15)??'';
    if(req.method==='POST'&&route==='/api/session') {
-    limit('login:'+req.socket.remoteAddress,15);
+    limit(hosted?'login-global':'login:'+req.socket.remoteAddress,hosted?120:15);
     if(typeof input.token!=='string'||!/^[a-zA-Z0-9_-]{43}$/.test(input.token))throw fail(401,'Invitation is invalid or expired.');
     const result=store.redeem(input.token,now());if(!result)throw fail(401,'Invitation is invalid or expired.');
     if(cookie)store.run('DELETE FROM sessions WHERE hash=?',digest(cookie));
-    res.setHeader('Set-Cookie',`beacon_session=${result.session}; HttpOnly; SameSite=Strict; Path=/api; Max-Age=${7*DAY/1000}`);
+    res.setHeader('Set-Cookie',`beacon_session=${result.session}; HttpOnly; SameSite=Strict; Path=/api; Max-Age=${7*DAY/1000}${hosted?'; Secure':''}`);
     send(200,{signedIn:true});return;
    }
    const account=store.account(cookie,now());
    if(!account)throw fail(401,'Sign in with a fresh private beta invitation.');
-   if(req.method==='GET'&&route==='/api/account'){send(200,{email:account.email,access:store.access(account,now()),mode:'development'});return;}
-   if(req.method==='DELETE'&&route==='/api/session') {store.run('DELETE FROM sessions WHERE hash=?',digest(cookie));res.setHeader('Set-Cookie','beacon_session=; HttpOnly; SameSite=Strict; Path=/api; Max-Age=0');send(200,{signedOut:true});return;}
+   if(req.method==='GET'&&route==='/api/account'){send(200,{email:account.email,access:store.access(account,now()),mode});return;}
+   if(req.method==='DELETE'&&route==='/api/session') {store.run('DELETE FROM sessions WHERE hash=?',digest(cookie));res.setHeader('Set-Cookie',`beacon_session=; HttpOnly; SameSite=Strict; Path=/api; Max-Age=0${hosted?'; Secure':''}`);send(200,{signedOut:true});return;}
    if(req.method==='DELETE'&&route==='/api/account') {
     if(input.confirm!=='DELETE')throw fail(400,'Type DELETE to remove private development data.');
-    store.deleteAccount(account.email);res.setHeader('Set-Cookie','beacon_session=; HttpOnly; SameSite=Strict; Path=/api; Max-Age=0');send(200,{deleted:true});return;
+    store.deleteAccount(account.email);res.setHeader('Set-Cookie',`beacon_session=; HttpOnly; SameSite=Strict; Path=/api; Max-Age=0${hosted?'; Secure':''}`);send(200,{deleted:true});return;
    }
    if(req.method==='POST'&&route==='/api/feedback') {
     limit('feedback:'+account.id,10);
     if(!['content','bug','accessibility','other'].includes(input.category)||typeof input.message!=='string'||input.message.trim().length<10||input.message.length>2000||input.questionId&&!/^q\d{4}$/.test(input.questionId))throw fail(400,'Choose a category and enter 10–2,000 characters. Optional question IDs use q0001 format.');
     const {randomUUID}=await import('node:crypto');
     store.run('INSERT INTO feedback VALUES(?,?,?,?,?,?)',randomUUID(),account.id,input.category,input.questionId||null,input.message.trim(),now());send(201,{saved:true});return;
+   }
+   if(route==='/api/study/archive'&&req.method==='GET'){send(200,studyArchive(store,account,now()));return;}
+   const sessionRoute=route.match(/^\/api\/study\/sessions\/([a-zA-Z0-9-]{10,100})$/);
+   if(sessionRoute&&req.method==='DELETE'){send(200,archiveSession(store,account,sessionRoute[1]));return;}
+   if(route==='/api/study'||route.startsWith('/api/study/')) {
+    const access=store.access(account,now());
+    if(!access.beta&&!access.pass)throw fail(403,'Guided study requires a free beta trial or an active test Exam Pass. Existing free practice and your study archive stay available.');
+    limit('study:'+account.id,120);
+    if(route==='/api/study'&&req.method==='GET'){send(200,studySnapshot(store,account,getBank(),now()));return;}
+    if(route==='/api/study/plan'&&req.method==='POST'){send(201,createPlan(store,account,input,getBank(),now()));return;}
+    if(route==='/api/study/sessions'&&req.method==='POST'){send(201,startSession(store,account,input,getBank(),now()));return;}
+    if(sessionRoute&&req.method==='GET'){send(200,sessionView(store,account,sessionRoute[1],getBank()));return;}
+    if(sessionRoute&&req.method==='PUT'){send(200,updateSession(store,account,sessionRoute[1],input,getBank(),now()));return;}
+    if(route==='/api/study/complete-day'&&req.method==='POST'){send(200,completeDay(store,account,input,now()));return;}
+    throw fail(404,'Study endpoint not found.');
    }
    if(req.method==='POST'&&route==='/api/checkout') {
     limit('checkout:'+account.id,8);

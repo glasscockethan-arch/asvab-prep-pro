@@ -3,6 +3,7 @@ import {writeFileSync, realpathSync, mkdirSync, existsSync, chmodSync} from 'nod
 import {resolve, dirname, sep} from 'node:path';
 import {tmpdir} from 'node:os';
 import {fileURLToPath} from 'node:url';
+import {publicOrigin} from './hosting.js';
 import {Store,canonicalEmail} from './store.js';
 export function csv(rows,columns) {
  const cell=value=>{let text=String(value??'');if(/^[\s]*[=+@\-\t\r\n]/.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';};
@@ -23,7 +24,7 @@ export function runOwner(args) {
   if(command==='export')console.log(privateOutput(value,csv(store.all('SELECT * FROM signups ORDER BY created'),['email','test_date','consent_version','created'])));
   if(command==='feedback')console.log(privateOutput(value,csv(store.all('SELECT f.category,f.question_id,f.message,f.created,a.email FROM feedback f JOIN accounts a ON a.id=f.account ORDER BY f.created'),['email','category','question_id','message','created'])));
   if(command==='metrics')console.log(JSON.stringify(store.all('SELECT name,total FROM metrics ORDER BY name'),null,2));
-  if(command==='invite') {const secret=store.invite(canonicalEmail(value),Date.now());const port=Number(process.env.BEACON_PORT??8001);console.log(`Private, single-use link, expires in 30 minutes. Deliver only to the opted-in address through a verified private channel:\nhttp://127.0.0.1:${port}/account.html#invite=${secret}`);}
+  if(command==='invite') {const port=Number(process.env.BEACON_PORT??8001);const origin=process.env.BEACON_PUBLIC_ORIGIN?publicOrigin(process.env.BEACON_PUBLIC_ORIGIN):`http://127.0.0.1:${port}`;const secret=store.invite(canonicalEmail(value),Date.now());console.log(`Private, single-use link, expires in 30 minutes. Deliver only to the opted-in address through a verified private channel:\n${origin}/account.html#invite=${secret}`);}
   if(command==='delete'){store.deleteAccount(canonicalEmail(value));console.log('Private development data removed; separately remove exported/backed-up copies under the retention policy.');}
   if(command==='prune'){store.prune(Date.now());console.log('Expired invites/sessions, 90-day uninvited requests and 90-day feedback removed.');}
   if(command==='backup') {
