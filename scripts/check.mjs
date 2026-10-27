@@ -29,3 +29,5 @@ console.log(`PASS: ${data.courses.length} units, ${htmlFiles.length} HTML pages,
 const curriculum=spawnSync(process.execPath,['scripts/curriculum-report.mjs'],{stdio:'inherit'});if(curriculum.status!==0)process.exit(curriculum.status??1);
 
 const college=spawnSync('python3',['tools/verify_college_math.py'],{stdio:'inherit'});if(college.status!==0)process.exit(college.status??1);
+
+const review=spawnSync('python3',['tools/asvab_review.py'],{stdio:'inherit'});if(review.status!==0)process.exit(review.status??1);

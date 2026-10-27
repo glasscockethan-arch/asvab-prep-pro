@@ -30,6 +30,7 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: npm test
       - run: npm run test:math
+      - run: npm run test:review
       - run: npm run audit:bank
       - run: npm audit --audit-level=moderate
       - run: npm run build

@@ -19,7 +19,10 @@
     "test:math": "python3 -m unittest discover -s tests -p 'test_college_math.py' -v",
     "dev:beta": "node server/main.js",
     "test:launch:e2e": "python3 tests/launch_e2e.py",
-    "owner": "node server/owner.js"
+    "owner": "node server/owner.js",
+    "review:asvab": "python3 tools/asvab_review.py",
+    "test:review": "python3 -m unittest discover -s tests -p 'test_asvab_review.py' -v",
+    "release:content": "python3 tools/asvab_review.py --require-approved"
   },
   "devDependencies": {
     "axe-core": "4.11.0"
